@@ -5,3 +5,6 @@
 
 # Jekyll build output
 _site/** 
+
+# Personal workspace settings
+.vscode/**

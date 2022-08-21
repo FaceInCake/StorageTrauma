@@ -1,9 +1,9 @@
+exclude: [README.md]
 defaults:
   - scope:
       path: "" # all files
     values:
       layout: "default"
-      title: "BaroEconomy"
       lang: "en"
       author: "Matthew Eppel"
-      script: "empty"
+      scripts: []
