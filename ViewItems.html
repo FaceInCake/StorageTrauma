@@ -1,0 +1,43 @@
+---
+title: View Items
+scripts: [funcs]
+---
+
+<h1>List of all Barotrauma Items</h1>
+<h3>(That have a price)</h3>
+
+{% include Paginator.html page=4 minpage=3 maxpage=5  %}
+
+<table class="table table-striped">
+    <thead>
+        <caption>All Items</caption>
+        <tr>
+            <th>Name</th>
+            <th>Pricing</th>
+            <th>Available</th>
+            <th>Deconstructs Into</th>
+        </tr>
+    </thead>
+    <tablebody>
+        {% for item in site.data.Items %}
+            <tr>
+                <td>{{ item[1].name }}</td>
+                <td>
+                    {% for p in item[1].prices %}
+                        {{ p[0] }} = {{ p[1] }}<br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for p in item[1].available %}
+                        {{ p[0] }} = {{ p[1] }}<br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for p in item[1].deconsTo %}
+                        {{ p[1] }}x {{ p[0] }}<br>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tablebody>
+</table>

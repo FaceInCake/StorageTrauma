@@ -1,0 +1,20 @@
+<!-- Variables: 'page' 'minpage' 'maxpage' -->
+<ul class="pagination" role="navigation" aria-label="Page navigation">
+    <li class="page-item">
+        <a href="{{page.url}}?page={{include.page |default:1 |minus:1}}" class="page-link">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    {% assign min = include.minpage | default:1 %}
+    {% assign max = include.maxpage | default:include.page |default:min %}
+    {% for i in (min..max) %}
+        <li class="page-item">
+            <a href="{{page.url}}?page={{i}}" class="page-link">{{i}}</a>
+        </li>
+    {% endfor %}
+    <li class="page-item">
+        <a href="{{page.url}}?page={{include.page |default:1 |plus:1}}" class="page-link">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+</ul>

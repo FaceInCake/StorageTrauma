@@ -3,13 +3,19 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>{{ page.title }}</title>
+    <title>{{ page.title | default: page.name }}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name='author' content='{{ page.author }}'>
-    <link rel='stylesheet' type='text/css' media='screen' href='./assets/css/default.css'>
-    <script src='./assets/js/{{ page.script }}.js'></script>
+    <link rel='stylesheet' href='./assets/css/default.css'>
+    {% if page.style %}
+        <link rel='stylesheet' href='./assets/css/{{ page.style }}.css'>        
+    {% endif %}
+    {% for s in page.scripts %}
+        <script src='./assets/js/{{ s }}.js'></script>
+    {% endfor %}
 </head>
 <body>
+    {% include Navbar.html %}
     {{ content }}
 </body>
 </html>
