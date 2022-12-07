@@ -1,0 +1,11 @@
+html, body { height: 100%; }
+
+/* I disagree with Bootstrap */
+table.table caption.title {
+    caption-side: top;
+    font-size: large;
+}
+
+[onclick] {
+    cursor: pointer;
+}

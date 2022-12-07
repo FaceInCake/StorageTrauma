@@ -7,3 +7,4 @@ defaults:
       lang: "en"
       author: "Matthew Eppel"
       scripts: []
+      # style: <name>

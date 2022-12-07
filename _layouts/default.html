@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html lang="{{ lang }}">
+<html lang="{{ page.lang }}">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>{{ page.title | default: page.name }}</title>
+    <title>BaroEconomy | {{ page.title | default: page.name }}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name='author' content='{{ page.author }}'>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="../assets/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="../assets/bootstrap-5.2.0-dist/css/bootstrap.min.css">
+    <script src="../assets/bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
     <link rel='stylesheet' href='./assets/css/default.css'>
+    <script src="https://kit.fontawesome.com/63c9b5600e.js" crossorigin="anonymous"></script>
     {% if page.style %}
-        <link rel='stylesheet' href='./assets/css/{{ page.style }}.css'>        
+        <link rel='stylesheet' href='../assets/css/{{ page.style }}.css'>        
     {% endif %}
     {% for s in page.scripts %}
-        <script src='./assets/js/{{ s }}.js'></script>
+        <script src='../assets/js/{{ s }}.js'></script>
     {% endfor %}
 </head>
 <body>
     {% include Navbar.html %}
-    {{ content }}
+    <div class="main-content p-3">
+        {{ content }}
+    </div>
 </body>
 </html>

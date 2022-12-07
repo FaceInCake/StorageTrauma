@@ -1,6 +1,6 @@
 {
     "skyholderartifact": {
-        "name": "skyholderartifact",
+        "name": "Skyholder Artifact",
         "prices": {
             "default": 1000,
             "outpost": 850,
@@ -24,7 +24,7 @@
         "recipes": []
     },
     "thermalartifact": {
-        "name": "thermalartifact",
+        "name": "Thermal Artifact",
         "prices": {
             "default": 1000,
             "outpost": 850,
@@ -48,7 +48,7 @@
         "recipes": []
     },
     "faradayartifact": {
-        "name": "faradayartifact",
+        "name": "Faraday Artifact",
         "prices": {
             "default": 1000,
             "outpost": 850,
@@ -72,7 +72,7 @@
         "recipes": []
     },
     "nasonovartifact": {
-        "name": "nasonovartifact",
+        "name": "Nasonov Artifact",
         "prices": {
             "default": 1000,
             "outpost": 850,
@@ -96,7 +96,7 @@
         "recipes": []
     },
     "psychosisartifact": {
-        "name": "psychosisartifact",
+        "name": "Psychosis Artifact",
         "prices": {
             "default": 1000,
             "outpost": 850,
@@ -119,29 +119,8 @@
         },
         "recipes": []
     },
-    "psychosisartifact_event": {
-        "name": "psychosisartifact_event",
-        "prices": {
-            "default": 1000,
-            "outpost": 850,
-            "city": 850,
-            "research": 2000,
-            "military": 1250,
-            "mine": 1000
-        },
-        "available": {
-            "default": 0,
-            "outpost": 0,
-            "city": 0,
-            "research": 0,
-            "military": 0,
-            "mine": 0
-        },
-        "deconsTo": {},
-        "recipes": []
-    },
     "alientrinket1": {
-        "name": "alientrinket1",
+        "name": "Alien Trinket 1",
         "prices": {
             "default": 300,
             "outpost": 255,
@@ -164,7 +143,7 @@
         "recipes": []
     },
     "alientrinket2": {
-        "name": "alientrinket2",
+        "name": "Alien Trinket 2",
         "prices": {
             "default": 300,
             "outpost": 255,
@@ -187,7 +166,7 @@
         "recipes": []
     },
     "alientrinket3": {
-        "name": "alientrinket3",
+        "name": "Alien Trinket 3",
         "prices": {
             "default": 300,
             "outpost": 255,
@@ -210,7 +189,7 @@
         "recipes": []
     },
     "oxygeniteshard": {
-        "name": "oxygeniteshard",
+        "name": "Oxygenite Shard",
         "prices": {
             "default": 200,
             "outpost": 200,
@@ -240,7 +219,7 @@
         ]
     },
     "sulphuriteshard": {
-        "name": "sulphuriteshard",
+        "name": "Sulphurite Shard",
         "prices": {
             "default": 200,
             "outpost": 200,
@@ -270,7 +249,7 @@
         ]
     },
     "alienpistol": {
-        "name": "alienpistol",
+        "name": "Alien Pistol",
         "prices": {
             "default": 500,
             "outpost": 450,
@@ -294,7 +273,7 @@
         "recipes": []
     },
     "ancientweapon": {
-        "name": "ancientweapon",
+        "name": "Ancient Weapon",
         "prices": {
             "default": 1000,
             "outpost": 900,
@@ -318,7 +297,7 @@
         "recipes": []
     },
     "alienpowercell": {
-        "name": "alienpowercell",
+        "name": "Alien Powercell",
         "prices": {
             "default": 150,
             "outpost": 150,
@@ -339,7 +318,7 @@
         "recipes": []
     },
     "smallcrawleregg": {
-        "name": "smallcrawleregg",
+        "name": "Small Crawler Egg",
         "prices": {
             "default": 80
         },
@@ -352,7 +331,7 @@
         "recipes": []
     },
     "button": {
-        "name": "button",
+        "name": "Button",
         "prices": {
             "default": 125,
             "outpost": 125,
@@ -386,7 +365,7 @@
         ]
     },
     "switch": {
-        "name": "switch",
+        "name": "Switch",
         "prices": {
             "default": 125,
             "outpost": 125,
@@ -420,7 +399,7 @@
         ]
     },
     "lever": {
-        "name": "lever",
+        "name": "Lever",
         "prices": {
             "default": 125,
             "outpost": 125,
@@ -454,7 +433,7 @@
         ]
     },
     "artifacttransportcase": {
-        "name": "artifacttransportcase",
+        "name": "Artifact Transport Case",
         "prices": {
             "default": 300,
             "outpost": 210,
@@ -483,7 +462,7 @@
         ]
     },
     "sealedsupplycrate": {
-        "name": "sealedsupplycrate",
+        "name": "Sealed Supply Crate",
         "prices": {
             "default": 1250
         },
@@ -494,7 +473,7 @@
         "recipes": []
     },
     "alienblood": {
-        "name": "alienblood",
+        "name": "Alien Blood",
         "prices": {
             "default": 100,
             "outpost": 85,
@@ -515,7 +494,7 @@
         "recipes": []
     },
     "huskeggs": {
-        "name": "huskeggs",
+        "name": "Husk Eggs",
         "prices": {
             "default": 600,
             "outpost": 720,
@@ -536,7 +515,7 @@
         "recipes": []
     },
     "swimbladder": {
-        "name": "swimbladder",
+        "name": "Swimbladder",
         "prices": {
             "default": 250,
             "outpost": 225,
@@ -560,7 +539,7 @@
         "recipes": []
     },
     "adrenalinegland": {
-        "name": "adrenalinegland",
+        "name": "Adrenaline Gland",
         "prices": {
             "default": 250,
             "outpost": 225,
@@ -583,7 +562,7 @@
         "recipes": []
     },
     "crawlermask": {
-        "name": "crawlermask",
+        "name": "Crawler Mask",
         "prices": {
             "default": 1
         },
@@ -594,7 +573,7 @@
         "recipes": []
     },
     "huskstinger": {
-        "name": "huskstinger",
+        "name": "Husk Stinger",
         "prices": {
             "default": 1
         },
@@ -605,7 +584,7 @@
         "recipes": []
     },
     "shellshield": {
-        "name": "shellshield",
+        "name": "Shell Shield",
         "prices": {
             "default": 1
         },
@@ -616,7 +595,7 @@
         "recipes": []
     },
     "mudraptorshell": {
-        "name": "mudraptorshell",
+        "name": "Mudraptor Shell",
         "prices": {
             "default": 1
         },
@@ -627,7 +606,7 @@
         "recipes": []
     },
     "smallmudraptoregg": {
-        "name": "smallmudraptoregg",
+        "name": "Small Mudraptor Egg",
         "prices": {
             "default": 600,
             "outpost": 510,
@@ -650,7 +629,7 @@
         "recipes": []
     },
     "mediummudraptoregg": {
-        "name": "mediummudraptoregg",
+        "name": "Medium Mudraptor Egg",
         "prices": {
             "default": 800
         },
@@ -664,7 +643,7 @@
         "recipes": []
     },
     "largemudraptoregg": {
-        "name": "largemudraptoregg",
+        "name": "Large Mudraptor Egg",
         "prices": {
             "default": 1000
         },
@@ -679,7 +658,7 @@
         "recipes": []
     },
     "tigerthresheregg": {
-        "name": "tigerthresheregg",
+        "name": "Tiger Thresher Egg",
         "prices": {
             "default": 370
         },
@@ -693,7 +672,7 @@
         "recipes": []
     },
     "crawleregg": {
-        "name": "crawleregg",
+        "name": "Crawler Egg",
         "prices": {
             "default": 200
         },
@@ -707,7 +686,7 @@
         "recipes": []
     },
     "divingmask": {
-        "name": "divingmask",
+        "name": "Diving Mask",
         "prices": {
             "default": 100,
             "outpost": 90,
@@ -739,7 +718,7 @@
         ]
     },
     "divingsuit": {
-        "name": "divingsuit",
+        "name": "Diving Suit",
         "prices": {
             "default": 250,
             "outpost": 225,
@@ -771,7 +750,7 @@
         ]
     },
     "underwaterscooter": {
-        "name": "underwaterscooter",
+        "name": "Underwater Scooter",
         "prices": {
             "default": 180,
             "outpost": 162,
@@ -806,7 +785,7 @@
         ]
     },
     "abyssdivingsuit": {
-        "name": "abyssdivingsuit",
+        "name": "Abyss Diving Suit",
         "prices": {
             "default": 550,
             "outpost": 495,
@@ -839,7 +818,7 @@
         ]
     },
     "combatdivingsuit": {
-        "name": "combatdivingsuit",
+        "name": "Combat Diving Suit",
         "prices": {
             "default": 560,
             "outpost": 504,
@@ -876,7 +855,7 @@
         ]
     },
     "batterycell": {
-        "name": "batterycell",
+        "name": "Battery Cell",
         "prices": {
             "default": 125,
             "outpost": 112,
@@ -910,7 +889,7 @@
         ]
     },
     "fulguriumbatterycell": {
-        "name": "fulguriumbatterycell",
+        "name": "Fulgurium Battery Cell",
         "prices": {
             "default": 250,
             "outpost": 312,
@@ -944,7 +923,7 @@
         ]
     },
     "wire": {
-        "name": "wire",
+        "name": "Wire",
         "prices": {
             "default": 10,
             "outpost": 10,
@@ -967,7 +946,7 @@
         "recipes": []
     },
     "redwire": {
-        "name": "redwire",
+        "name": "Red Wire",
         "prices": {
             "default": 10,
             "outpost": 10,
@@ -998,7 +977,7 @@
         ]
     },
     "bluewire": {
-        "name": "bluewire",
+        "name": "Blue Wire",
         "prices": {
             "default": 10,
             "outpost": 10,
@@ -1029,7 +1008,7 @@
         ]
     },
     "orangewire": {
-        "name": "orangewire",
+        "name": "Orange Wire",
         "prices": {
             "default": 10,
             "outpost": 10,
@@ -1060,7 +1039,7 @@
         ]
     },
     "greenwire": {
-        "name": "greenwire",
+        "name": "Green Wire",
         "prices": {
             "default": 10,
             "outpost": 10,
@@ -1091,7 +1070,7 @@
         ]
     },
     "blackwire": {
-        "name": "blackwire",
+        "name": "Black Wire",
         "prices": {
             "default": 10,
             "outpost": 10,
@@ -1122,7 +1101,7 @@
         ]
     },
     "brownwire": {
-        "name": "brownwire",
+        "name": "Brown Wire",
         "prices": {
             "default": 10,
             "outpost": 10,
@@ -1153,7 +1132,7 @@
         ]
     },
     "fpgacircuit": {
-        "name": "fpgacircuit",
+        "name": "FPGA Circuit",
         "prices": {
             "default": 80,
             "outpost": 80,
@@ -1188,7 +1167,7 @@
         ]
     },
     "andcomponent": {
-        "name": "andcomponent",
+        "name": "And Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1223,7 +1202,7 @@
         ]
     },
     "equalscomponent": {
-        "name": "equalscomponent",
+        "name": "Equals Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1258,7 +1237,7 @@
         ]
     },
     "greatercomponent": {
-        "name": "greatercomponent",
+        "name": "Greater Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1293,7 +1272,7 @@
         ]
     },
     "addercomponent": {
-        "name": "addercomponent",
+        "name": "Adder Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1328,7 +1307,7 @@
         ]
     },
     "colorcomponent": {
-        "name": "colorcomponent",
+        "name": "Color Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1363,7 +1342,7 @@
         ]
     },
     "subtractcomponent": {
-        "name": "subtractcomponent",
+        "name": "Subtract Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1398,7 +1377,7 @@
         ]
     },
     "multiplycomponent": {
-        "name": "multiplycomponent",
+        "name": "Multiply Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1433,7 +1412,7 @@
         ]
     },
     "dividecomponent": {
-        "name": "dividecomponent",
+        "name": "Divide Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1468,7 +1447,7 @@
         ]
     },
     "powcomponent": {
-        "name": "powcomponent",
+        "name": "Pow Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1503,7 +1482,7 @@
         ]
     },
     "orcomponent": {
-        "name": "orcomponent",
+        "name": "Or Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1538,7 +1517,7 @@
         ]
     },
     "xorcomponent": {
-        "name": "xorcomponent",
+        "name": "Xor Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1573,7 +1552,7 @@
         ]
     },
     "notcomponent": {
-        "name": "notcomponent",
+        "name": "Not Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1608,7 +1587,7 @@
         ]
     },
     "concatcomponent": {
-        "name": "concatcomponent",
+        "name": "Concat Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1643,7 +1622,7 @@
         ]
     },
     "sincomponent": {
-        "name": "sincomponent",
+        "name": "Sin Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1678,7 +1657,7 @@
         ]
     },
     "coscomponent": {
-        "name": "coscomponent",
+        "name": "Cos Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1713,7 +1692,7 @@
         ]
     },
     "tancomponent": {
-        "name": "tancomponent",
+        "name": "Tan Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1748,7 +1727,7 @@
         ]
     },
     "asincomponent": {
-        "name": "asincomponent",
+        "name": "Asin Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1783,7 +1762,7 @@
         ]
     },
     "acoscomponent": {
-        "name": "acoscomponent",
+        "name": "Acos Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1818,7 +1797,7 @@
         ]
     },
     "atancomponent": {
-        "name": "atancomponent",
+        "name": "Atan Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1853,7 +1832,7 @@
         ]
     },
     "roundcomponent": {
-        "name": "roundcomponent",
+        "name": "Round Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1888,7 +1867,7 @@
         ]
     },
     "ceilcomponent": {
-        "name": "ceilcomponent",
+        "name": "Ceil Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1923,7 +1902,7 @@
         ]
     },
     "floorcomponent": {
-        "name": "floorcomponent",
+        "name": "Floor Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1958,7 +1937,7 @@
         ]
     },
     "factorialcomponent": {
-        "name": "factorialcomponent",
+        "name": "Factorial Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -1993,7 +1972,7 @@
         ]
     },
     "abscomponent": {
-        "name": "abscomponent",
+        "name": "Abs Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2028,7 +2007,7 @@
         ]
     },
     "squarerootcomponent": {
-        "name": "squarerootcomponent",
+        "name": "Squareroot Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2063,7 +2042,7 @@
         ]
     },
     "modulocomponent": {
-        "name": "modulocomponent",
+        "name": "Modulo Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2098,7 +2077,7 @@
         ]
     },
     "relaycomponent": {
-        "name": "relaycomponent",
+        "name": "Relay Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2133,7 +2112,7 @@
         ]
     },
     "delaycomponent": {
-        "name": "delaycomponent",
+        "name": "Delay Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2168,7 +2147,7 @@
         ]
     },
     "memorycomponent": {
-        "name": "memorycomponent",
+        "name": "Memory Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2203,7 +2182,7 @@
         ]
     },
     "lightcomponent": {
-        "name": "lightcomponent",
+        "name": "Light Component",
         "prices": {
             "default": 110,
             "outpost": 110,
@@ -2237,7 +2216,7 @@
         ]
     },
     "lightcomponent90": {
-        "name": "lightcomponent90",
+        "name": "Light Component 90",
         "prices": {
             "default": 110,
             "outpost": 110,
@@ -2271,7 +2250,7 @@
         ]
     },
     "oxygendetector": {
-        "name": "oxygendetector",
+        "name": "Oxygen Detector",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2306,7 +2285,7 @@
         ]
     },
     "waterdetector": {
-        "name": "waterdetector",
+        "name": "Water Detector",
         "prices": {
             "default": 130,
             "outpost": 130,
@@ -2341,7 +2320,7 @@
         ]
     },
     "smokedetector": {
-        "name": "smokedetector",
+        "name": "Smoke Detector",
         "prices": {
             "default": 130,
             "outpost": 130,
@@ -2376,7 +2355,7 @@
         ]
     },
     "motiondetector": {
-        "name": "motiondetector",
+        "name": "Motion Detector",
         "prices": {
             "default": 130,
             "outpost": 130,
@@ -2411,7 +2390,7 @@
         ]
     },
     "signalcheckcomponent": {
-        "name": "signalcheckcomponent",
+        "name": "Signal Check Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2446,7 +2425,7 @@
         ]
     },
     "regexcomponent": {
-        "name": "regexcomponent",
+        "name": "Regex Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2481,7 +2460,7 @@
         ]
     },
     "oscillator": {
-        "name": "oscillator",
+        "name": "Oscillator",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2516,7 +2495,7 @@
         ]
     },
     "wificomponent": {
-        "name": "wificomponent",
+        "name": "Wifi Component",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2551,7 +2530,7 @@
         ]
     },
     "emergencysiren": {
-        "name": "emergencysiren",
+        "name": "Emergency Siren",
         "prices": {
             "default": 150,
             "outpost": 150,
@@ -2586,7 +2565,7 @@
         ]
     },
     "alarmbuzzer": {
-        "name": "alarmbuzzer",
+        "name": "Alarm Buzzer",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -2621,7 +2600,7 @@
         ]
     },
     "terminal": {
-        "name": "terminal",
+        "name": "Terminal",
         "prices": {
             "default": 200,
             "outpost": 200,
@@ -2658,7 +2637,7 @@
         ]
     },
     "handheldterminal": {
-        "name": "handheldterminal",
+        "name": "Handheld Terminal",
         "prices": {
             "default": 100
         },
@@ -2669,7 +2648,7 @@
         "recipes": []
     },
     "smallplanter": {
-        "name": "smallplanter",
+        "name": "Small Planter",
         "prices": {
             "default": 120,
             "outpost": 120,
@@ -2701,7 +2680,7 @@
         ]
     },
     "wateringcan": {
-        "name": "wateringcan",
+        "name": "Watering Can",
         "prices": {
             "default": 80,
             "outpost": 80,
@@ -2733,7 +2712,7 @@
         ]
     },
     "fertilizer": {
-        "name": "fertilizer",
+        "name": "Fertilizer",
         "prices": {
             "default": 140,
             "outpost": 140,
@@ -2766,7 +2745,7 @@
         ]
     },
     "seedbag": {
-        "name": "seedbag",
+        "name": "Seed Bag",
         "prices": {
             "default": 60,
             "outpost": 60,
@@ -2794,7 +2773,7 @@
         ]
     },
     "creepingorangevineseed": {
-        "name": "creepingorangevineseed",
+        "name": "Creeping Orange Vine Seed",
         "prices": {
             "default": 30,
             "outpost": 30,
@@ -2817,7 +2796,7 @@
         "recipes": []
     },
     "tobaccovineseed": {
-        "name": "tobaccovineseed",
+        "name": "Tobacco Vine Seed",
         "prices": {
             "default": 30,
             "outpost": 30,
@@ -2840,7 +2819,7 @@
         "recipes": []
     },
     "saltvineseed": {
-        "name": "saltvineseed",
+        "name": "Salt Vine Seed",
         "prices": {
             "default": 30,
             "outpost": 30,
@@ -2863,7 +2842,7 @@
         "recipes": []
     },
     "raptorbaneseed": {
-        "name": "raptorbaneseed",
+        "name": "Raptorbane Seed",
         "prices": {
             "default": 30,
             "outpost": 30,
@@ -2886,7 +2865,7 @@
         "recipes": []
     },
     "creepingorange": {
-        "name": "creepingorange",
+        "name": "Creeping Orange",
         "prices": {
             "default": 20,
             "outpost": 20,
@@ -2910,7 +2889,7 @@
         "recipes": []
     },
     "tobaccobud": {
-        "name": "tobaccobud",
+        "name": "Tobacco Bud",
         "prices": {
             "default": 40,
             "outpost": 40,
@@ -2934,7 +2913,7 @@
         "recipes": []
     },
     "saltbulb": {
-        "name": "saltbulb",
+        "name": "Salt Bulb",
         "prices": {
             "default": 65,
             "outpost": 65,
@@ -2958,7 +2937,7 @@
         "recipes": []
     },
     "raptorbane": {
-        "name": "raptorbane",
+        "name": "Raptorbane",
         "prices": {
             "default": 40,
             "outpost": 40,
@@ -2982,7 +2961,7 @@
         "recipes": []
     },
     "genesplicer": {
-        "name": "genesplicer",
+        "name": "Gene Splicer",
         "prices": {
             "default": 500,
             "research": 500,
@@ -3014,7 +2993,7 @@
         ]
     },
     "headset": {
-        "name": "headset",
+        "name": "Headset",
         "prices": {
             "default": 105,
             "outpost": 105,
@@ -3046,7 +3025,7 @@
         ]
     },
     "textdisplay": {
-        "name": "textdisplay",
+        "name": "Text Display",
         "prices": {
             "default": 200,
             "outpost": 200,
@@ -3081,7 +3060,7 @@
         ]
     },
     "carbon": {
-        "name": "carbon",
+        "name": "Carbon",
         "prices": {
             "default": 10,
             "outpost": 13,
@@ -3102,7 +3081,7 @@
         "recipes": []
     },
     "iron": {
-        "name": "iron",
+        "name": "Iron",
         "prices": {
             "default": 8,
             "outpost": 10,
@@ -3123,7 +3102,7 @@
         "recipes": []
     },
     "tin": {
-        "name": "tin",
+        "name": "Tin",
         "prices": {
             "default": 11,
             "outpost": 14,
@@ -3144,7 +3123,7 @@
         "recipes": []
     },
     "lead": {
-        "name": "lead",
+        "name": "Lead",
         "prices": {
             "default": 18,
             "outpost": 23,
@@ -3165,7 +3144,7 @@
         "recipes": []
     },
     "phosphorus": {
-        "name": "phosphorus",
+        "name": "Phosphorus",
         "prices": {
             "default": 25,
             "outpost": 32,
@@ -3186,7 +3165,7 @@
         "recipes": []
     },
     "copper": {
-        "name": "copper",
+        "name": "Copper",
         "prices": {
             "default": 22,
             "outpost": 28,
@@ -3207,7 +3186,7 @@
         "recipes": []
     },
     "zinc": {
-        "name": "zinc",
+        "name": "Zinc",
         "prices": {
             "default": 26,
             "outpost": 33,
@@ -3228,7 +3207,7 @@
         "recipes": []
     },
     "sodium": {
-        "name": "sodium",
+        "name": "Sodium",
         "prices": {
             "default": 33,
             "outpost": 42,
@@ -3249,7 +3228,7 @@
         "recipes": []
     },
     "silicon": {
-        "name": "silicon",
+        "name": "Silicon",
         "prices": {
             "default": 17,
             "outpost": 22,
@@ -3270,7 +3249,7 @@
         "recipes": []
     },
     "calcium": {
-        "name": "calcium",
+        "name": "Calcium",
         "prices": {
             "default": 31,
             "outpost": 40,
@@ -3291,7 +3270,7 @@
         "recipes": []
     },
     "aluminium": {
-        "name": "aluminium",
+        "name": "Aluminium",
         "prices": {
             "default": 42,
             "outpost": 54,
@@ -3312,7 +3291,7 @@
         "recipes": []
     },
     "uranium": {
-        "name": "uranium",
+        "name": "Uranium",
         "prices": {
             "default": 50,
             "outpost": 65,
@@ -3333,7 +3312,7 @@
         "recipes": []
     },
     "potassium": {
-        "name": "potassium",
+        "name": "Potassium",
         "prices": {
             "default": 10,
             "outpost": 13,
@@ -3354,7 +3333,7 @@
         "recipes": []
     },
     "titanium": {
-        "name": "titanium",
+        "name": "Titanium",
         "prices": {
             "default": 65,
             "outpost": 84,
@@ -3375,7 +3354,7 @@
         "recipes": []
     },
     "magnesium": {
-        "name": "magnesium",
+        "name": "Magnesium",
         "prices": {
             "default": 65,
             "outpost": 84,
@@ -3396,7 +3375,7 @@
         "recipes": []
     },
     "lithium": {
-        "name": "lithium",
+        "name": "Lithium",
         "prices": {
             "default": 88,
             "outpost": 114,
@@ -3417,7 +3396,7 @@
         "recipes": []
     },
     "chlorine": {
-        "name": "chlorine",
+        "name": "Chlorine",
         "prices": {
             "default": 11,
             "outpost": 14,
@@ -3438,7 +3417,7 @@
         "recipes": []
     },
     "thorium": {
-        "name": "thorium",
+        "name": "Thorium",
         "prices": {
             "default": 125,
             "outpost": 162,
@@ -3459,7 +3438,7 @@
         "recipes": []
     },
     "steel": {
-        "name": "steel",
+        "name": "Steel",
         "prices": {
             "default": 28,
             "outpost": 36,
@@ -3491,7 +3470,7 @@
         ]
     },
     "titaniumaluminiumalloy": {
-        "name": "titaniumaluminiumalloy",
+        "name": "Titanium-Aluminium Alloy",
         "prices": {
             "default": 150,
             "outpost": 195,
@@ -3523,7 +3502,7 @@
         ]
     },
     "plastic": {
-        "name": "plastic",
+        "name": "Plastic",
         "prices": {
             "default": 45,
             "outpost": 58,
@@ -3555,7 +3534,7 @@
         ]
     },
     "ballisticfiber": {
-        "name": "ballisticfiber",
+        "name": "Ballistic Fiber",
         "prices": {
             "default": 160,
             "outpost": 208,
@@ -3587,7 +3566,7 @@
         ]
     },
     "organicfiber": {
-        "name": "organicfiber",
+        "name": "Organic Fiber",
         "prices": {
             "default": 30,
             "outpost": 39,
@@ -3608,7 +3587,7 @@
         "recipes": []
     },
     "rubber": {
-        "name": "rubber",
+        "name": "Rubber",
         "prices": {
             "default": 20,
             "outpost": 26,
@@ -3629,7 +3608,7 @@
         "recipes": []
     },
     "flashpowder": {
-        "name": "flashpowder",
+        "name": "Flash Powder",
         "prices": {
             "default": 90,
             "outpost": 117,
@@ -3661,7 +3640,7 @@
         ]
     },
     "scrap": {
-        "name": "scrap",
+        "name": "Scrap",
         "prices": {
             "default": 5
         },
@@ -3682,7 +3661,7 @@
         "recipes": []
     },
     "incendium": {
-        "name": "incendium",
+        "name": "Incendium",
         "prices": {
             "default": 200,
             "outpost": 250,
@@ -3710,7 +3689,7 @@
         ]
     },
     "fulgurium": {
-        "name": "fulgurium",
+        "name": "Fulgurium",
         "prices": {
             "default": 200,
             "outpost": 260,
@@ -3738,7 +3717,7 @@
         ]
     },
     "physicorium": {
-        "name": "physicorium",
+        "name": "Physicorium",
         "prices": {
             "default": 200,
             "outpost": 250,
@@ -3766,7 +3745,7 @@
         ]
     },
     "dementonite": {
-        "name": "dementonite",
+        "name": "Dementonite",
         "prices": {
             "default": 200,
             "outpost": 250,
@@ -3794,7 +3773,7 @@
         ]
     },
     "fiberplant": {
-        "name": "fiberplant",
+        "name": "Fiber Plant",
         "prices": {
             "default": 100,
             "outpost": 130,
@@ -3817,7 +3796,7 @@
         "recipes": []
     },
     "elastinplant": {
-        "name": "elastinplant",
+        "name": "Elastin Plant",
         "prices": {
             "default": 150,
             "outpost": 195,
@@ -3840,7 +3819,7 @@
         "recipes": []
     },
     "aquaticpoppy": {
-        "name": "aquaticpoppy",
+        "name": "Aquatic Poppy",
         "prices": {
             "default": 150,
             "outpost": 195,
@@ -3863,7 +3842,7 @@
         "recipes": []
     },
     "yeastshroom": {
-        "name": "yeastshroom",
+        "name": "Yeast Shroom",
         "prices": {
             "default": 200,
             "outpost": 260,
@@ -3886,7 +3865,7 @@
         "recipes": []
     },
     "slimebacteria": {
-        "name": "slimebacteria",
+        "name": "Slime Bacteria",
         "prices": {
             "default": 150,
             "outpost": 195,
@@ -3909,7 +3888,7 @@
         "recipes": []
     },
     "paralyxis": {
-        "name": "paralyxis",
+        "name": "Paralyxis",
         "prices": {
             "default": 200,
             "outpost": 250,
@@ -3930,7 +3909,7 @@
         "recipes": []
     },
     "titanite": {
-        "name": "titanite",
+        "name": "Titanite",
         "prices": {
             "default": 250,
             "outpost": 275,
@@ -3954,7 +3933,7 @@
         "recipes": []
     },
     "brockite": {
-        "name": "brockite",
+        "name": "Brockite",
         "prices": {
             "default": 150,
             "outpost": 165,
@@ -3978,7 +3957,7 @@
         "recipes": []
     },
     "thorianite": {
-        "name": "thorianite",
+        "name": "Thorianite",
         "prices": {
             "default": 300,
             "outpost": 330,
@@ -4001,7 +3980,7 @@
         "recipes": []
     },
     "amblygonite": {
-        "name": "amblygonite",
+        "name": "Amblygonite",
         "prices": {
             "default": 200,
             "outpost": 220,
@@ -4026,7 +4005,7 @@
         "recipes": []
     },
     "sphalerite": {
-        "name": "sphalerite",
+        "name": "Sphalerite",
         "prices": {
             "default": 100,
             "outpost": 110,
@@ -4049,7 +4028,7 @@
         "recipes": []
     },
     "pyromorphite": {
-        "name": "pyromorphite",
+        "name": "Pyromorphite",
         "prices": {
             "default": 30,
             "outpost": 33,
@@ -4072,7 +4051,7 @@
         "recipes": []
     },
     "quartz": {
-        "name": "quartz",
+        "name": "Quartz",
         "prices": {
             "default": 100,
             "outpost": 110,
@@ -4095,7 +4074,7 @@
         "recipes": []
     },
     "diamond": {
-        "name": "diamond",
+        "name": "Diamond",
         "prices": {
             "default": 50,
             "outpost": 55,
@@ -4118,7 +4097,7 @@
         "recipes": []
     },
     "hydroxyapatite": {
-        "name": "hydroxyapatite",
+        "name": "Hydroxyapatite",
         "prices": {
             "default": 100,
             "outpost": 110,
@@ -4142,7 +4121,7 @@
         "recipes": []
     },
     "uraniumore": {
-        "name": "uraniumore",
+        "name": "Uraniumore",
         "prices": {
             "default": 200,
             "outpost": 220,
@@ -4165,7 +4144,7 @@
         "recipes": []
     },
     "ilmenite": {
-        "name": "ilmenite",
+        "name": "Ilmenite",
         "prices": {
             "default": 100,
             "outpost": 110,
@@ -4188,7 +4167,7 @@
         "recipes": []
     },
     "stannite": {
-        "name": "stannite",
+        "name": "Stannite",
         "prices": {
             "default": 50,
             "outpost": 55,
@@ -4213,7 +4192,7 @@
         "recipes": []
     },
     "chalcopyrite": {
-        "name": "chalcopyrite",
+        "name": "Chalcopyrite",
         "prices": {
             "default": 60,
             "outpost": 66,
@@ -4236,7 +4215,7 @@
         "recipes": []
     },
     "esperite": {
-        "name": "esperite",
+        "name": "Esperite",
         "prices": {
             "default": 100,
             "outpost": 110,
@@ -4260,7 +4239,7 @@
         "recipes": []
     },
     "galena": {
-        "name": "galena",
+        "name": "Galena",
         "prices": {
             "default": 70,
             "outpost": 77,
@@ -4283,7 +4262,7 @@
         "recipes": []
     },
     "triphylite": {
-        "name": "triphylite",
+        "name": "Triphylite",
         "prices": {
             "default": 100,
             "outpost": 110,
@@ -4306,7 +4285,7 @@
         "recipes": []
     },
     "langbeinite": {
-        "name": "langbeinite",
+        "name": "Langbeinite",
         "prices": {
             "default": 200,
             "outpost": 220,
@@ -4330,7 +4309,7 @@
         "recipes": []
     },
     "chamosite": {
-        "name": "chamosite",
+        "name": "Chamosite",
         "prices": {
             "default": 130,
             "outpost": 143,
@@ -4354,7 +4333,7 @@
         "recipes": []
     },
     "ironore": {
-        "name": "ironore",
+        "name": "Iron Ore",
         "prices": {
             "default": 25,
             "outpost": 27,
@@ -4377,7 +4356,7 @@
         "recipes": []
     },
     "polyhalite": {
-        "name": "polyhalite",
+        "name": "Polyhalite",
         "prices": {
             "default": 50,
             "outpost": 55,
@@ -4401,7 +4380,7 @@
         "recipes": []
     },
     "graphite": {
-        "name": "graphite",
+        "name": "Graphite",
         "prices": {
             "default": 25,
             "outpost": 27,
@@ -4424,7 +4403,7 @@
         "recipes": []
     },
     "sylvite": {
-        "name": "sylvite",
+        "name": "Sylvite",
         "prices": {
             "default": 70,
             "outpost": 77,
@@ -4448,7 +4427,7 @@
         "recipes": []
     },
     "lazulite": {
-        "name": "lazulite",
+        "name": "Lazulite",
         "prices": {
             "default": 25,
             "outpost": 27,
@@ -4472,7 +4451,7 @@
         "recipes": []
     },
     "bornite": {
-        "name": "bornite",
+        "name": "Bornite",
         "prices": {
             "default": 60,
             "outpost": 66,
@@ -4495,7 +4474,7 @@
         "recipes": []
     },
     "cassiterite": {
-        "name": "cassiterite",
+        "name": "Cassiterite",
         "prices": {
             "default": 40,
             "outpost": 44,
@@ -4518,7 +4497,7 @@
         "recipes": []
     },
     "cryolite": {
-        "name": "cryolite",
+        "name": "Cryolite",
         "prices": {
             "default": 80,
             "outpost": 88,
@@ -4541,7 +4520,7 @@
         "recipes": []
     },
     "aragonite": {
-        "name": "aragonite",
+        "name": "Aragonite",
         "prices": {
             "default": 80,
             "outpost": 88,
@@ -4564,7 +4543,7 @@
         "recipes": []
     },
     "chrysoprase": {
-        "name": "chrysoprase",
+        "name": "Chrysoprase",
         "prices": {
             "default": 40,
             "outpost": 44,
@@ -4621,7 +4600,7 @@
         ]
     },
     "steroids": {
-        "name": "AnabolicSteroids",
+        "name": "Anabolic Steroids",
         "prices": {
             "default": 350,
             "outpost": 350,
@@ -4755,7 +4734,7 @@
         ]
     },
     "antibleeding3": {
-        "name": "AntibioticGlue",
+        "name": "Antibiotic Glue",
         "prices": {
             "default": 140,
             "medical": 126
@@ -4838,7 +4817,7 @@
         ]
     },
     "pomegrenadeextract": {
-        "name": "pomegrenadeextract",
+        "name": "Pomegrenade Extract",
         "prices": {
             "default": 80,
             "outpost": 80,
@@ -4899,7 +4878,7 @@
         ]
     },
     "antibloodloss2": {
-        "name": "BloodPack",
+        "name": "Blood Pack",
         "prices": {
             "default": 240,
             "medical": 216
@@ -4950,7 +4929,7 @@
         ]
     },
     "liquidoxygenite": {
-        "name": "LiquidOxygenite",
+        "name": "Liquid Oxygenite",
         "prices": {
             "default": 80,
             "outpost": 80,
@@ -5067,7 +5046,7 @@
         ]
     },
     "morbusineantidote": {
-        "name": "MorbusineAntidote",
+        "name": "Morbusine Antidote",
         "prices": {
             "default": 350,
             "outpost": 350,
@@ -5100,7 +5079,7 @@
         ]
     },
     "cyanideantidote": {
-        "name": "CyanideAntidote",
+        "name": "Cyanide Antidote",
         "prices": {
             "default": 125,
             "outpost": 125,
@@ -5133,7 +5112,7 @@
         ]
     },
     "sufforinantidote": {
-        "name": "SufforinAntidote",
+        "name": "Sufforin Antidote",
         "prices": {
             "default": 125,
             "outpost": 125,
@@ -5166,7 +5145,7 @@
         ]
     },
     "deliriumineantidote": {
-        "name": "DeliriumineAntidote",
+        "name": "Deliriumine Antidote",
         "prices": {
             "default": 125,
             "outpost": 125,
@@ -5199,7 +5178,7 @@
         ]
     },
     "antirad": {
-        "name": "AntiRad",
+        "name": "Anti-Rad",
         "prices": {
             "default": 125,
             "outpost": 125,
@@ -5232,7 +5211,7 @@
         ]
     },
     "antiparalysis": {
-        "name": "ParalysisAntidote",
+        "name": "Paralysis Antidote",
         "prices": {
             "default": 200,
             "outpost": 200,
@@ -5380,7 +5359,7 @@
         "recipes": []
     },
     "tonicliquid": {
-        "name": "TonicLiquid",
+        "name": "Tonic Liquid",
         "prices": {
             "default": 75,
             "outpost": 75,
@@ -5446,7 +5425,7 @@
         ]
     },
     "chloralhydrate": {
-        "name": "ChloralHydrate",
+        "name": "Chloral Hydrate",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -5635,7 +5614,7 @@
         ]
     },
     "raptorbaneextract": {
-        "name": "raptorbaneextract",
+        "name": "Raptorbane Extract",
         "prices": {
             "default": 250,
             "outpost": 275,
@@ -5679,7 +5658,7 @@
         "recipes": []
     },
     "sulphuricacid": {
-        "name": "SulphuricAcid",
+        "name": "Sulphuric Acid",
         "prices": {
             "default": 80,
             "outpost": 100,
@@ -5702,7 +5681,7 @@
         "recipes": []
     },
     "guitar": {
-        "name": "guitar",
+        "name": "Guitar",
         "prices": {
             "default": 50,
             "outpost": 50,
@@ -5723,7 +5702,7 @@
         "recipes": []
     },
     "harmonica": {
-        "name": "harmonica",
+        "name": "Harmonica",
         "prices": {
             "default": 50,
             "outpost": 50,
@@ -5744,7 +5723,7 @@
         "recipes": []
     },
     "accordion": {
-        "name": "accordion",
+        "name": "Accordion",
         "prices": {
             "default": 50,
             "outpost": 50,
@@ -5765,7 +5744,7 @@
         "recipes": []
     },
     "captainspipe": {
-        "name": "captainspipe",
+        "name": "Captains Pipe",
         "prices": {
             "default": 50,
             "outpost": 50,
@@ -5786,7 +5765,7 @@
         "recipes": []
     },
     "pipetobacco": {
-        "name": "pipetobacco",
+        "name": "Pipe Tobacco",
         "prices": {
             "default": 120,
             "outpost": 132,
@@ -5814,7 +5793,7 @@
         ]
     },
     "bikehorn": {
-        "name": "bikehorn",
+        "name": "Bike Horn",
         "prices": {
             "default": 1,
             "outpost": 1,
@@ -5835,7 +5814,7 @@
         "recipes": []
     },
     "peanutegg": {
-        "name": "peanutegg",
+        "name": "Peanut Egg",
         "prices": {
             "default": 500,
             "outpost": 500,
@@ -5859,7 +5838,7 @@
         "recipes": []
     },
     "psilotoadegg": {
-        "name": "psilotoadegg",
+        "name": "Psilotoad Egg",
         "prices": {
             "default": 500,
             "outpost": 500,
@@ -5883,7 +5862,7 @@
         "recipes": []
     },
     "orangeboyegg": {
-        "name": "orangeboyegg",
+        "name": "Orangeboy Egg",
         "prices": {
             "default": 500,
             "outpost": 500,
@@ -5907,7 +5886,7 @@
         "recipes": []
     },
     "balloonegg": {
-        "name": "balloonegg",
+        "name": "Balloon Egg",
         "prices": {
             "default": 500,
             "outpost": 500,
@@ -5931,7 +5910,7 @@
         "recipes": []
     },
     "food": {
-        "name": "food",
+        "name": "Pet Food",
         "prices": {
             "default": 120,
             "outpost": 120,
@@ -5952,7 +5931,7 @@
         "recipes": []
     },
     "petnametag": {
-        "name": "petnametag",
+        "name": "Pet Name Tag",
         "prices": {
             "default": 10,
             "outpost": 10,
@@ -5973,7 +5952,7 @@
         "recipes": []
     },
     "mucusball": {
-        "name": "",
+        "name": "Mucus Ball",
         "prices": {
             "default": 1
         },
@@ -5988,7 +5967,7 @@
         "recipes": []
     },
     "chitin": {
-        "name": "",
+        "name": "Chitin",
         "prices": {
             "default": 1
         },
@@ -6001,7 +5980,7 @@
         "recipes": []
     },
     "chitinhelmet": {
-        "name": "chitinhelmet",
+        "name": "Chitin Helmet",
         "prices": {
             "default": 175,
             "outpost": 175,
@@ -6031,7 +6010,7 @@
         ]
     },
     "toolbelt": {
-        "name": "toolbelt",
+        "name": "Tool Belt",
         "prices": {
             "default": 65,
             "outpost": 65,
@@ -6061,7 +6040,7 @@
         ]
     },
     "toolbox": {
-        "name": "toolbox",
+        "name": "Tool Box",
         "prices": {
             "default": 60,
             "outpost": 60,
@@ -6089,7 +6068,7 @@
         ]
     },
     "weldingtool": {
-        "name": "weldingtool",
+        "name": "Welding Tool",
         "prices": {
             "default": 150,
             "outpost": 150,
@@ -6123,7 +6102,7 @@
         ]
     },
     "plasmacutter": {
-        "name": "plasmacutter",
+        "name": "Plasma Cutter",
         "prices": {
             "default": 150,
             "outpost": 150,
@@ -6157,7 +6136,7 @@
         ]
     },
     "weldingfueltank": {
-        "name": "weldingfueltank",
+        "name": "Welding Fuel Tank",
         "prices": {
             "default": 120,
             "outpost": 120,
@@ -6197,7 +6176,7 @@
         ]
     },
     "incendiumfueltank": {
-        "name": "incendiumfueltank",
+        "name": "Incendium Fuel Tank",
         "prices": {
             "default": 250,
             "outpost": 275,
@@ -6235,7 +6214,7 @@
         ]
     },
     "extinguisher": {
-        "name": "extinguisher",
+        "name": "Extinguisher",
         "prices": {
             "default": 100,
             "outpost": 100,
@@ -6267,7 +6246,7 @@
         ]
     },
     "sprayer": {
-        "name": "sprayer",
+        "name": "Sprayer",
         "prices": {
             "default": 120,
             "outpost": 120,
@@ -6299,7 +6278,7 @@
         ]
     },
     "screwdriver": {
-        "name": "screwdriver",
+        "name": "Screwdriver",
         "prices": {
             "default": 10,
             "outpost": 10,
@@ -6331,7 +6310,7 @@
         ]
     },
     "wrench": {
-        "name": "wrench",
+        "name": "Wrench",
         "prices": {
             "default": 20,
             "outpost": 20,
@@ -6363,7 +6342,7 @@
         ]
     },
     "crowbar": {
-        "name": "crowbar",
+        "name": "Crowbar",
         "prices": {
             "default": 20,
             "outpost": 20,
@@ -6393,7 +6372,7 @@
         ]
     },
     "handheldsonar": {
-        "name": "handheldsonar",
+        "name": "Handheld Sonar",
         "prices": {
             "default": 150,
             "outpost": 150,
@@ -6427,7 +6406,7 @@
         ]
     },
     "sonarbeacon": {
-        "name": "sonarbeacon",
+        "name": "Sonar Beacon",
         "prices": {
             "default": 150,
             "outpost": 150,
@@ -6461,7 +6440,7 @@
         ]
     },
     "flashlight": {
-        "name": "flashlight",
+        "name": "Flashlight",
         "prices": {
             "default": 200,
             "outpost": 200,
@@ -6493,7 +6472,7 @@
         ]
     },
     "flare": {
-        "name": "flare",
+        "name": "Flare",
         "prices": {
             "default": 30,
             "outpost": 30,
@@ -6524,7 +6503,7 @@
         ]
     },
     "alienflare": {
-        "name": "alienflare",
+        "name": "Alien Flare",
         "prices": {
             "default": 200,
             "outpost": 200,
@@ -6548,7 +6527,7 @@
         "recipes": []
     },
     "flamer": {
-        "name": "flamer",
+        "name": "Flamer",
         "prices": {
             "default": 75,
             "outpost": 75,
@@ -6574,7 +6553,7 @@
         "recipes": []
     },
     "syringegun": {
-        "name": "syringegun",
+        "name": "Syringe Gun",
         "prices": {
             "default": 190,
             "outpost": 190,
@@ -6608,7 +6587,7 @@
         ]
     },
     "oxygentank": {
-        "name": "oxygentank",
+        "name": "Oxygen Tank",
         "prices": {
             "default": 75,
             "outpost": 75,
@@ -6638,7 +6617,7 @@
         ]
     },
     "oxygenitetank": {
-        "name": "oxygenitetank",
+        "name": "Oxygenite Tank",
         "prices": {
             "default": 175,
             "outpost": 175,
@@ -6670,7 +6649,7 @@
         ]
     },
     "fuelrod": {
-        "name": "fuelrod",
+        "name": "Fuel Rod",
         "prices": {
             "default": 150,
             "outpost": 150,
@@ -6712,7 +6691,7 @@
         ]
     },
     "fulguriumfuelrod": {
-        "name": "fulguriumfuelrod",
+        "name": "Fulgurium Fuel Rod",
         "prices": {
             "default": 250,
             "outpost": 250,
@@ -6755,7 +6734,7 @@
         ]
     },
     "thoriumfuelrod": {
-        "name": "thoriumfuelrod",
+        "name": "Thorium Fuel Rod",
         "prices": {
             "default": 200,
             "outpost": 200,
@@ -6798,7 +6777,7 @@
         ]
     },
     "redpaint": {
-        "name": "redpaint",
+        "name": "Red Paint",
         "prices": {
             "default": 140,
             "outpost": 154,
@@ -6830,7 +6809,7 @@
         ]
     },
     "greenpaint": {
-        "name": "greenpaint",
+        "name": "Green Paint",
         "prices": {
             "default": 90,
             "outpost": 99,
@@ -6862,7 +6841,7 @@
         ]
     },
     "bluepaint": {
-        "name": "bluepaint",
+        "name": "Blue Paint",
         "prices": {
             "default": 90,
             "outpost": 99,
@@ -6894,7 +6873,7 @@
         ]
     },
     "blackpaint": {
-        "name": "blackpaint",
+        "name": "Black Paint",
         "prices": {
             "default": 90,
             "outpost": 99,
@@ -6926,7 +6905,7 @@
         ]
     },
     "whitepaint": {
-        "name": "whitepaint",
+        "name": "White Paint",
         "prices": {
             "default": 90,
             "outpost": 99,
@@ -6958,7 +6937,7 @@
         ]
     },
     "flamerunique": {
-        "name": "flamerunique",
+        "name": "Flamer Unique",
         "prices": {
             "default": 755
         },
@@ -6972,7 +6951,7 @@
         "recipes": []
     },
     "glowstick": {
-        "name": "glowstick",
+        "name": "Glowstick",
         "prices": {
             "default": 45,
             "outpost": 45,
@@ -7003,7 +6982,7 @@
         ]
     },
     "chaingunammobox": {
-        "name": "chaingunammobox",
+        "name": "Chaingun Ammo Box",
         "prices": {
             "default": 180,
             "outpost": 234,
@@ -7047,7 +7026,7 @@
         ]
     },
     "chaingunammoboxphysicorium": {
-        "name": "chaingunammoboxphysicorium",
+        "name": "Physicorium Chaingun Ammo Box",
         "prices": {
             "default": 520,
             "outpost": 676,
@@ -7090,7 +7069,7 @@
         ]
     },
     "chaingunammoboxshredder": {
-        "name": "chaingunammoboxshredder",
+        "name": "Shredder Chaingun Ammo Box",
         "prices": {
             "default": 260,
             "outpost": 338,
@@ -7133,7 +7112,7 @@
         ]
     },
     "coilgunammobox": {
-        "name": "coilgunammobox",
+        "name": "Coilgun Ammo Box",
         "prices": {
             "default": 120,
             "outpost": 156,
@@ -7176,7 +7155,7 @@
         ]
     },
     "physicoriumammobox": {
-        "name": "physicoriumammobox",
+        "name": "Physicorium Ammo Box",
         "prices": {
             "default": 300,
             "outpost": 390,
@@ -7222,7 +7201,7 @@
         ]
     },
     "coilgunammoboxexplosive": {
-        "name": "coilgunammoboxexplosive",
+        "name": "Explosive Coilgun Ammo Box",
         "prices": {
             "default": 455,
             "outpost": 591,
@@ -7266,7 +7245,7 @@
         ]
     },
     "coilgunammoboxpiercing": {
-        "name": "coilgunammoboxpiercing",
+        "name": "Piercing Coilgun Ammo Box",
         "prices": {
             "default": 250,
             "outpost": 325,
@@ -7309,7 +7288,7 @@
         ]
     },
     "depthchargeshell": {
-        "name": "depthchargeshell",
+        "name": "Depth Charge Shell",
         "prices": {
             "default": 75,
             "outpost": 105,
@@ -7341,7 +7320,7 @@
         ]
     },
     "nucleardepthcharge": {
-        "name": "nucleardepthcharge",
+        "name": "Nuclear Depth Charge",
         "prices": {
             "default": 450,
             "outpost": 607,
@@ -7375,7 +7354,7 @@
         ]
     },
     "depthdecoyshell": {
-        "name": "depthdecoyshell",
+        "name": "Depth Decoy Shell",
         "prices": {
             "default": 250,
             "outpost": 350,
@@ -7408,7 +7387,7 @@
         ]
     },
     "nucleardepthdecoy": {
-        "name": "nucleardepthdecoy",
+        "name": "Nuclear Depth Decoy",
         "prices": {
             "default": 590,
             "outpost": 796,
@@ -7443,7 +7422,7 @@
         ]
     },
     "uex": {
-        "name": "uex",
+        "name": "UEX",
         "prices": {
             "default": 95,
             "outpost": 133,
@@ -7474,7 +7453,7 @@
         ]
     },
     "c4block": {
-        "name": "c4block",
+        "name": "C4 Block",
         "prices": {
             "default": 160,
             "outpost": 224,
@@ -7505,7 +7484,7 @@
         ]
     },
     "compoundn": {
-        "name": "compoundn",
+        "name": "Compound N",
         "prices": {
             "default": 150,
             "outpost": 210,
@@ -7537,7 +7516,7 @@
         ]
     },
     "volatilecompoundn": {
-        "name": "volatilecompoundn",
+        "name": "Volatile Compound N",
         "prices": {
             "default": 250,
             "outpost": 350,
@@ -7566,7 +7545,7 @@
         ]
     },
     "ic4block": {
-        "name": "ic4block",
+        "name": "IC4 Block",
         "prices": {
             "default": 400,
             "outpost": 560,
@@ -7597,7 +7576,7 @@
         ]
     },
     "detonator": {
-        "name": "detonator",
+        "name": "Detonator",
         "prices": {
             "default": 100,
             "outpost": 140,
@@ -7622,7 +7601,7 @@
         "recipes": []
     },
     "nitroglycerin": {
-        "name": "nitroglycerin",
+        "name": "Nitroglycerin",
         "prices": {
             "default": 150,
             "outpost": 210,
@@ -7645,7 +7624,7 @@
         "recipes": []
     },
     "pulselaserammobox": {
-        "name": "pulselaserammobox",
+        "name": "Pulse Laser Ammo Box",
         "prices": {
             "default": 250,
             "outpost": 400,
@@ -7688,7 +7667,7 @@
         ]
     },
     "pulselaserammoboxtrilaser": {
-        "name": "pulselaserammoboxtrilaser",
+        "name": "Pulse Laser Ammo Box Trilaser",
         "prices": {
             "default": 435,
             "outpost": 565,
@@ -7731,7 +7710,7 @@
         ]
     },
     "railgunshell": {
-        "name": "railgunshell",
+        "name": "Railgun Shell",
         "prices": {
             "default": 70,
             "outpost": 105,
@@ -7764,7 +7743,7 @@
         ]
     },
     "nuclearshell": {
-        "name": "nuclearshell",
+        "name": "Nuclear Shell",
         "prices": {
             "default": 470,
             "outpost": 634,
@@ -7800,7 +7779,7 @@
         ]
     },
     "alienshell": {
-        "name": "alienshell",
+        "name": "Alien Shell",
         "prices": {
             "default": 400,
             "outpost": 600,
@@ -7833,7 +7812,7 @@
         ]
     },
     "railguncanistershell": {
-        "name": "railguncanistershell",
+        "name": "Railgun Canister Shell",
         "prices": {
             "default": 95,
             "outpost": 114,
@@ -7874,7 +7853,7 @@
         ]
     },
     "spear": {
-        "name": "spear",
+        "name": "Spear",
         "prices": {
             "default": 7,
             "outpost": 10,
@@ -7904,7 +7883,7 @@
         ]
     },
     "alienspear": {
-        "name": "alienspear",
+        "name": "Alien Spear",
         "prices": {
             "default": 50,
             "outpost": 75,
@@ -7932,7 +7911,7 @@
         ]
     },
     "explosivespear": {
-        "name": "explosivespear",
+        "name": "Explosive Spear",
         "prices": {
             "default": 120,
             "outpost": 168,
@@ -7963,7 +7942,7 @@
         ]
     },
     "harpoongun": {
-        "name": "harpoongun",
+        "name": "Harpoon Gun",
         "prices": {
             "default": 170,
             "outpost": 255,
@@ -7999,7 +7978,7 @@
         ]
     },
     "revolverround": {
-        "name": "revolverround",
+        "name": "Revolver Round",
         "prices": {
             "default": 30,
             "outpost": 45,
@@ -8031,7 +8010,7 @@
         ]
     },
     "revolver": {
-        "name": "revolver",
+        "name": "Revolver",
         "prices": {
             "default": 150,
             "outpost": 225,
@@ -8057,7 +8036,7 @@
         "recipes": []
     },
     "smgmagazine": {
-        "name": "smgmagazine",
+        "name": "SMG Magazine",
         "prices": {
             "default": 100,
             "outpost": 150,
@@ -8100,7 +8079,7 @@
         ]
     },
     "smg": {
-        "name": "smg",
+        "name": "SMG",
         "prices": {
             "default": 300,
             "outpost": 450,
@@ -8126,7 +8105,7 @@
         "recipes": []
     },
     "stungrenade": {
-        "name": "stungrenade",
+        "name": "Stun Grenade",
         "prices": {
             "default": 125,
             "outpost": 187,
@@ -8161,7 +8140,7 @@
         ]
     },
     "empgrenade": {
-        "name": "empgrenade",
+        "name": "EMP Grenade",
         "prices": {
             "default": 175,
             "outpost": 262,
@@ -8198,7 +8177,7 @@
         ]
     },
     "fraggrenade": {
-        "name": "fraggrenade",
+        "name": "Frag Grenade",
         "prices": {
             "default": 150,
             "outpost": 202,
@@ -8232,7 +8211,7 @@
         ]
     },
     "incendiumgrenade": {
-        "name": "incendiumgrenade",
+        "name": "Incendium Grenade",
         "prices": {
             "default": 175,
             "outpost": 262,
@@ -8263,7 +8242,7 @@
         ]
     },
     "stunbaton": {
-        "name": "stunbaton",
+        "name": "Stun Baton",
         "prices": {
             "default": 200,
             "outpost": 270,
@@ -8297,7 +8276,7 @@
         ]
     },
     "divingknife": {
-        "name": "divingknife",
+        "name": "Diving Knife",
         "prices": {
             "default": 29,
             "outpost": 43,
@@ -8329,7 +8308,7 @@
         ]
     },
     "grenadelauncher": {
-        "name": "grenadelauncher",
+        "name": "Grenade Launcher",
         "prices": {
             "default": 1000,
             "outpost": 1500,
@@ -8355,7 +8334,7 @@
         "recipes": []
     },
     "40mmgrenade": {
-        "name": "40mmgrenade",
+        "name": "40mm Grenade",
         "prices": {
             "default": 100,
             "outpost": 150,
@@ -8389,7 +8368,7 @@
         ]
     },
     "40mmstungrenade": {
-        "name": "40mmstungrenade",
+        "name": "40mm Stun Grenade",
         "prices": {
             "default": 120,
             "outpost": 180,
@@ -8424,7 +8403,7 @@
         ]
     },
     "shotgun": {
-        "name": "shotgun",
+        "name": "Shotgun",
         "prices": {
             "default": 500,
             "outpost": 750,
@@ -8450,7 +8429,7 @@
         "recipes": []
     },
     "shotgunshell": {
-        "name": "shotgunshell",
+        "name": "Shotgun Shell",
         "prices": {
             "default": 30,
             "outpost": 45,
@@ -8482,7 +8461,7 @@
         ]
     },
     "shotgunshellblunt": {
-        "name": "shotgunshellblunt",
+        "name": "Rubber Shotgun Shell",
         "prices": {
             "default": 20,
             "outpost": 30,
@@ -8513,7 +8492,7 @@
         ]
     },
     "stungun": {
-        "name": "stungun",
+        "name": "Stun Gun",
         "prices": {
             "default": 180,
             "outpost": 243,
@@ -8547,7 +8526,7 @@
         ]
     },
     "stungundart": {
-        "name": "stungundart",
+        "name": "Stun Gun Dart",
         "prices": {
             "default": 30,
             "outpost": 45,
@@ -8575,7 +8554,7 @@
         ]
     },
     "toyhammer": {
-        "name": "toyhammer",
+        "name": "Toy Hammer",
         "prices": {
             "default": 1,
             "outpost": 1,
@@ -8606,7 +8585,7 @@
         ]
     },
     "shotgununique": {
-        "name": "shotgununique",
+        "name": "Shotgun Unique",
         "prices": {
             "default": 931
         },
@@ -8620,7 +8599,7 @@
         "recipes": []
     },
     "spearunique": {
-        "name": "spearunique",
+        "name": "Spear Unique",
         "prices": {
             "default": 550
         },
@@ -8634,7 +8613,7 @@
         "recipes": []
     },
     "divingknifeunique": {
-        "name": "divingknifeunique",
+        "name": "Diving Knife Unique",
         "prices": {
             "default": 770
         },
@@ -8648,7 +8627,7 @@
         "recipes": []
     },
     "smgunique": {
-        "name": "smgunique",
+        "name": "SMG Unique",
         "prices": {
             "default": 1064
         },

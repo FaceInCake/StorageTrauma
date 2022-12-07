@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-md bg-primary">
+<nav class="navbar navbar-expand-md bg-primary text-white">
     <div class="container-fluid">
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -6,15 +6,19 @@
         <span class="navbar-brand h1">BaroEconomy</span>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
-                {% for p in site.html_pages %}
-                    <li class="nav-item">
-                        <a class="nav-link {%if page.url==p.url %}active{%endif%}" href="{{p.url}}"
-                        {%if page.url==p.url %}aria-current="page"{%endif%}>
-                            {{ p.title | default: p.name }}
-                        </a>
-                    </li>
-                {% endfor %}
+                <li class="nav-item">
+                    <a class="nav-link {%if page.url=="/" %}active{%endif%}" href="/"
+                    {%if page.url=="/" %}aria-current="page"{%endif%}>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {%if page.url=="/ViewItems.html" %}active{%endif%}" href="ViewItems.html"
+                    {%if page.url=="/ViewItems.html" %}aria-current="page"{%endif%}>
+                        View Items
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
-</div>
+</nav>

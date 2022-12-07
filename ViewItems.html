@@ -1,43 +1,23 @@
 ---
 title: View Items
-scripts: [funcs]
+scripts: [ViewItems]
 ---
 
-<h1>List of all Barotrauma Items</h1>
-<h3>(That have a price)</h3>
+<h1 class="display-1">List of all Barotrauma Items</h1>
+<h5 class="text-muted">(That have a price)</h5>
 
-{% include Paginator.html page=4 minpage=3 maxpage=5  %}
-
-<table class="table table-striped">
-    <thead>
-        <caption>All Items</caption>
-        <tr>
-            <th>Name</th>
-            <th>Pricing</th>
-            <th>Available</th>
-            <th>Deconstructs Into</th>
-        </tr>
-    </thead>
-    <tablebody>
-        {% for item in site.data.Items %}
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <caption>All Items</caption>
             <tr>
-                <td>{{ item[1].name }}</td>
-                <td>
-                    {% for p in item[1].prices %}
-                        {{ p[0] }} = {{ p[1] }}<br>
-                    {% endfor %}
-                </td>
-                <td>
-                    {% for p in item[1].available %}
-                        {{ p[0] }} = {{ p[1] }}<br>
-                    {% endfor %}
-                </td>
-                <td>
-                    {% for p in item[1].deconsTo %}
-                        {{ p[1] }}x {{ p[0] }}<br>
-                    {% endfor %}
-                </td>
+                <th>Name</th>
+                <th>Base Price</th>
+                <th>Craftable</th>
+                <th>Can Decon</th>
             </tr>
-        {% endfor %}
-    </tablebody>
-</table>
+        </thead>
+        <tbody id="item-data">
+        </tbody>
+    </table>
+</div>
