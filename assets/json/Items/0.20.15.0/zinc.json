@@ -1,0 +1,8 @@
+{
+    "identifier": "zinc",
+    "name": "Zinc",
+    "prices": {"default":26,"outpost":33,"city":32,"research":28,"military":28,"mine":20},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":10},
+    "deconsTo": {},
+    "recipes": []
+}

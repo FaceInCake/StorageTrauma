@@ -1,0 +1,8 @@
+{
+    "identifier": "sealedsupplycrate",
+    "name": "Sealed Supply Crate",
+    "prices": {"default":1250},
+    "available": {"default":0},
+    "deconsTo": {},
+    "recipes": []
+}

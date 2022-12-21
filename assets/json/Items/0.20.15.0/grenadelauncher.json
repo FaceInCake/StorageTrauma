@@ -1,0 +1,8 @@
+{
+    "identifier": "grenadelauncher",
+    "name": "Grenade Launcher",
+    "prices": {"default":1000,"outpost":1500,"city":1250,"research":1250,"military":900,"mine":1250,"armory":900},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":1,"mine":0,"armory":1},
+    "deconsTo": {"steel":1,"titaniumaluminiumalloy":1},
+    "recipes": []
+}

@@ -1,0 +1,8 @@
+{
+    "identifier": "iron",
+    "name": "Iron",
+    "prices": {"default":8,"outpost":10,"city":10,"research":8,"military":8,"mine":6},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":20},
+    "deconsTo": {},
+    "recipes": []
+}

@@ -1,0 +1,8 @@
+{
+    "identifier": "hallucinogenicbufotoxin",
+    "name": "Bufotoxin",
+    "prices": {"default":200},
+    "available": {"default":0},
+    "deconsTo": {"antibloodloss1":1,"paralyxis":1},
+    "recipes": []
+}

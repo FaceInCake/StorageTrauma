@@ -1,0 +1,8 @@
+{
+    "identifier": "morbusineantidote",
+    "name": "MorbusineAntidote",
+    "prices": {"default":350,"outpost":350,"city":350,"research":350,"military":350,"mine":350,"medical":315},
+    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1,"medical":2},
+    "deconsTo": {"stabilozine":1},
+    "recipes": [{"required":{"morbusine":1,"stabilozine":1},"output":1}]
+}

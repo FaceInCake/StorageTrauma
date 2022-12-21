@@ -1,0 +1,8 @@
+{
+    "identifier": "antibloodloss1",
+    "name": "Saline",
+    "prices": {"default":50,"outpost":50,"city":50,"research":50,"military":50,"mine":50,"medical":45},
+    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1,"medical":1},
+    "deconsTo": {},
+    "recipes": [{"required":{"sodium":1,"chlorine":2},"output":2}]
+}

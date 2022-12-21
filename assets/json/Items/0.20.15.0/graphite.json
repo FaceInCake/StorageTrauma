@@ -1,0 +1,8 @@
+{
+    "identifier": "graphite",
+    "name": "Graphite",
+    "prices": {"default":25,"outpost":27,"city":31,"research":25,"military":25,"mine":18},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"carbon":2},
+    "recipes": []
+}

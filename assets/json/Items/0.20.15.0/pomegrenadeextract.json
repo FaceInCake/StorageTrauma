@@ -1,0 +1,8 @@
+{
+    "identifier": "pomegrenadeextract",
+    "name": "pomegrenadeextract",
+    "prices": {"default":80,"outpost":80,"city":96,"research":72,"military":96,"mine":60},
+    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":1,"mine":1},
+    "deconsTo": {"creepingorange":2},
+    "recipes": [{"required":{"creepingorange":3},"output":1}]
+}

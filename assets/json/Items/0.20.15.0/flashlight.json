@@ -1,0 +1,8 @@
+{
+    "identifier": "flashlight",
+    "name": "Flashlight",
+    "prices": {"default":200,"outpost":200,"city":180,"research":250,"military":250,"mine":200},
+    "available": {"default":0,"outpost":1,"city":3,"research":1,"military":1,"mine":1},
+    "deconsTo": {"aluminium":1,"lightcomponent":1},
+    "recipes": [{"required":{"aluminium":2,"lightcomponent":1},"output":1}]
+}

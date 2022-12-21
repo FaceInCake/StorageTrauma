@@ -1,0 +1,8 @@
+{
+    "identifier": "smallmudraptoregg",
+    "name": "Mudraptor Egg",
+    "prices": {"default":300,"outpost":255,"city":270,"research":450,"military":330,"mine":255},
+    "available": {"default":0,"outpost":0,"city":0,"research":1,"military":0,"mine":0},
+    "deconsTo": {"alienblood":1},
+    "recipes": []
+}

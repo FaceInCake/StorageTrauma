@@ -1,0 +1,8 @@
+{
+    "identifier": "alienpowercell",
+    "name": "Alien Power Cell",
+    "prices": {"default":150,"outpost":150,"city":150,"research":195,"military":180,"mine":135},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {},
+    "recipes": []
+}

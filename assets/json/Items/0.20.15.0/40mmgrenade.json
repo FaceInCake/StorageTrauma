@@ -1,0 +1,8 @@
+{
+    "identifier": "40mmgrenade",
+    "name": "40mm Grenade",
+    "prices": {"default":100,"outpost":150,"city":125,"research":125,"military":90,"mine":125,"armory":90},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":4,"mine":0,"armory":4},
+    "deconsTo": {"iron":1,"sodium":1},
+    "recipes": [{"required":{"iron":1,"uex":1},"output":1}]
+}

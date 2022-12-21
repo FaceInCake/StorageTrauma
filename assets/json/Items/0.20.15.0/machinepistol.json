@@ -1,0 +1,8 @@
+{
+    "identifier": "machinepistol",
+    "name": "machinepistol",
+    "prices": {"default":200,"outpost":300,"city":250,"research":250,"military":180,"mine":250,"armory":180},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":2,"mine":0,"armory":2},
+    "deconsTo": {"steel":1,"plastic":1},
+    "recipes": []
+}

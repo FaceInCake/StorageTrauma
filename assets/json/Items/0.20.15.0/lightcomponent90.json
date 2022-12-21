@@ -1,0 +1,8 @@
+{
+    "identifier": "lightcomponent90",
+    "name": "Light Component",
+    "prices": {"default":110,"outpost":110,"city":110,"research":137,"military":110,"mine":110,"engineering":99},
+    "available": {"default":0,"outpost":1,"city":0,"research":1,"military":1,"mine":1,"engineering":1},
+    "deconsTo": {"fpgacircuit":1,"phosphorus":1},
+    "recipes": [{"required":{"fpgacircuit":1,"phosphorus":2},"output":1}]
+}

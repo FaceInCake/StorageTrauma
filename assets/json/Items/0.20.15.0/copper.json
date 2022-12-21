@@ -1,0 +1,8 @@
+{
+    "identifier": "copper",
+    "name": "Copper",
+    "prices": {"default":22,"outpost":28,"city":27,"research":24,"military":24,"mine":17},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":10},
+    "deconsTo": {},
+    "recipes": []
+}

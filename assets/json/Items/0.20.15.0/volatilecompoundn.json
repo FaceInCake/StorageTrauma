@@ -1,0 +1,8 @@
+{
+    "identifier": "volatilecompoundn",
+    "name": "Volatile Compound N",
+    "prices": {"default":250,"outpost":350,"city":312,"research":312,"military":225,"mine":250},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {},
+    "recipes": [{"required":{"compoundn":1,"flashpowder":1},"output":1}]
+}

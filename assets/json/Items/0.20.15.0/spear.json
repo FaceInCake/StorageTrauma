@@ -1,0 +1,8 @@
+{
+    "identifier": "spear",
+    "name": "Harpoon",
+    "prices": {"default":7,"outpost":10,"city":8,"research":8,"military":6,"mine":8,"armory":6},
+    "available": {"default":0,"outpost":12,"city":12,"research":6,"military":24,"mine":6,"armory":24},
+    "deconsTo": {},
+    "recipes": [{"required":{"steel":1},"output":6}]
+}

@@ -1,0 +1,8 @@
+{
+    "identifier": "fertilizer",
+    "name": "Fertilizer",
+    "prices": {"default":140,"outpost":140,"city":168,"research":126,"military":168,"mine":105},
+    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":0,"mine":0},
+    "deconsTo": {"uranium":1,"carbon":1},
+    "recipes": [{"required":{"uranium":1,"carbon":1,"saltvineseed":1},"output":1}]
+}

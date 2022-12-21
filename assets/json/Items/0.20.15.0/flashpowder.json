@@ -1,0 +1,8 @@
+{
+    "identifier": "flashpowder",
+    "name": "Flash Powder",
+    "prices": {"default":90,"outpost":117,"city":112,"research":99,"military":81,"mine":81},
+    "available": {"default":0,"outpost":0,"city":4,"research":6,"military":7,"mine":0},
+    "deconsTo": {"magnesium":1,"potassium":1},
+    "recipes": [{"required":{"magnesium":1,"potassium":2},"output":1}]
+}

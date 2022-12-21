@@ -1,0 +1,8 @@
+{
+    "identifier": "chloralhydrate",
+    "name": "ChloralHydrate",
+    "prices": {"default":100,"outpost":100,"city":90,"research":90,"military":110,"mine":110},
+    "available": {"default":0,"outpost":0,"city":1,"research":2,"military":1,"mine":0},
+    "deconsTo": {"chlorine":1,"ethanol":1},
+    "recipes": [{"required":{"chlorine":1,"ethanol":1},"output":1}]
+}

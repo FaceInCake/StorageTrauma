@@ -1,0 +1,8 @@
+{
+    "identifier": "thoriumfuelrod",
+    "name": "Thorium Fuel Rod",
+    "prices": {"default":200,"outpost":200,"city":200,"research":250,"military":250,"mine":250,"engineering":180},
+    "available": {"default":0,"outpost":0,"city":1,"research":0,"military":0,"mine":0,"engineering":2},
+    "deconsTo": {"steel":1,"lead":1,"thorium":1},
+    "recipes": [{"required":{"thorium":1,"steel":1,"lead":2},"output":1},{"required":{"thorium":1,"thoriumfuelrod":1},"output":1}]
+}

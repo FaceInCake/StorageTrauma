@@ -1,0 +1,8 @@
+{
+    "identifier": "smgunique",
+    "name": "Deadeye Carbine",
+    "prices": {"default":1064},
+    "available": {"default":0},
+    "deconsTo": {"steel":1,"plastic":1},
+    "recipes": []
+}

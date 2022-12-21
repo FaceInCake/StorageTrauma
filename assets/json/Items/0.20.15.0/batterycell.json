@@ -1,0 +1,8 @@
+{
+    "identifier": "batterycell",
+    "name": "Battery Cell",
+    "prices": {"default":125,"outpost":112,"city":125,"research":150,"military":137,"mine":125,"engineering":112},
+    "available": {"default":0,"outpost":5,"city":4,"research":1,"military":1,"mine":6,"engineering":6},
+    "deconsTo": {"zinc":1,"lithium":1},
+    "recipes": [{"required":{"zinc":2,"lithium":1},"output":1}]
+}

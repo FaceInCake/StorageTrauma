@@ -1,0 +1,8 @@
+{
+    "identifier": "handheldterminal",
+    "name": "Logbook",
+    "prices": {"default":100},
+    "available": {"default":0},
+    "deconsTo": {},
+    "recipes": []
+}

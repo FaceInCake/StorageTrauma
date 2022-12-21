@@ -1,0 +1,8 @@
+{
+    "identifier": "waterdetector",
+    "name": "Water Detector",
+    "prices": {"default":130,"outpost":130,"city":130,"research":162,"military":130,"mine":130,"engineering":117},
+    "available": {"default":0,"outpost":1,"city":0,"research":1,"military":1,"mine":1,"engineering":1},
+    "deconsTo": {"plastic":1,"copper":1,"silicon":1},
+    "recipes": [{"required":{"fpgacircuit":1,"silicon":1},"output":1}]
+}

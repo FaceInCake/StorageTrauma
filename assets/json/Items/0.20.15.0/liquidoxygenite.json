@@ -1,0 +1,8 @@
+{
+    "identifier": "liquidoxygenite",
+    "name": "LiquidOxygenite",
+    "prices": {"default":80,"outpost":80,"city":72,"research":72,"military":80,"mine":72,"medical":72},
+    "available": {"default":0,"outpost":0,"city":3,"research":4,"military":0,"mine":0,"medical":4},
+    "deconsTo": {},
+    "recipes": []
+}

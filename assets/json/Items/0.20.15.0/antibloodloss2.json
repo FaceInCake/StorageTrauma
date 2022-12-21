@@ -1,0 +1,8 @@
+{
+    "identifier": "antibloodloss2",
+    "name": "BloodPack",
+    "prices": {"default":240,"medical":216},
+    "available": {"default":0,"medical":1},
+    "deconsTo": {"sodium":1,"stabilozine":1},
+    "recipes": [{"required":{"alienblood":2,"antibloodloss1":2,"stabilozine":1},"output":2}]
+}

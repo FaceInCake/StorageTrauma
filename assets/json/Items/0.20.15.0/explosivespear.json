@@ -1,0 +1,8 @@
+{
+    "identifier": "explosivespear",
+    "name": "Explosive Harpoon",
+    "prices": {"default":80,"outpost":112,"city":100,"research":100,"military":72,"mine":100,"armory":72},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":6,"mine":0,"armory":6},
+    "deconsTo": {},
+    "recipes": [{"required":{"spear":2,"uex":1},"output":2}]
+}

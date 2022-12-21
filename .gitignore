@@ -8,3 +8,5 @@ _site/**
 
 # Personal workspace settings
 .vscode/**
+
+_working/__pycache__/

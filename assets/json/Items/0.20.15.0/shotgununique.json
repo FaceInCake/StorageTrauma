@@ -1,0 +1,8 @@
+{
+    "identifier": "shotgununique",
+    "name": "Boom Stick",
+    "prices": {"default":931},
+    "available": {"default":0},
+    "deconsTo": {"steel":1,"titaniumaluminiumalloy":1},
+    "recipes": []
+}

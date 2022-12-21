@@ -1,0 +1,8 @@
+{
+    "identifier": "captainspipe",
+    "name": "Captain's Pipe",
+    "prices": {"default":50,"outpost":50,"city":50,"research":50,"military":50,"mine":50},
+    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1},
+    "deconsTo": {},
+    "recipes": []
+}

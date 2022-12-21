@@ -1,0 +1,8 @@
+{
+    "identifier": "diversremains",
+    "name": "diversremains",
+    "prices": {"default":50,"outpost":50,"city":50,"research":100,"military":50,"mine":50},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"rubber":1,"iron":1,"steel":1,"aluminium":1,"carbon":1},
+    "recipes": []
+}

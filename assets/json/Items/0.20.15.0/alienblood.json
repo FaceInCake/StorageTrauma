@@ -1,0 +1,8 @@
+{
+    "identifier": "alienblood",
+    "name": "Alien Blood",
+    "prices": {"default":100,"outpost":85,"city":85,"research":120,"military":90,"mine":85},
+    "available": {"default":0,"outpost":0,"city":0,"research":2,"military":0,"mine":0},
+    "deconsTo": {},
+    "recipes": []
+}

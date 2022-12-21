@@ -1,0 +1,8 @@
+{
+    "identifier": "fulguriumfuelrod",
+    "name": "Fulgurium Fuel Rod",
+    "prices": {"default":250,"outpost":250,"city":250,"research":312,"military":312,"mine":275,"engineering":225},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0,"engineering":2},
+    "deconsTo": {"steel":1,"lead":1,"fulgurium":1},
+    "recipes": [{"required":{"fulgurium":1,"lead":2,"steel":1},"output":1},{"required":{"fulgurium":1,"fulguriumfuelrod":1},"output":1}]
+}

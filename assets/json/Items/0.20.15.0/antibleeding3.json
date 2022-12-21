@@ -1,0 +1,8 @@
+{
+    "identifier": "antibleeding3",
+    "name": "AntibioticGlue",
+    "prices": {"default":140,"medical":126},
+    "available": {"default":0,"medical":10},
+    "deconsTo": {"antibiotics":1,"elastin":1},
+    "recipes": [{"required":{"stabilozine":2,"antibiotics":3,"elastin":2},"output":2}]
+}

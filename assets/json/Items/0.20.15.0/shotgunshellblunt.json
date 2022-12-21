@@ -1,0 +1,8 @@
+{
+    "identifier": "shotgunshellblunt",
+    "name": "shotgunshellblunt",
+    "prices": {"default":20,"outpost":30,"city":25,"research":25,"military":18,"mine":25,"armory":18},
+    "available": {"default":0,"outpost":0,"city":4,"research":0,"military":12,"mine":0,"armory":12},
+    "deconsTo": {},
+    "recipes": [{"required":{"magnesium":1,"rubber":2},"output":12}]
+}

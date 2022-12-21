@@ -1,0 +1,8 @@
+{
+    "identifier": "saltbulb",
+    "name": "Salt Bulb",
+    "prices": {"default":65,"outpost":65,"city":78,"research":71,"military":52,"mine":48},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"sodium":1,"saltvineseed":1},
+    "recipes": []
+}

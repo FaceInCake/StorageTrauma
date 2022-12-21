@@ -1,0 +1,8 @@
+{
+    "identifier": "slimebacteria",
+    "name": "Slime Bacteria",
+    "prices": {"default":150,"outpost":195,"city":187,"research":135,"military":150,"mine":135},
+    "available": {"default":0,"outpost":0,"city":3,"research":6,"military":0,"mine":0},
+    "deconsTo": {"antibiotics":3},
+    "recipes": []
+}

@@ -1,0 +1,8 @@
+{
+    "identifier": "fulguriumbatterycell",
+    "name": "Fulgurium Battery Cell",
+    "prices": {"default":250,"outpost":312,"city":250,"research":250,"military":250,"mine":312,"engineering":225},
+    "available": {"default":0,"outpost":0,"city":1,"research":2,"military":1,"mine":0,"engineering":2},
+    "deconsTo": {"zinc":1,"fulgurium":1},
+    "recipes": [{"required":{"fulgurium":1,"zinc":2},"output":1}]
+}

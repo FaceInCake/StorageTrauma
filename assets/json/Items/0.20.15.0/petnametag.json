@@ -1,0 +1,8 @@
+{
+    "identifier": "petnametag",
+    "name": "Pet Name Tag",
+    "prices": {"default":10,"outpost":10,"city":10,"research":10,"military":10,"mine":10},
+    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1},
+    "deconsTo": {},
+    "recipes": []
+}

@@ -1,0 +1,8 @@
+{
+    "identifier": "redpaint",
+    "name": "redpaint",
+    "prices": {"default":140,"outpost":154,"city":126,"research":168,"military":168,"mine":168},
+    "available": {"default":0,"outpost":1,"city":2,"research":1,"military":1,"mine":1},
+    "deconsTo": {"ethanol":1},
+    "recipes": [{"required":{"ethanol":1,"tin":1,"alienblood":1},"output":1}]
+}

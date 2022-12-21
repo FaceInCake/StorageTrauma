@@ -1,0 +1,8 @@
+{
+    "identifier": "food",
+    "name": "Pet Food",
+    "prices": {"default":120,"outpost":120,"city":120,"research":120,"military":120,"mine":120},
+    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1},
+    "deconsTo": {},
+    "recipes": []
+}

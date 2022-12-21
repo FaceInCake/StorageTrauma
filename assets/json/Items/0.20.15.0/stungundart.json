@@ -1,0 +1,8 @@
+{
+    "identifier": "stungundart",
+    "name": "Stun Gun Dart",
+    "prices": {"default":30,"outpost":45,"city":37,"research":37,"military":27,"mine":37,"armory":27},
+    "available": {"default":0,"outpost":0,"city":3,"research":0,"military":6,"mine":0,"armory":6},
+    "deconsTo": {},
+    "recipes": [{"required":{},"output":2}]
+}

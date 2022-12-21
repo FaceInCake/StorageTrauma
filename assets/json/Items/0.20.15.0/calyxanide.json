@@ -1,0 +1,8 @@
+{
+    "identifier": "calyxanide",
+    "name": "Calyxanide",
+    "prices": {"default":510,"outpost":510,"city":510,"research":510,"military":561,"mine":561,"medical":459},
+    "available": {"default":0,"outpost":5,"city":5,"research":7,"military":5,"mine":5,"medical":7},
+    "deconsTo": {"antibiotics":1,"stabilozine":1},
+    "recipes": [{"required":{"huskeggs":1,"antibiotics":1,"stabilozine":1},"output":1}]
+}

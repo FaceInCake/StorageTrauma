@@ -1,0 +1,8 @@
+{
+    "identifier": "detonator",
+    "name": "Detonator",
+    "prices": {"default":100,"outpost":140,"city":125,"research":125,"military":90,"mine":100,"armory":90,"engineering":120},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":2,"mine":0,"armory":2,"engineering":1},
+    "deconsTo": {},
+    "recipes": []
+}

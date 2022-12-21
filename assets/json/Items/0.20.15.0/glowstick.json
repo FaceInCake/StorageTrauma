@@ -1,0 +1,8 @@
+{
+    "identifier": "glowstick",
+    "name": "Glowstick",
+    "prices": {"default":45,"outpost":45,"city":40,"research":56,"military":56,"mine":45,"armory":56},
+    "available": {"default":0,"outpost":1,"city":10,"research":1,"military":8,"mine":10,"armory":8},
+    "deconsTo": {},
+    "recipes": [{"required":{"phosphorus":2,"plastic":1},"output":4}]
+}

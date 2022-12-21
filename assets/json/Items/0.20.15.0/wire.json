@@ -1,0 +1,8 @@
+{
+    "identifier": "wire",
+    "name": "Wire",
+    "prices": {"default":10,"outpost":10,"city":10,"research":12,"military":10,"mine":10,"engineering":9},
+    "available": {"default":0,"outpost":1,"city":0,"research":1,"military":1,"mine":1,"engineering":1},
+    "deconsTo": {},
+    "recipes": []
+}

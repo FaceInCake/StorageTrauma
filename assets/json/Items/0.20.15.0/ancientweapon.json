@@ -1,0 +1,8 @@
+{
+    "identifier": "ancientweapon",
+    "name": "Ancient Weapon",
+    "prices": {"default":1000,"outpost":900,"city":900,"research":1300,"military":1200,"mine":900},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"dementonite":2,"fulgurium":1},
+    "recipes": []
+}

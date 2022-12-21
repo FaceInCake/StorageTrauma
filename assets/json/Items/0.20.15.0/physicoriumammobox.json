@@ -1,0 +1,8 @@
+{
+    "identifier": "physicoriumammobox",
+    "name": "Physicorium Ammunition Box",
+    "prices": {"default":300,"outpost":390,"city":360,"research":390,"military":270,"mine":360,"armory":270},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0,"armory":0},
+    "deconsTo": {"steel":1,"physicorium":1,"aluminium":1},
+    "recipes": [{"required":{"physicorium":1,"lead":1,"steel":1,"aluminium":1},"output":1},{"required":{"physicorium":1,"lead":1,"steel":1,"physicoriumammobox":1},"output":1}]
+}

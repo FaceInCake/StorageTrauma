@@ -1,0 +1,8 @@
+{
+    "identifier": "watchershell",
+    "name": "watchershell",
+    "prices": {"default":500,"outpost":500,"city":500,"research":750,"military":500,"mine":500},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"carbon":1,"dementonite":2},
+    "recipes": []
+}

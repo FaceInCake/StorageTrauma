@@ -1,0 +1,8 @@
+{
+    "identifier": "cassiterite",
+    "name": "Cassiterite",
+    "prices": {"default":40,"outpost":44,"city":50,"research":40,"military":40,"mine":30},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"tin":3},
+    "recipes": []
+}

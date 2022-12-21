@@ -1,0 +1,8 @@
+{
+    "identifier": "antidama2",
+    "name": "Fentanyl",
+    "prices": {"default":250,"medical":225},
+    "available": {"default":0,"medical":1},
+    "deconsTo": {"opium":1,"adrenaline":1,"ethanol":1},
+    "recipes": [{"required":{"antidama1":1,"adrenaline":1,"ethanol":1},"output":1}]
+}

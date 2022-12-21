@@ -1,0 +1,8 @@
+{
+    "identifier": "antibleeding1",
+    "name": "Bandage",
+    "prices": {"default":30,"outpost":30,"city":30,"research":30,"military":30,"mine":30,"medical":27},
+    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1,"medical":1},
+    "deconsTo": {},
+    "recipes": [{"required":{"organicfiber":1},"output":2}]
+}

@@ -1,0 +1,8 @@
+{
+    "identifier": "harpoongun",
+    "name": "Harpoon Gun",
+    "prices": {"default":170,"outpost":255,"city":212,"research":212,"military":153,"mine":212,"armory":153},
+    "available": {"default":0,"outpost":1,"city":0,"research":1,"military":3,"mine":1,"armory":3},
+    "deconsTo": {"steel":1,"plastic":1,"tin":1},
+    "recipes": [{"required":{"steel":2,"plastic":2,"tin":2},"output":1}]
+}

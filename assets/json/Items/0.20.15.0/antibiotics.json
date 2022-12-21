@@ -1,0 +1,8 @@
+{
+    "identifier": "antibiotics",
+    "name": "Antibiotics",
+    "prices": {"default":40,"outpost":40,"city":36,"research":36,"military":44,"mine":44,"medical":36},
+    "available": {"default":0,"outpost":6,"city":12,"research":10,"military":0,"mine":0,"medical":10},
+    "deconsTo": {},
+    "recipes": []
+}

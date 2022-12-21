@@ -1,0 +1,8 @@
+{
+    "identifier": "mudraptorshell",
+    "name": "Mudraptor Shell",
+    "prices": {"default":1},
+    "available": {"default":0},
+    "deconsTo": {},
+    "recipes": []
+}

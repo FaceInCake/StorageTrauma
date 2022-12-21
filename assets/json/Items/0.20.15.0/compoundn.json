@@ -1,0 +1,8 @@
+{
+    "identifier": "compoundn",
+    "name": "Compound N",
+    "prices": {"default":150,"outpost":210,"city":187,"research":187,"military":135,"mine":150,"armory":135},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":4,"mine":0,"armory":4},
+    "deconsTo": {},
+    "recipes": [{"required":{"aluminium":1,"potassium":1,"sulphuricacid":1},"output":1}]
+}

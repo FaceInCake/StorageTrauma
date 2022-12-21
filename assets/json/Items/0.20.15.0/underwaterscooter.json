@@ -1,0 +1,8 @@
+{
+    "identifier": "underwaterscooter",
+    "name": "Underwater Scooter",
+    "prices": {"default":180,"outpost":162,"city":153,"research":180,"military":180,"mine":225},
+    "available": {"default":0,"outpost":4,"city":6,"research":3,"military":5,"mine":4},
+    "deconsTo": {"aluminium":1,"copper":1,"tin":1,"plastic":1},
+    "recipes": [{"required":{"aluminium":2,"fpgacircuit":1,"tin":2},"output":1}]
+}

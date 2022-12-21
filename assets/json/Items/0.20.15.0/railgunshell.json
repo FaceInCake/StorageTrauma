@@ -1,0 +1,8 @@
+{
+    "identifier": "railgunshell",
+    "name": "Railgun Shell",
+    "prices": {"default":70,"outpost":105,"city":87,"research":87,"military":63,"mine":87,"armory":63},
+    "available": {"default":0,"outpost":3,"city":4,"research":2,"military":10,"mine":2,"armory":10},
+    "deconsTo": {"steel":1},
+    "recipes": [{"required":{"steel":1,"iron":1},"output":1}]
+}

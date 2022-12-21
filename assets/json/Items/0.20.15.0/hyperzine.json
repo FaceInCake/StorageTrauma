@@ -1,0 +1,8 @@
+{
+    "identifier": "hyperzine",
+    "name": "Hyperzine",
+    "prices": {"default":450,"outpost":450,"city":405,"research":405,"military":495,"mine":495},
+    "available": {"default":0,"outpost":0,"city":0,"research":1,"military":1,"mine":0},
+    "deconsTo": {"steroids":1},
+    "recipes": [{"required":{"meth":1,"steroids":1},"output":1}]
+}

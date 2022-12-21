@@ -1,0 +1,8 @@
+{
+    "identifier": "antibleeding2",
+    "name": "Plastiseal",
+    "prices": {"default":100,"medical":100},
+    "available": {"default":0,"medical":12},
+    "deconsTo": {},
+    "recipes": [{"required":{"antibleeding1":3,"elastin":1},"output":3}]
+}

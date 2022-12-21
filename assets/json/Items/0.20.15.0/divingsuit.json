@@ -1,0 +1,8 @@
+{
+    "identifier": "divingsuit",
+    "name": "Diving Suit",
+    "prices": {"default":250,"outpost":225,"city":212,"research":250,"military":250,"mine":312},
+    "available": {"default":0,"outpost":2,"city":4,"research":3,"military":3,"mine":5},
+    "deconsTo": {"titaniumaluminiumalloy":1,"rubber":1},
+    "recipes": [{"required":{"titaniumaluminiumalloy":1,"rubber":2},"output":1}]
+}

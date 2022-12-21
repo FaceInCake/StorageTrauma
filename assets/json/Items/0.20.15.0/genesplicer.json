@@ -1,0 +1,8 @@
+{
+    "identifier": "genesplicer",
+    "name": "Gene Splicer",
+    "prices": {"default":500,"research":500,"city":500,"medical":500},
+    "available": {"default":0,"research":1,"city":0,"medical":1},
+    "deconsTo": {"plastic":2,"copper":2,"rubber":1,"silicon":1},
+    "recipes": [{"required":{"plastic":1,"fpgacircuit":2,"rubber":2,"silicon":2},"output":1}]
+}

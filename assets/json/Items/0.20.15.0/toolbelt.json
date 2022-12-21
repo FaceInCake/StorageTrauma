@@ -1,0 +1,8 @@
+{
+    "identifier": "toolbelt",
+    "name": "Toolbelt",
+    "prices": {"default":65,"outpost":65,"city":65,"research":81,"military":81,"mine":81,"engineering":58},
+    "available": {"default":0,"outpost":4,"city":6,"research":1,"military":1,"mine":8,"engineering":4},
+    "deconsTo": {"organicfiber":1},
+    "recipes": [{"required":{},"output":1}]
+}

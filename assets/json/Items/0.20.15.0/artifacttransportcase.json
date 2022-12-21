@@ -1,0 +1,8 @@
+{
+    "identifier": "artifacttransportcase",
+    "name": "Artifact Transport Case",
+    "prices": {"default":300,"outpost":210,"city":300,"research":300,"military":240,"mine":240},
+    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":0,"mine":0},
+    "deconsTo": {"lead":1,"titanium":1},
+    "recipes": [{"required":{},"output":1}]
+}

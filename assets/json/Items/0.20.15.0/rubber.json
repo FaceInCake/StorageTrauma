@@ -1,0 +1,8 @@
+{
+    "identifier": "rubber",
+    "name": "Rubber",
+    "prices": {"default":20,"outpost":26,"city":25,"research":20,"military":18,"mine":18},
+    "available": {"default":0,"outpost":9,"city":13,"research":7,"military":8,"mine":6},
+    "deconsTo": {},
+    "recipes": []
+}

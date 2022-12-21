@@ -1,0 +1,8 @@
+{
+    "identifier": "amblygonite",
+    "name": "Amblygonite",
+    "prices": {"default":200,"outpost":220,"city":250,"research":200,"military":200,"mine":150},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"lithium":1,"aluminium":1,"sodium":1},
+    "recipes": []
+}

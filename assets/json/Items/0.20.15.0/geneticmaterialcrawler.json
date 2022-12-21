@@ -1,0 +1,8 @@
+{
+    "identifier": "geneticmaterialcrawler",
+    "name": "Genetic Material (Crawler)",
+    "prices": {"default":750,"city":750,"research":900},
+    "available": {"default":0,"city":0,"research":0},
+    "deconsTo": {"geneticmaterialcrawler":1},
+    "recipes": []
+}

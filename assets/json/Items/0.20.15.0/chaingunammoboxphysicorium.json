@@ -1,0 +1,8 @@
+{
+    "identifier": "chaingunammoboxphysicorium",
+    "name": "Physicorium Chaingun Ammunition Box",
+    "prices": {"default":410,"outpost":533,"city":492,"research":533,"military":369,"mine":492,"armory":369},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":1,"mine":0,"armory":1},
+    "deconsTo": {"physicorium":1,"aluminium":1},
+    "recipes": [{"required":{"physicorium":1,"titanium":1,"aluminium":1},"output":1},{"required":{"physicorium":1,"titanium":1,"chaingunammoboxphysicorium":1},"output":1}]
+}

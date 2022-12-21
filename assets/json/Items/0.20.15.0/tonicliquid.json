@@ -1,0 +1,8 @@
+{
+    "identifier": "tonicliquid",
+    "name": "TonicLiquid",
+    "prices": {"default":75,"outpost":75,"city":67,"research":67,"military":82,"mine":82},
+    "available": {"default":0,"outpost":1,"city":7,"research":10,"military":8,"mine":1},
+    "deconsTo": {"calcium":1,"potassium":1,"zinc":1},
+    "recipes": [{"required":{"calcium":3,"zinc":3,"potassium":3},"output":2}]
+}

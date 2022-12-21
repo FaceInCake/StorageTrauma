@@ -1,0 +1,8 @@
+{
+    "identifier": "thermalartifact",
+    "name": "Thermal Alien Artifact",
+    "prices": {"default":1000,"outpost":850,"city":850,"research":2000,"military":1250,"mine":1000},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"steel":1,"incendium":3},
+    "recipes": []
+}

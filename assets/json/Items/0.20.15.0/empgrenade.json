@@ -1,0 +1,8 @@
+{
+    "identifier": "empgrenade",
+    "name": "EMP Grenade",
+    "prices": {"default":175,"outpost":262,"city":218,"research":218,"military":157,"mine":218,"armory":157,"engineering":210},
+    "available": {"default":0,"outpost":0,"city":0,"research":2,"military":4,"mine":0,"armory":4,"engineering":2},
+    "deconsTo": {"iron":1,"copper":1},
+    "recipes": [{"required":{"iron":1,"copper":1,"uex":1},"output":1}]
+}

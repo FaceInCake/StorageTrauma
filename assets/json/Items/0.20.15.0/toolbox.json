@@ -1,0 +1,8 @@
+{
+    "identifier": "toolbox",
+    "name": "Storage Container",
+    "prices": {"default":60,"outpost":60,"city":54,"research":75,"military":75,"mine":75},
+    "available": {"default":0,"outpost":1,"city":2,"research":1,"military":1,"mine":4},
+    "deconsTo": {"steel":1},
+    "recipes": [{"required":{},"output":1}]
+}

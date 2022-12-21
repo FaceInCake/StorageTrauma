@@ -1,0 +1,8 @@
+{
+    "identifier": "chitinhelmet",
+    "name": "Chitin Helmet",
+    "prices": {"default":175,"outpost":175,"city":175,"research":175,"military":280,"mine":175},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"chitin":1},
+    "recipes": [{"required":{"chitin":3},"output":1}]
+}

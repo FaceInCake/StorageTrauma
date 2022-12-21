@@ -1,0 +1,8 @@
+{
+    "identifier": "incendium",
+    "name": "Incendium Bar",
+    "prices": {"default":200,"outpost":250,"city":229,"research":200,"military":220,"mine":180},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {},
+    "recipes": []
+}

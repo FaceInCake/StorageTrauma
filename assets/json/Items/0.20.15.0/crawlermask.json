@@ -1,0 +1,8 @@
+{
+    "identifier": "crawlermask",
+    "name": "Crawler Mask",
+    "prices": {"default":1},
+    "available": {"default":0},
+    "deconsTo": {},
+    "recipes": []
+}

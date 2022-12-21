@@ -1,0 +1,8 @@
+{
+    "identifier": "coilgunammoboxpiercing",
+    "name": "Piercing Ammunition Box",
+    "prices": {"default":250,"outpost":325,"city":300,"research":325,"military":225,"mine":300,"armory":225},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":8,"mine":0,"armory":8},
+    "deconsTo": {"titaniumaluminiumalloy":1,"aluminium":1},
+    "recipes": [{"required":{"titaniumaluminiumalloy":1,"steel":1,"aluminium":1},"output":1},{"required":{"titaniumaluminiumalloy":1,"steel":1,"coilgunammoboxpiercing":1},"output":1}]
+}

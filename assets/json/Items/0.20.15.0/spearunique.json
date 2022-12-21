@@ -1,0 +1,8 @@
+{
+    "identifier": "spearunique",
+    "name": "Ahab's Spear",
+    "prices": {"default":550},
+    "available": {"default":0},
+    "deconsTo": {"steel":1,"iron":1},
+    "recipes": []
+}

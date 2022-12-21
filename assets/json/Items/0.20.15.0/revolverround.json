@@ -1,0 +1,8 @@
+{
+    "identifier": "revolverround",
+    "name": "Revolver Round",
+    "prices": {"default":30,"outpost":45,"city":37,"research":37,"military":27,"mine":37,"armory":27},
+    "available": {"default":0,"outpost":12,"city":12,"research":12,"military":60,"mine":12,"armory":60},
+    "deconsTo": {},
+    "recipes": [{"required":{"magnesium":2,"lead":2,"copper":1},"output":12}]
+}

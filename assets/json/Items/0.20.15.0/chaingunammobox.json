@@ -1,0 +1,8 @@
+{
+    "identifier": "chaingunammobox",
+    "name": "Chaingun Ammunition Box",
+    "prices": {"default":180,"outpost":234,"city":216,"research":234,"military":162,"mine":216,"armory":162},
+    "available": {"default":0,"outpost":1,"city":0,"research":0,"military":3,"mine":0,"armory":3},
+    "deconsTo": {"lead":1,"titanium":1,"aluminium":1},
+    "recipes": [{"required":{"lead":2,"titanium":1,"aluminium":1},"output":1},{"required":{"lead":2,"titanium":1,"chaingunammobox":1},"output":1}]
+}

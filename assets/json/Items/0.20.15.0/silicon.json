@@ -1,0 +1,8 @@
+{
+    "identifier": "silicon",
+    "name": "Silicon",
+    "prices": {"default":17,"outpost":22,"city":21,"research":18,"military":18,"mine":13},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":10},
+    "deconsTo": {},
+    "recipes": []
+}

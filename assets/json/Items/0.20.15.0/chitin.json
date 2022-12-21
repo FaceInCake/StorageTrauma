@@ -1,0 +1,8 @@
+{
+    "identifier": "chitin",
+    "name": "Chitin Chunk",
+    "prices": {"default":1},
+    "available": {"default":0},
+    "deconsTo": {"carbon":1},
+    "recipes": []
+}

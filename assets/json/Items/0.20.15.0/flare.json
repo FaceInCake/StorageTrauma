@@ -1,0 +1,8 @@
+{
+    "identifier": "flare",
+    "name": "Flare",
+    "prices": {"default":30,"outpost":30,"city":27,"research":37,"military":37,"mine":30,"armory":37},
+    "available": {"default":0,"outpost":1,"city":10,"research":1,"military":8,"mine":10,"armory":8},
+    "deconsTo": {},
+    "recipes": [{"required":{"flashpowder":2,"plastic":1},"output":12}]
+}

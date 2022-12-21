@@ -1,0 +1,8 @@
+{
+    "identifier": "uex",
+    "name": "UEX",
+    "prices": {"default":95,"outpost":133,"city":118,"research":118,"military":85,"mine":95,"armory":85},
+    "available": {"default":0,"outpost":2,"city":0,"research":1,"military":1,"mine":1,"armory":1},
+    "deconsTo": {},
+    "recipes": [{"required":{"sodium":1,"phosphorus":1},"output":1}]
+}

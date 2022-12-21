@@ -1,0 +1,8 @@
+{
+    "identifier": "greenpaint",
+    "name": "greenpaint",
+    "prices": {"default":90,"outpost":99,"city":81,"research":108,"military":108,"mine":108},
+    "available": {"default":0,"outpost":1,"city":2,"research":1,"military":1,"mine":1},
+    "deconsTo": {"ethanol":1},
+    "recipes": [{"required":{"ethanol":1,"tin":1,"copper":1},"output":1}]
+}

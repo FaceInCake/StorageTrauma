@@ -1,0 +1,8 @@
+{
+    "identifier": "divingknifeunique",
+    "name": "Europan Handshake",
+    "prices": {"default":770},
+    "available": {"default":0},
+    "deconsTo": {"iron":1,"morbusine":1},
+    "recipes": []
+}

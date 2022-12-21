@@ -1,0 +1,8 @@
+{
+    "identifier": "antipsychosis",
+    "name": "Haloperidol",
+    "prices": {"default":130,"outpost":130,"city":130,"research":130,"military":130,"mine":130,"medical":117},
+    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1,"medical":1},
+    "deconsTo": {"lithium":1,"carbon":1,"chlorine":1},
+    "recipes": [{"required":{"lithium":1,"carbon":2,"chlorine":2},"output":1}]
+}

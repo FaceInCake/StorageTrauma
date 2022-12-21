@@ -1,0 +1,8 @@
+{
+    "identifier": "stunbaton",
+    "name": "Stun Baton",
+    "prices": {"default":200,"outpost":270,"city":250,"research":250,"military":180,"mine":250,"armory":180},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":6,"mine":0,"armory":6},
+    "deconsTo": {"steel":1,"plastic":1},
+    "recipes": [{"required":{"steel":2,"plastic":2},"output":1}]
+}

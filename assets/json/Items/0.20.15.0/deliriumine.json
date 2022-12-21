@@ -1,0 +1,8 @@
+{
+    "identifier": "deliriumine",
+    "name": "Deliriumine",
+    "prices": {"default":250,"outpost":250,"city":225,"research":225,"military":275,"mine":275},
+    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":1,"mine":0},
+    "deconsTo": {},
+    "recipes": [{"required":{"dementonite":1,"ethanol":1},"output":2}]
+}

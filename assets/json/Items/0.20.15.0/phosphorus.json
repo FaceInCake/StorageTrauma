@@ -1,0 +1,8 @@
+{
+    "identifier": "phosphorus",
+    "name": "Phosphorus",
+    "prices": {"default":25,"outpost":32,"city":31,"research":27,"military":27,"mine":20},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":10},
+    "deconsTo": {},
+    "recipes": []
+}
