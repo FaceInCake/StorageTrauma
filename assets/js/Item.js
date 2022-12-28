@@ -1,6 +1,6 @@
 
 $.getJSON(
-    "../assets/json/Items.json",
+    "/assets/json/Items.json",
     data => {
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
@@ -8,7 +8,7 @@ $.getJSON(
         var item = data[params.id];
 
         // $("#item-icon").html(`<img src="assets/images/ItemIcons/${params.id}.png" alt="Item Icon" width="32" height="32"/>`)
-        $("#item-icon img").attr("src",`assets/images/ItemIcons/${params.id}.png`);
+        $("#item-icon img").attr("src",`/assets/images/ItemIcons/${params.id}.png`);
         $("#item-icon img").ready(
             () => {
                 $("#item-icon span").hide();
