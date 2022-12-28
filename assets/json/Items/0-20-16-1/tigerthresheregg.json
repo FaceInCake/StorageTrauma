@@ -1,0 +1,8 @@
+{
+    "identifier": "tigerthresheregg",
+    "name": "Tiger Thresher Egg",
+    "prices": {"default":370},
+    "available": {"default":0},
+    "deconsTo": {"adrenalinegland":1,"alienblood":1},
+    "recipes": []
+}
