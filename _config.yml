@@ -1,11 +1,15 @@
+baseurl: "/BaroEconomy"
 exclude: [README.md]
 defaults:
   - scope:
-      path: "" # all files
+      path: "" # All files
+    values:
+      version: "0-20-16-1" # Most recent Barotrauma version
+  - scope:
+      path: "**.html"
     values:
       layout: "default"
       lang: "en"
       author: "Matthew Eppel"
       scripts: []
-      version: 0.20.16.1 # Most recent Barotrauma version
       # style: <name>

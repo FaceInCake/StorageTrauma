@@ -4,20 +4,21 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>BaroEconomy | {{ page.title | default: page.name }}</title>
+    <base href="{{ site.baseurl }}">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name='author' content='{{ page.author }}'>
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    <script src="./assets/jquery-3.6.1.min.js"></script>
-    <link rel="stylesheet" href="./assets/bootstrap-5.2.0-dist/css/bootstrap.min.css">
-    <script src="./assets/bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
-    <link rel='stylesheet' href='./assets/css/default.css'>
+    <link rel="icon" type="image/x-icon" href="{{site.baseurl}}/favicon.ico">
+    <script src="{{site.baseurl}}/assets/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="{{site.baseurl}}/assets/bootstrap-5.2.0-dist/css/bootstrap.min.css">
+    <script src="{{site.baseurl}}/assets/bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='{{site.baseurl}}/assets/css/default.css'>
     <script src="https://kit.fontawesome.com/63c9b5600e.js" crossorigin="anonymous"></script>
     {% if page.style %}
-        <link rel='stylesheet' href='./assets/css/{{ page.style }}.css'>        
+        <link rel='stylesheet' href='{{site.baseurl}}/assets/css/{{ page.style }}.css'>        
     {% endif %}
-    <script src="./assets/js/default.js"></script>
+    <!-- <script src="{{site.baseurl}}/assets/js/default.js"></script> -->
     {% for s in page.scripts %}
-        <script src='./assets/js/{{ s }}.js'></script>
+        <script src='{{site.baseurl}}/assets/js/{{ s }}.js'></script>
     {% endfor %}
 </head>
 <body>
