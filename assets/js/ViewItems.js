@@ -1,13 +1,13 @@
 
 function viewItem (id) {
-    window.location = `Item.html?id=${id}`;
+    window.location = `./Item.html?id=${id}`;
 }
 
 $.getJSON(
-    "/assets/json/Items/"+VERSION+"/!ItemList.json",
+    "./assets/json/Items/"+VERSION+"/!ItemList.json",
     data => Array.from(data).map(val => {
         td = $("#item-data")
-        $.getJSON(`/assets/json/Items/${VERSION}/${val}.json`, item => {
+        $.getJSON(`./assets/json/Items/${VERSION}/${val}.json`, item => {
             td.append(
                 // <th>Name</th>
                 // <th>Base Price</th>
