@@ -4,13 +4,22 @@ function viewItem (id) {
 }
 
 $.getJSON(
-    "../assets/json/Items.json",
-    data => $("#item-data").html(Object.entries(data).map(val =>
-        `<tr onclick="viewItem('${val[0]}');">
-        <td>${val[1].name}</td>
-        <td href="Item.html?id=${val[0]}">${val[1].prices.default}</td>
-        <td><i class="fa-solid fa-${val[1].recipes.length>0?"check":"close"}"></i></td>
-        <td><i class="fa-solid fa-${Object.keys(val[1].deconsTo).length>0?"check":"close"}"></i></td>
-        </tr>`
-    ))
-);
+    "/assets/json/Items/"+VERSION+"/!ItemList.json",
+    data => Array.from(data).map(val => {
+        td = $("#item-data")
+        $.getJSON(`/assets/json/Items/${VERSION}/${val}.json`, item => {
+            td.append(
+                // <th>Name</th>
+                // <th>Base Price</th>
+                // <th>Craftable</th>
+                // <th>Can Decon</th>    
+                `<tr>
+                    <td>${item.name}</td>
+                    <td>${item.prices.default}</td>
+                    <td>${item.recipes.length>0 ? 'Y' : 'N'}</td>
+                    <td>${item.deconsTo.length>0 ? 'Y' : 'N'}</td>
+                </tr>`
+            );
+        })
+    }
+));

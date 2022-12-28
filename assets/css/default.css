@@ -1,5 +1,9 @@
 html, body { height: 100%; }
 
+.navbar {
+    background-color: slateblue;
+}
+
 /* I disagree with Bootstrap */
 table.table caption.title {
     caption-side: top;
