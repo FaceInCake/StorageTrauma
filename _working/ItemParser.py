@@ -11,6 +11,9 @@ import numpy as np # Epic math
 from scipy.sparse import csr_matrix # Can represent a directed graph, used for con or decon trees
 from cv2 import Mat, imread, imwrite, IMREAD_UNCHANGED # OpenCV image editing tools, yes its a bit overkill, bite me
 
+class Recipe: pass
+class Item: pass
+
 def crop (img: Mat, rect:tuple[int,int,int,int])->Mat:
     """Crops the given opencv `img` using the given xywh `rect`, returns the result"""
     return img[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]]
@@ -122,7 +125,7 @@ class Item:
         )
 
     @classmethod
-    def from_Element (cls, elm:Element) -> object:
+    def from_Element (cls, elm:Element) -> Item:
         p :Element = elm.find("Price")
         id :str = elm.get("identifier")
         basePrice :int = int(p.get("baseprice"))
@@ -187,16 +190,13 @@ class Item:
     #
 #
 
-def check_is_item (item :Element)->bool:
-    """Every item or emplacement is an 'Item', but we want sellable holdable things."""
-    return (
-        item.find("Price") is not None
-        and (
-            "smallitem" in item.get("tags",item.get("Tags",""))
-            or "mediumitem" in item.get("tags",item.get("Tags",""))
-            or item.find("Holdable") is not None
-        )
-    )
+def filter_items (items :list[Element])->list[Element]:
+    "Filters out items that dont have a price and cant be picked up or whatever"
+    return [
+        i for i in items
+        if i.find("Price") is not None
+        and not i.get("identifier","").endswith("_event") # Ex. psychosisartifact_event
+    ]
 
 def fetch_all_xml_items (rootDir:str) -> list[Element]:
     """Search the rootDir for all `Item`s. They should be in xml files within 'Content/Items/*'.
@@ -207,15 +207,15 @@ def fetch_all_xml_items (rootDir:str) -> list[Element]:
         for i in parse(rootDir+"/spreadsheetdata.xml").getroot().findall("Item")
     }
     # Get all XML files that contain items
-    itemFileList :list[str] = glob(path.join(rootDir,"Content","Items","*","*.xml"))
+    itemFileList :list[str] = glob(path.join(rootDir,"Content","Items","**","*.xml"))
     print("Number of files:", len(itemFileList), "...")
     # Sort through each file and parse out the items
     allItems :list[Element] = []
     for filePath in itemFileList:
         tree :Element = parse(filePath).getroot() # Parse it
-        _, fileFolder, fileName = filePath.rsplit(path.sep,2)
-        for item in tree:
-            if check_is_item(item):
+        if tree.tag == "Items": # Prevent item assemblies or other prefabs
+            _, fileFolder, fileName = filePath.rsplit(path.sep,2)
+            for item in tree:
                 item.set("folder", fileFolder)
                 item.set("file", fileName)
                 item.set("name", inames.get(item.get("identifier",""), ""))
@@ -234,7 +234,7 @@ def fetch_game_version (rootDir:str)->str:
             if i >= 0:
                 j = sample.find('"', i+len(s))
                 if j >= 0:
-                    return sample[ i+len(s) : j ]
+                    return sample[ i+len(s) : j ].replace(".","-")
     except Exception as e:
         pass
     else:
@@ -244,9 +244,7 @@ def fetch_game_version (rootDir:str)->str:
 def export_items_to_json (items :list[Item], targetDir:str):
     if not path.isdir(targetDir):
         makedirs(targetDir)
-    for p in glob(targetDir+"/*"):
-        remove(p)
-    with open(targetDir+"/_ItemList.json", 'w') as fout:
+    with open(targetDir+"/!ItemList.json", 'w') as fout:
         fout.write(
             '[\n\t' +
             ',\n\t'.join('"'+i.id+'"' for i in items)
@@ -322,18 +320,20 @@ def how_much(graph, target:Item, *items:Item):
     print(target, "=", *items)
 
 def download_icons (rootDir:str, items:list[Item], targetDir:str)->bool:
-    """Fetches all the item icons from the IconAtlas and places them in the 'ItemIcons' dir as a png.
-    Returns true on success, will error otherwise."""
+    """Attempts to download the icons for all `items`, looking in `rootdDir`, exporting to `targetDir`."""
+    # Fetches the icon atlases and places them in a dictionary if it doesnt exist in the dictionary yet
     imgFiles :dict[str,Mat] = {}
     def getImg (uri:str)->Mat:
         if uri not in imgFiles:
             imgFiles[uri] = imread(path.join(rootDir, uri), IMREAD_UNCHANGED)
         return imgFiles[uri]
+    # Makes or clears the targetDir
     if not path.isdir(targetDir):
         makedirs(targetDir)
     else:
         for p in glob(targetDir+"/*"):
             remove(p) 
+    # Get'em
     return all(
         imwrite(
             f"{targetDir}/{item.id}.png",
@@ -341,13 +341,44 @@ def download_icons (rootDir:str, items:list[Item], targetDir:str)->bool:
         ) for item in items
     )
 
+def export_items_to_searchDoc (items :list[Item], itemNameDic :dict[str,str], targetPath :str):
+    if not path.isdir(path.dirname(targetPath)): makedirs(path.dirname(targetPath))
+    with open(targetPath, 'w') as fout:
+        fout.write(
+            "["+
+            ",".join(
+                """{"identifier":"%s","name":"%s","recipes":"%s","deconsTo":"%s","prices":"%s"}"""
+                % ( i.id, i.name,
+                    ";".join(
+                        ",".join(
+                            itemNameDic[k]
+                            for k in j.required.keys()
+                        ) for j in i.recipes
+                    ),
+                    ",".join(
+                        itemNameDic[j]
+                        for j in i.deconsTo.keys()
+                    ),
+                    str(i.prices.default_factory())
+                )
+                for i in items
+            )+
+            "]"
+        )
+
 if __name__=="__main__":
     rootDir :str = fetch_barotrauma_path()
     print("Baro :", rootDir)
     version :str = fetch_game_version(rootDir)
     print("Version :", version)
-    xmlItems :list[Element] = fetch_all_xml_items(rootDir)
+    xmlItems0 :list[Element] = fetch_all_xml_items(rootDir)
+    itemNameDic :dict[str,str] = {i.get("identifier"):i.tag if i.tag!="Item" else i.get("name") or i.get("identifier") for i in xmlItems0}
+    xmlItems :list[Element] = filter_items(xmlItems0)
     items :list[Item] = [Item.from_Element(e) for e in xmlItems]
+    
     export_items_to_json(items, "assets/json/Items/"+version)
-    print("Exported items!")
+    download_icons(rootDir, items, "assets/images/items")
+    export_items_to_searchDoc(items, itemNameDic, f"assets/json/Items/{version}/!SearchDoc.json")
+    
+    print("Done!")
     exit(0)
