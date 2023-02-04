@@ -1,0 +1,8 @@
+{
+    "identifier": "hammerheadribs",
+    "name": "Hammerhead Ribs",
+    "prices": {"default":200,"outpost":200,"city":400,"research":150,"military":150,"mine":100},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"carbon":1,"phosphorus":2},
+    "recipes": []
+}

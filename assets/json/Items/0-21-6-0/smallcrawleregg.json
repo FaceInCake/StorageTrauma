@@ -1,0 +1,8 @@
+{
+    "identifier": "smallcrawleregg",
+    "name": "Crawler Egg",
+    "prices": {"default":80},
+    "available": {"default":0},
+    "deconsTo": {"sulphuricacid":1},
+    "recipes": []
+}

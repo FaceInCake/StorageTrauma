@@ -1,0 +1,8 @@
+{
+    "identifier": "sufforin",
+    "name": "Sufforin",
+    "prices": {"default":100,"outpost":100,"city":90,"research":90,"military":110,"mine":110},
+    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":1,"mine":0},
+    "deconsTo": {"sulphuricacid":1},
+    "recipes": [{"required":{"sulphuricacid":1,"potassium":1},"output":1}]
+}

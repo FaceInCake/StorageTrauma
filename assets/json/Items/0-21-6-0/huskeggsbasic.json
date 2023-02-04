@@ -1,0 +1,8 @@
+{
+    "identifier": "huskeggsbasic",
+    "name": "Velonaceps Calyx Eggs",
+    "prices": {"default":310,"outpost":372,"city":403,"research":310,"military":372,"mine":403},
+    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":0,"mine":0},
+    "deconsTo": {},
+    "recipes": []
+}

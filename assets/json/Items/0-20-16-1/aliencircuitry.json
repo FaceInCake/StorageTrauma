@@ -1,8 +1,0 @@
-{
-    "identifier": "aliencircuitry",
-    "name": "aliencircuitry",
-    "prices": {"default":80,"outpost":80,"city":80,"research":160,"military":80,"mine":80,"engineering":120},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0,"engineering":0},
-    "deconsTo": {"copper":2,"tin":1},
-    "recipes": []
-}

@@ -1,0 +1,8 @@
+{
+    "identifier": "chaingunammoboxshredder",
+    "name": "Shredder Chaingun Ammunition Box",
+    "prices": {"default":260,"outpost":338,"city":312,"research":338,"military":234,"mine":312,"armory":234},
+    "available": {"default":0,"outpost":1,"city":0,"research":0,"military":3,"mine":0,"armory":3},
+    "deconsTo": {"titaniumaluminiumalloy":1,"aluminium":1},
+    "recipes": [{"required":{"lead":1,"titaniumaluminiumalloy":1,"aluminium":1},"output":1},{"required":{"lead":1,"titaniumaluminiumalloy":1,"chaingunammoboxshredder":1},"output":1}]
+}

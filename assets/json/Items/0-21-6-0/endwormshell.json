@@ -1,0 +1,8 @@
+{
+    "identifier": "endwormshell",
+    "name": "Endworm Shell Fragment",
+    "prices": {"default":1400,"outpost":1400,"city":1400,"research":2450,"military":2100,"mine":1400},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"carbon":4,"physicorium":6},
+    "recipes": []
+}

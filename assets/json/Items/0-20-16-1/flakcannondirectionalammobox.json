@@ -1,8 +1,0 @@
-{
-    "identifier": "flakcannondirectionalammobox",
-    "name": "flakcannondirectionalammobox",
-    "prices": {"default":140,"outpost":182,"city":168,"research":182,"military":126,"mine":168,"armory":126},
-    "available": {"default":0,"outpost":1,"city":0,"research":0,"military":8,"mine":0,"armory":8},
-    "deconsTo": {"lead":1,"aluminium":1},
-    "recipes": [{"required":{"phosphorus":1,"lead":2,"aluminium":1},"output":1},{"required":{"phosphorus":1,"lead":2,"flakcannondirectionalammobox":1},"output":1}]
-}

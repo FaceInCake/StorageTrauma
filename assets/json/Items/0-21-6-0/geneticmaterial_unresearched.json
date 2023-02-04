@@ -1,0 +1,8 @@
+{
+    "identifier": "geneticmaterial_unresearched",
+    "name": "geneticmaterial_unresearched",
+    "prices": {"default":300,"city":300,"research":360},
+    "available": {"default":0,"city":0,"research":1},
+    "deconsTo": {"geneticmaterialcrawler":3,"geneticmaterialmudraptor":3,"geneticmaterialmoloch":3,"geneticmaterialmantis":3,"geneticmaterialthresher":3,"geneticmaterialhammerhead":3,"geneticmaterialhammerheadmatriarch":3,"geneticmaterialspineling":3,"geneticmaterialhusk":3,"geneticmaterialmollusc":3,"geneticmaterialskitter":3,"geneticmaterialhunter":3},
+    "recipes": []
+}

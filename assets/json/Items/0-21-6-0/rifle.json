@@ -1,0 +1,8 @@
+{
+    "identifier": "rifle",
+    "name": "Rifle",
+    "prices": {"default":500,"outpost":750,"city":625,"research":625,"military":450,"mine":625,"armory":450},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":3,"mine":0,"armory":3},
+    "deconsTo": {"steel":1,"titaniumaluminiumalloy":1,"plastic":1},
+    "recipes": [{"required":{"steel":2,"titaniumaluminiumalloy":2,"plastic":2},"output":1}]
+}

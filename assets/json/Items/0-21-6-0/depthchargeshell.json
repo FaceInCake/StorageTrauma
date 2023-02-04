@@ -1,0 +1,8 @@
+{
+    "identifier": "depthchargeshell",
+    "name": "Depth Charge Shell",
+    "prices": {"default":30,"outpost":42,"city":37,"research":37,"military":27,"mine":37},
+    "available": {"default":0,"outpost":1,"city":2,"research":1,"military":4,"mine":1},
+    "deconsTo": {"iron":1,"uex":1},
+    "recipes": [{"required":{"iron":2,"uex":1},"output":1}]
+}

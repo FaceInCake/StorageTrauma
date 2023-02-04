@@ -1,0 +1,8 @@
+{
+    "identifier": "molochbone",
+    "name": "Moloch Bone",
+    "prices": {"default":1000,"outpost":1000,"city":2000,"research":750,"military":750,"mine":500},
+    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
+    "deconsTo": {"carbon":2,"calcium":4},
+    "recipes": []
+}

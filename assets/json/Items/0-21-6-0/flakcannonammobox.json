@@ -1,0 +1,8 @@
+{
+    "identifier": "flakcannonammobox",
+    "name": "Spreader Flak Shells Box",
+    "prices": {"default":120,"outpost":156,"city":144,"research":156,"military":108,"mine":144,"armory":108},
+    "available": {"default":0,"outpost":3,"city":0,"research":3,"military":15,"mine":3,"armory":15},
+    "deconsTo": {"steel":1,"aluminium":1},
+    "recipes": [{"required":{"phosphorus":1,"steel":1,"aluminium":1},"output":1},{"required":{"phosphorus":1,"steel":1,"flakcannonammobox":1},"output":1}]
+}
