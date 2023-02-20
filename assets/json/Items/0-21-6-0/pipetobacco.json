@@ -1,8 +1,1 @@
-{
-    "identifier": "pipetobacco",
-    "name": "Pipe Tobacco",
-    "prices": {"default":120,"outpost":132,"city":108,"research":120,"military":120,"mine":120},
-    "available": {"default":0,"outpost":1,"city":2,"research":0,"military":0,"mine":0},
-    "deconsTo": {"tobaccobud":1},
-    "recipes": [{"required":{},"output":1}]
-}
+{"id":"pipetobacco","name":"Pipe Tobacco","category":"Misc","desc":"Put it in your pipe and smoke it.","tags":["smallitem","pipetobacco"],"prices":{"default":120,"outpost":132.000000,"city":108.000000,"mine":120.000000,"military":120.000000,"research":120.000000,"engineering":120.000000,"medical":120.000000,"armory":120.000000},"available":{"default":1,"outpost":1,"city":2,"mine":0,"military":0,"research":0,"engineering":0,"medical":0,"armory":0},"deconsTo":{"tobaccobud":1},"recipes":[{"required":{},"output":1}]}

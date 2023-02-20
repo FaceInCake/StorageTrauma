@@ -1,8 +1,1 @@
-{
-    "identifier": "tonicliquid",
-    "name": "TonicLiquid",
-    "prices": {"default":75,"outpost":75,"city":67,"research":67,"military":82,"mine":82},
-    "available": {"default":0,"outpost":1,"city":7,"research":10,"military":8,"mine":1},
-    "deconsTo": {"calcium":1,"potassium":1,"zinc":1},
-    "recipes": [{"required":{"calcium":3,"zinc":3,"potassium":3},"output":2}]
-}
+{"id":"tonicliquid","name":"Tonic Liquid","category":"Medical,Material","desc":"A medical solution that's mildly effective as a treatment for internal damage, but most commonly used as an ingredient in more complex medical compounds.","tags":["smallitem","chem","medical"],"prices":{"default":75,"outpost":75.000000,"city":67.500000,"mine":82.500000,"military":82.500000,"research":67.500000,"engineering":75.000000,"medical":75.000000,"armory":75.000000},"available":{"default":1,"outpost":1,"city":7,"mine":1,"military":8,"research":10,"engineering":0,"medical":0,"armory":0},"deconsTo":{"calcium":1,"potassium":1,"zinc":1},"recipes":[{"required":{"calcium":3,"zinc":3,"potassium":3},"output":2}]}

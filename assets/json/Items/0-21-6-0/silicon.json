@@ -1,8 +1,1 @@
-{
-    "identifier": "silicon",
-    "name": "Silicon",
-    "prices": {"default":17,"outpost":22,"city":21,"research":18,"military":18,"mine":13},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":10},
-    "deconsTo": {},
-    "recipes": []
-}
+{"id":"silicon","name":"Silicon","category":"Material","desc":"Used as an ingredient in aluminum alloys, plastic and various electrical components.","tags":["smallitem"],"prices":{"default":17,"outpost":22.100000,"city":21.250000,"mine":13.600000,"military":18.700000,"research":18.700000,"engineering":17.000000,"medical":17.000000,"armory":17.000000},"available":{"default":0,"outpost":1,"city":1,"mine":10,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{},"recipes":[]}

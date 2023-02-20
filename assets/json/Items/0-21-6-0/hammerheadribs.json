@@ -1,8 +1,1 @@
-{
-    "identifier": "hammerheadribs",
-    "name": "Hammerhead Ribs",
-    "prices": {"default":200,"outpost":200,"city":400,"research":150,"military":150,"mine":100},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"carbon":1,"phosphorus":2},
-    "recipes": []
-}
+{"id":"hammerheadribs","name":"Hammerhead Ribs","category":"Misc","desc":"The ribs and fleshy remains of a Hammerhead. Can fetch a decent price in colonies.","tags":["mediumitem"],"prices":{"default":200,"outpost":200.000000,"city":400.000000,"mine":100.000000,"military":150.000000,"research":150.000000,"engineering":200.000000,"medical":200.000000,"armory":200.000000},"available":{"default":0,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"carbon":1,"phosphorus":2},"recipes":[]}

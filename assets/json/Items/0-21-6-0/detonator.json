@@ -1,8 +1,1 @@
-{
-    "identifier": "detonator",
-    "name": "Detonator",
-    "prices": {"default":100,"outpost":140,"city":125,"research":125,"military":90,"mine":100,"armory":90,"engineering":120},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":2,"mine":0,"armory":2,"engineering":1},
-    "deconsTo": {},
-    "recipes": []
-}
+{"id":"detonator","name":"Detonator","category":"Equipment,Weapon","desc":"A device that detonates any contained explosive when receiving a signal.","tags":["smallitem","detonator"],"prices":{"default":100,"outpost":140.000000,"city":125.000000,"mine":100.000000,"military":90.000000,"research":125.000000,"engineering":120.000000,"medical":100.000000,"armory":90.000000},"available":{"default":1,"outpost":0,"city":0,"mine":0,"military":2,"research":0,"engineering":1,"medical":0,"armory":2},"deconsTo":{},"recipes":[]}

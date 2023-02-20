@@ -1,8 +1,1 @@
-{
-    "identifier": "revolverround",
-    "name": "Revolver Round",
-    "prices": {"default":30,"outpost":45,"city":37,"research":37,"military":27,"mine":37,"armory":27},
-    "available": {"default":0,"outpost":12,"city":12,"research":12,"military":60,"mine":12,"armory":60},
-    "deconsTo": {},
-    "recipes": [{"required":{"magnesium":2,"lead":2,"copper":1},"output":12}]
-}
+{"id":"revolverround","name":"Revolver Round","category":"Weapon","desc":".38 caliber. Might stop a person...","tags":["smallitem","revolverammo","pistolammoitem"],"prices":{"default":30,"outpost":45.000000,"city":37.500000,"mine":37.500000,"military":27.000000,"research":37.500000,"engineering":30.000000,"medical":30.000000,"armory":27.000000},"available":{"default":1,"outpost":12,"city":12,"mine":12,"military":60,"research":12,"engineering":0,"medical":0,"armory":60},"deconsTo":{},"recipes":[{"required":{"magnesium":2,"lead":2,"copper":1},"output":12}]}

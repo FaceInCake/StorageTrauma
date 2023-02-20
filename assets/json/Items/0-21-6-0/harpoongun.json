@@ -1,8 +1,1 @@
-{
-    "identifier": "harpoongun",
-    "name": "Harpoon Gun",
-    "prices": {"default":170,"outpost":255,"city":212,"research":212,"military":153,"mine":212,"armory":153},
-    "available": {"default":0,"outpost":1,"city":0,"research":1,"military":3,"mine":1,"armory":3},
-    "deconsTo": {"steel":1,"plastic":1,"tin":1},
-    "recipes": [{"required":{"steel":2,"plastic":2,"tin":2},"output":1}]
-}
+{"id":"harpoongun","name":"Harpoon Gun","category":"Weapon","desc":"Launches harpoons, explosive harpoons, and alien harpoons.","tags":["mediumitem","weapon","gunsmith","mountableweapon"],"prices":{"default":170,"outpost":255.000000,"city":212.500000,"mine":212.500000,"military":153.000000,"research":212.500000,"engineering":170.000000,"medical":170.000000,"armory":153.000000},"available":{"default":1,"outpost":1,"city":0,"mine":1,"military":3,"research":1,"engineering":0,"medical":0,"armory":3},"deconsTo":{"steel":1,"plastic":1,"tin":1},"recipes":[{"required":{"steel":2,"plastic":2,"tin":2},"output":1}]}

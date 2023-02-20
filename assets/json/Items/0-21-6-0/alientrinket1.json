@@ -1,8 +1,1 @@
-{
-    "identifier": "alientrinket1",
-    "name": "Alien Trinket",
-    "prices": {"default":300,"outpost":255,"city":255,"research":600,"military":375,"mine":300},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"oxygeniteshard":1},
-    "recipes": []
-}
+{"id":"alientrinket1","name":"Alien Trinket","category":"Alien","desc":"Minor artifact found in alien ruins.","tags":["alien","smallitem","smallalienartifact"],"prices":{"default":300,"outpost":255.000000,"city":255.000000,"mine":300.000000,"military":375.000000,"research":600.000000,"engineering":300.000000,"medical":300.000000,"armory":300.000000},"available":{"default":0,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"oxygeniteshard":1},"recipes":[]}

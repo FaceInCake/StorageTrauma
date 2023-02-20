@@ -1,8 +1,1 @@
-{
-    "identifier": "machinepistol",
-    "name": "Machine Pistol",
-    "prices": {"default":200,"outpost":300,"city":250,"research":250,"military":180,"mine":250,"armory":180},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":2,"mine":0,"armory":2},
-    "deconsTo": {"steel":1,"plastic":1},
-    "recipes": []
-}
+{"id":"machinepistol","name":"Machine Pistol","category":"Weapon","desc":"A high rate of fire automatic weapon, using .45 (SMG) caliber magazines. Hard to aim.","tags":["smallautoweapon","smallitem","weapon","gun","gunsmith","mountableweapon"],"prices":{"default":200,"outpost":300.000000,"city":250.000000,"mine":250.000000,"military":180.000000,"research":250.000000,"engineering":200.000000,"medical":200.000000,"armory":180.000000},"available":{"default":1,"outpost":0,"city":0,"mine":0,"military":2,"research":0,"engineering":0,"medical":0,"armory":2},"deconsTo":{"steel":1,"plastic":1},"recipes":[]}

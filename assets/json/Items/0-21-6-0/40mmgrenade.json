@@ -1,8 +1,1 @@
-{
-    "identifier": "40mmgrenade",
-    "name": "40mm Grenade",
-    "prices": {"default":100,"outpost":150,"city":125,"research":125,"military":90,"mine":125,"armory":90},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":4,"mine":0,"armory":4},
-    "deconsTo": {"iron":1,"sodium":1},
-    "recipes": [{"required":{"iron":1,"uex":1},"output":1}]
-}
+{"id":"40mmgrenade","name":"40mm Grenade","category":"Weapon","desc":"Ammunition for grenade launcher.","tags":["smallitem","grenade"],"prices":{"default":100,"outpost":150.000000,"city":125.000000,"mine":125.000000,"military":90.000000,"research":125.000000,"engineering":100.000000,"medical":100.000000,"armory":90.000000},"available":{"default":0,"outpost":1,"city":1,"mine":1,"military":4,"research":1,"engineering":0,"medical":0,"armory":4},"deconsTo":{"iron":1,"sodium":1},"recipes":[{"required":{"iron":1,"uex":1},"output":1}]}

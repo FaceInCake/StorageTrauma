@@ -1,8 +1,1 @@
-{
-    "identifier": "brockite",
-    "name": "Brockite",
-    "prices": {"default":150,"outpost":165,"city":187,"research":150,"military":150,"mine":112},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"phosphorus":1,"thorium":1},
-    "recipes": []
-}
+{"id":"brockite","name":"Brockite","category":"Material","desc":"A mineral containing thorium and phosphorus.","tags":["smallitem","ore"],"prices":{"default":150,"outpost":165.000000,"city":187.500000,"mine":112.500000,"military":150.000000,"research":150.000000,"engineering":150.000000,"medical":150.000000,"armory":150.000000},"available":{"default":0,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"phosphorus":1,"thorium":1},"recipes":[]}

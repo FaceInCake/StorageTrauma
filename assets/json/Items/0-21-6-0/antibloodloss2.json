@@ -1,8 +1,1 @@
-{
-    "identifier": "antibloodloss2",
-    "name": "BloodPack",
-    "prices": {"default":240,"medical":216},
-    "available": {"default":0,"medical":1},
-    "deconsTo": {"sodium":1,"stabilozine":1},
-    "recipes": [{"required":{"alienblood":2,"antibloodloss1":2,"stabilozine":1},"output":2}]
-}
+{"id":"antibloodloss2","name":"Blood Pack","category":"Medical","desc":"A pack of blood substitute for the treatment of blood loss.","tags":["smallitem","chem","medical","petfood1"],"prices":{"default":240,"outpost":240.000000,"city":240.000000,"mine":240.000000,"military":240.000000,"research":240.000000,"engineering":240.000000,"medical":216.000000,"armory":240.000000},"available":{"default":1,"outpost":0,"city":0,"mine":0,"military":0,"research":0,"engineering":0,"medical":1,"armory":0},"deconsTo":{"sodium":1,"stabilozine":1},"recipes":[{"required":{"alienblood":2,"antibloodloss1":2,"stabilozine":1},"output":2}]}

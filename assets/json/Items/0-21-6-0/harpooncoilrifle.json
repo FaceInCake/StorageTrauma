@@ -1,8 +1,1 @@
-{
-    "identifier": "harpooncoilrifle",
-    "name": "Harpoon Coil-Rifle",
-    "prices": {"default":270,"outpost":405,"city":337,"research":337,"military":243,"mine":337,"armory":243},
-    "available": {"default":0,"outpost":1,"city":0,"research":1,"military":3,"mine":1,"armory":3},
-    "deconsTo": {"aluminium":1,"plastic":1,"copper":1},
-    "recipes": [{"required":{"aluminium":2,"plastic":2,"copper":2},"output":1}]
-}
+{"id":"harpooncoilrifle","name":"Harpoon Coil-Rifle","category":"Weapon","desc":"An advanced harpoon gun, powered by an energy source to launch harpoons at high velocities.","tags":["mediumitem","weapon","gunsmith","mountableweapon"],"prices":{"default":270,"outpost":405.000000,"city":337.500000,"mine":337.500000,"military":243.000000,"research":337.500000,"engineering":270.000000,"medical":270.000000,"armory":243.000000},"available":{"default":1,"outpost":1,"city":0,"mine":1,"military":3,"research":1,"engineering":0,"medical":0,"armory":3},"deconsTo":{"aluminium":1,"plastic":1,"copper":1},"recipes":[{"required":{"aluminium":2,"plastic":2,"copper":2},"output":1}]}

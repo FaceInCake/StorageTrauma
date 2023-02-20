@@ -1,8 +1,1 @@
-{
-    "identifier": "flakcannonammoboxexplosive",
-    "name": "Explosive Flak Shells Box",
-    "prices": {"default":450,"outpost":585,"city":540,"research":585,"military":405,"mine":540,"armory":405},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":8,"mine":0,"armory":8},
-    "deconsTo": {"steel":1,"c4block":1,"aluminium":1},
-    "recipes": [{"required":{"c4block":2,"steel":1,"aluminium":1},"output":1},{"required":{"c4block":2,"steel":1,"flakcannonammoboxexplosive":1},"output":1}]
-}
+{"id":"flakcannonammoboxexplosive","name":"Explosive Flak Shells Box","category":"Weapon","desc":"A heavy box of ammo for the flak cannon, loaded with high explosive materials.","tags":["flakcannonequipment","flakcannonammo","ammobox"],"prices":{"default":450,"outpost":585.000000,"city":540.000000,"mine":540.000000,"military":405.000000,"research":585.000000,"engineering":450.000000,"medical":450.000000,"armory":405.000000},"available":{"default":1,"outpost":0,"city":0,"mine":0,"military":8,"research":0,"engineering":0,"medical":0,"armory":8},"deconsTo":{"steel":1,"c4block":1,"aluminium":1},"recipes":[{"required":{"c4block":2,"steel":1,"aluminium":1},"output":1},{"required":{"c4block":2,"steel":1,"flakcannonammoboxexplosive":1},"output":1}]}

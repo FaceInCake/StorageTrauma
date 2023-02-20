@@ -1,8 +1,1 @@
-{
-    "identifier": "alienflare",
-    "name": "Alien Flare",
-    "prices": {"default":200,"outpost":200,"city":180,"research":250,"military":250,"mine":200},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"flashpowder":1,"plastic":1},
-    "recipes": []
-}
+{"id":"alienflare","name":"Alien Flare","category":"Equipment,Alien","desc":"Temporary handheld light. Useful for marking a path while exploring outside the sub. Burns for longer than a regular flare.","tags":["smallitem","light","provocative"],"prices":{"default":200,"outpost":200.000000,"city":180.000000,"mine":200.000000,"military":250.000000,"research":250.000000,"engineering":200.000000,"medical":200.000000,"armory":200.000000},"available":{"default":0,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"flashpowder":1,"plastic":1},"recipes":[]}

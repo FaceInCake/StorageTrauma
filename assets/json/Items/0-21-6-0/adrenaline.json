@@ -1,8 +1,1 @@
-{
-    "identifier": "adrenaline",
-    "name": "Adrenaline",
-    "prices": {"default":60,"outpost":75,"city":75,"research":54,"military":54,"mine":66,"medical":54},
-    "available": {"default":0,"outpost":0,"city":0,"research":4,"military":2,"mine":0,"medical":4},
-    "deconsTo": {},
-    "recipes": []
-}
+{"id":"adrenaline","name":"Adrenaline","category":"Medical,Material","desc":"A naturally occurring hormone. Used to manufacture medicine or combat stimulants.","tags":["smallitem","chem","medical","syringe"],"prices":{"default":60,"outpost":75.000000,"city":75.000000,"mine":66.000000,"military":54.000000,"research":54.000000,"engineering":60.000000,"medical":54.000000,"armory":60.000000},"available":{"default":1,"outpost":0,"city":0,"mine":0,"military":2,"research":4,"engineering":0,"medical":4,"armory":0},"deconsTo":{},"recipes":[]}

@@ -1,8 +1,1 @@
-{
-    "identifier": "explosivespear",
-    "name": "Explosive Harpoon",
-    "prices": {"default":80,"outpost":112,"city":100,"research":100,"military":72,"mine":100,"armory":72},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":6,"mine":0,"armory":6},
-    "deconsTo": {},
-    "recipes": [{"required":{"spear":2,"uex":1},"output":2}]
-}
+{"id":"explosivespear","name":"Explosive Harpoon","category":"Weapon","desc":"A harpoon for the harpoon gun.","tags":["mediumitem","harpoonammo","demolitionsexpert"],"prices":{"default":80,"outpost":112.000000,"city":100.000000,"mine":100.000000,"military":72.000000,"research":100.000000,"engineering":80.000000,"medical":80.000000,"armory":72.000000},"available":{"default":1,"outpost":0,"city":0,"mine":0,"military":6,"research":0,"engineering":0,"medical":0,"armory":6},"deconsTo":{},"recipes":[{"required":{"spear":2,"uex":1},"output":2}]}

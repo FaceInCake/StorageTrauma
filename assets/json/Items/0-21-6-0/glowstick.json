@@ -1,8 +1,1 @@
-{
-    "identifier": "glowstick",
-    "name": "Glowstick",
-    "prices": {"default":45,"outpost":45,"city":40,"research":56,"military":56,"mine":45,"armory":56},
-    "available": {"default":0,"outpost":1,"city":10,"research":1,"military":8,"mine":10,"armory":8},
-    "deconsTo": {},
-    "recipes": [{"required":{"phosphorus":2,"plastic":1},"output":4}]
-}
+{"id":"glowstick","name":"Glowstick","category":"Equipment","desc":"Temporary handheld light. Useful for marking a path while exploring outside the sub.","tags":["smallitem","light","provocative"],"prices":{"default":45,"outpost":45.000000,"city":40.500000,"mine":45.000000,"military":56.250000,"research":56.250000,"engineering":45.000000,"medical":45.000000,"armory":56.250000},"available":{"default":1,"outpost":1,"city":10,"mine":10,"military":8,"research":1,"engineering":0,"medical":0,"armory":8},"deconsTo":{},"recipes":[{"required":{"phosphorus":2,"plastic":1},"output":4}]}

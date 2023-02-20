@@ -1,8 +1,1 @@
-{
-    "identifier": "morbusineantidote",
-    "name": "MorbusineAntidote",
-    "prices": {"default":250,"outpost":250,"city":250,"research":250,"military":250,"mine":250,"medical":225},
-    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1,"medical":2},
-    "deconsTo": {"stabilozine":1},
-    "recipes": [{"required":{"morbusine":1,"stabilozine":1},"output":1}]
-}
+{"id":"morbusineantidote","name":"Morbusine Antidote","category":"Medical","desc":"An antidote for acute morbusine poisoning.","tags":["smallitem","chem","medical","syringe"],"prices":{"default":250,"outpost":250.000000,"city":250.000000,"mine":250.000000,"military":250.000000,"research":250.000000,"engineering":250.000000,"medical":225.000000,"armory":250.000000},"available":{"default":1,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":2,"armory":0},"deconsTo":{"stabilozine":1},"recipes":[{"required":{"morbusine":1,"stabilozine":1},"output":1}]}

@@ -1,8 +1,1 @@
-{
-    "identifier": "liquidoxygenite",
-    "name": "LiquidOxygenite",
-    "prices": {"default":80,"outpost":80,"city":72,"research":72,"military":80,"mine":72,"medical":72},
-    "available": {"default":0,"outpost":0,"city":3,"research":4,"military":0,"mine":0,"medical":4},
-    "deconsTo": {},
-    "recipes": []
-}
+{"id":"liquidoxygenite","name":"Liquid Oxygenite","category":"Medical","desc":"A mildly toxic solution that slowly releases oxygen into the bloodstream when injected. Avoid dropping.","tags":["smallitem","chem","medical","syringe"],"prices":{"default":80,"outpost":80.000000,"city":72.000000,"mine":72.000000,"military":80.000000,"research":72.000000,"engineering":80.000000,"medical":72.000000,"armory":80.000000},"available":{"default":1,"outpost":0,"city":3,"mine":0,"military":0,"research":4,"engineering":0,"medical":4,"armory":0},"deconsTo":{},"recipes":[]}

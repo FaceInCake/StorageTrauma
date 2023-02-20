@@ -1,8 +1,1 @@
-{
-    "identifier": "swimbladder",
-    "name": "Swim Bladder",
-    "prices": {"default":250,"outpost":225,"city":250,"research":275,"military":250,"mine":225},
-    "available": {"default":0,"outpost":0,"city":2,"research":3,"military":0,"mine":0},
-    "deconsTo": {"stabilozine":2,"antibloodloss1":3},
-    "recipes": []
-}
+{"id":"swimbladder","name":"Swim Bladder","category":"Material","desc":"Many Europan lifeforms have a swim bladder containing tissue fluids that can be easily processed into stabilozine and saline.","tags":["smallitem","chem","medical"],"prices":{"default":250,"outpost":225.000000,"city":250.000000,"mine":225.000000,"military":250.000000,"research":275.000000,"engineering":250.000000,"medical":250.000000,"armory":250.000000},"available":{"default":1,"outpost":0,"city":2,"mine":0,"military":0,"research":3,"engineering":0,"medical":0,"armory":0},"deconsTo":{"stabilozine":2,"antibloodloss1":3},"recipes":[]}

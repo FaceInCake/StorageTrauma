@@ -1,8 +1,1 @@
-{
-    "identifier": "ballisticfiber",
-    "name": "Ballistic Fiber",
-    "prices": {"default":160,"outpost":208,"city":200,"research":176,"military":144,"mine":144},
-    "available": {"default":0,"outpost":0,"city":2,"research":1,"military":4,"mine":2},
-    "deconsTo": {"titanium":1,"plastic":1},
-    "recipes": [{"required":{"titanium":1,"plastic":2},"output":1}]
-}
+{"id":"ballisticfiber","name":"Ballistic Fiber","category":"Material","desc":"Strong fiber strung from plastic and titanium. Used in the manufacture of armor.","tags":["smallitem"],"prices":{"default":160,"outpost":208.000000,"city":200.000000,"mine":144.000000,"military":144.000000,"research":176.000000,"engineering":160.000000,"medical":160.000000,"armory":160.000000},"available":{"default":1,"outpost":0,"city":2,"mine":2,"military":4,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"titanium":1,"plastic":1},"recipes":[{"required":{"titanium":1,"plastic":2},"output":1}]}

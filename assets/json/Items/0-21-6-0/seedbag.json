@@ -1,8 +1,1 @@
-{
-    "identifier": "seedbag",
-    "name": "Seed Bag",
-    "prices": {"default":60,"outpost":60,"city":72,"research":54,"military":72,"mine":45},
-    "available": {"default":0,"outpost":1,"city":1,"research":2,"military":0,"mine":0},
-    "deconsTo": {},
-    "recipes": [{"required":{"organicfiber":2},"output":1}]
-}
+{"id":"seedbag","name":"Seed Bag","category":"Misc","desc":"Can store a wide variety of seeds.","tags":["smallitem","mobilecontainer"],"prices":{"default":60,"outpost":60.000000,"city":72.000000,"mine":45.000000,"military":72.000000,"research":54.000000,"engineering":60.000000,"medical":60.000000,"armory":60.000000},"available":{"default":1,"outpost":1,"city":1,"mine":0,"military":0,"research":2,"engineering":0,"medical":0,"armory":0},"deconsTo":{},"recipes":[{"required":{"organicfiber":2},"output":1}]}

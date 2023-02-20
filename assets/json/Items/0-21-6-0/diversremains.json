@@ -1,8 +1,1 @@
-{
-    "identifier": "diversremains",
-    "name": "Diver's Remains",
-    "prices": {"default":50,"outpost":50,"city":50,"research":100,"military":50,"mine":50},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"rubber":1,"iron":1,"steel":1,"aluminium":1,"carbon":1},
-    "recipes": []
-}
+{"id":"diversremains","name":"Diver's Remains","category":"Misc","desc":"The less easily digested remains of the poor soul that met their untimely demise.","tags":["mediumitem","monsterfood"],"prices":{"default":50,"outpost":50.000000,"city":50.000000,"mine":50.000000,"military":50.000000,"research":100.000000,"engineering":50.000000,"medical":50.000000,"armory":50.000000},"available":{"default":0,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"rubber":1,"iron":1,"steel":1,"aluminium":1,"carbon":1},"recipes":[]}

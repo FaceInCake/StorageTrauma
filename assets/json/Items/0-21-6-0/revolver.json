@@ -1,8 +1,1 @@
-{
-    "identifier": "revolver",
-    "name": "Revolver",
-    "prices": {"default":150,"outpost":225,"city":187,"research":187,"military":135,"mine":187,"armory":135},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":3,"mine":0,"armory":3},
-    "deconsTo": {"steel":1,"plastic":1},
-    "recipes": [{"required":{"steel":2,"plastic":1},"output":1}]
-}
+{"id":"revolver","name":"Revolver","category":"Weapon","desc":".38 caliber.","tags":["smallitem","weapon","gun","pistolitem","gunsmith","mountableweapon"],"prices":{"default":150,"outpost":225.000000,"city":187.500000,"mine":187.500000,"military":135.000000,"research":187.500000,"engineering":150.000000,"medical":150.000000,"armory":135.000000},"available":{"default":1,"outpost":0,"city":0,"mine":0,"military":3,"research":0,"engineering":0,"medical":0,"armory":3},"deconsTo":{"steel":1,"plastic":1},"recipes":[{"required":{"steel":2,"plastic":1},"output":1}]}

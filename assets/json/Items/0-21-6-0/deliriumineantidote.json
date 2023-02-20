@@ -1,8 +1,1 @@
-{
-    "identifier": "deliriumineantidote",
-    "name": "DeliriumineAntidote",
-    "prices": {"default":125,"outpost":125,"city":125,"research":125,"military":125,"mine":125,"medical":112},
-    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1,"medical":2},
-    "deconsTo": {"stabilozine":1},
-    "recipes": [{"required":{"deliriumine":1,"stabilozine":1},"output":1}]
-}
+{"id":"deliriumineantidote","name":"Deliriumine Antidote","category":"Medical","desc":"An antidote for acute deliriumine poisoning.","tags":["smallitem","chem","medical","syringe"],"prices":{"default":125,"outpost":125.000000,"city":125.000000,"mine":125.000000,"military":125.000000,"research":125.000000,"engineering":125.000000,"medical":112.500000,"armory":125.000000},"available":{"default":1,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":2,"armory":0},"deconsTo":{"stabilozine":1},"recipes":[{"required":{"deliriumine":1,"stabilozine":1},"output":1}]}

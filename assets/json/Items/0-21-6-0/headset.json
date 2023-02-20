@@ -1,8 +1,1 @@
-{
-    "identifier": "headset",
-    "name": "Headset",
-    "prices": {"default":105,"outpost":105,"city":94,"research":105,"military":105,"mine":105},
-    "available": {"default":0,"outpost":3,"city":10,"research":4,"military":6,"mine":6},
-    "deconsTo": {"plastic":2,"copper":1},
-    "recipes": [{"required":{"plastic":1,"fpgacircuit":1},"output":1}]
-}
+{"id":"headset","name":"Headset","category":"Equipment","desc":"Allows remote communication among the crew.","tags":["smallitem","mobileradio"],"prices":{"default":105,"outpost":105.000000,"city":94.500000,"mine":105.000000,"military":105.000000,"research":105.000000,"engineering":105.000000,"medical":105.000000,"armory":105.000000},"available":{"default":1,"outpost":3,"city":10,"mine":6,"military":6,"research":4,"engineering":0,"medical":0,"armory":0},"deconsTo":{"plastic":2,"copper":1},"recipes":[{"required":{"plastic":1,"fpgacircuit":1},"output":1}]}

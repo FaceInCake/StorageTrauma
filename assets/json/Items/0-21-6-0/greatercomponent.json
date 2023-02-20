@@ -1,8 +1,1 @@
-{
-    "identifier": "greatercomponent",
-    "name": "Greater Component",
-    "prices": {"default":100,"outpost":100,"city":100,"research":125,"military":100,"mine":100,"engineering":90},
-    "available": {"default":0,"outpost":1,"city":0,"research":1,"military":1,"mine":1,"engineering":1},
-    "deconsTo": {"plastic":1,"copper":1,"tin":1},
-    "recipes": [{"required":{"fpgacircuit":1,"tin":1},"output":1}]
-}
+{"id":"greatercomponent","name":"Greater Component","category":"Electrical","desc":"Sends a signal if the value the signal_in1 input is larger than the signal_in2 input.","tags":["smallitem","logic"],"prices":{"default":100,"outpost":100.000000,"city":100.000000,"mine":100.000000,"military":100.000000,"research":125.000000,"engineering":90.000000,"medical":100.000000,"armory":100.000000},"available":{"default":1,"outpost":1,"city":0,"mine":1,"military":1,"research":1,"engineering":1,"medical":0,"armory":0},"deconsTo":{"plastic":1,"copper":1,"tin":1},"recipes":[{"required":{"fpgacircuit":1,"tin":1},"output":1}]}

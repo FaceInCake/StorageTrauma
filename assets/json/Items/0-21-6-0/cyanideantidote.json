@@ -1,8 +1,1 @@
-{
-    "identifier": "cyanideantidote",
-    "name": "CyanideAntidote",
-    "prices": {"default":350,"outpost":350,"city":350,"research":350,"military":350,"mine":350,"medical":315},
-    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1,"medical":2},
-    "deconsTo": {"stabilozine":1},
-    "recipes": [{"required":{"cyanide":1,"stabilozine":1},"output":1}]
-}
+{"id":"cyanideantidote","name":"Cyanide Antidote","category":"Medical","desc":"An antidote for acute cyanide poisoning.","tags":["smallitem","chem","medical","syringe"],"prices":{"default":350,"outpost":350.000000,"city":350.000000,"mine":350.000000,"military":350.000000,"research":350.000000,"engineering":350.000000,"medical":315.000000,"armory":350.000000},"available":{"default":1,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":2,"armory":0},"deconsTo":{"stabilozine":1},"recipes":[{"required":{"cyanide":1,"stabilozine":1},"output":1}]}

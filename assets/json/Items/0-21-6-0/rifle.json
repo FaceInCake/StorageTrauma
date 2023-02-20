@@ -1,8 +1,1 @@
-{
-    "identifier": "rifle",
-    "name": "Rifle",
-    "prices": {"default":500,"outpost":750,"city":625,"research":625,"military":450,"mine":625,"armory":450},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":3,"mine":0,"armory":3},
-    "deconsTo": {"steel":1,"titaniumaluminiumalloy":1,"plastic":1},
-    "recipes": [{"required":{"steel":2,"titaniumaluminiumalloy":2,"plastic":2},"output":1}]
-}
+{"id":"rifle","name":"Rifle","category":"Weapon","desc":"A .30 caliber rifle with a manual reload mechanism. Slow rate of fire for unskilled users.","tags":["mediumitem","weapon","gun","gunsmith","mountableweapon"],"prices":{"default":500,"outpost":750.000000,"city":625.000000,"mine":625.000000,"military":450.000000,"research":625.000000,"engineering":500.000000,"medical":500.000000,"armory":450.000000},"available":{"default":1,"outpost":0,"city":0,"mine":0,"military":3,"research":0,"engineering":0,"medical":0,"armory":3},"deconsTo":{"steel":1,"titaniumaluminiumalloy":1,"plastic":1},"recipes":[{"required":{"steel":2,"titaniumaluminiumalloy":2,"plastic":2},"output":1}]}

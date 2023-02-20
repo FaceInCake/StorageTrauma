@@ -1,8 +1,1 @@
-{
-    "identifier": "empgrenade",
-    "name": "EMP Grenade",
-    "prices": {"default":175,"outpost":262,"city":218,"research":218,"military":157,"mine":218,"armory":157,"engineering":210},
-    "available": {"default":0,"outpost":0,"city":0,"research":2,"military":4,"mine":0,"armory":4,"engineering":2},
-    "deconsTo": {"iron":1,"copper":1},
-    "recipes": [{"required":{"iron":1,"copper":1,"uex":1},"output":1}]
-}
+{"id":"empgrenade","name":"EMP Grenade","category":"Weapon","desc":"Damages electrical equipment.","tags":["smallitem","weapon","explosive","demolitionsexpert"],"prices":{"default":175,"outpost":262.500000,"city":218.750000,"mine":218.750000,"military":157.500000,"research":218.750000,"engineering":210.000000,"medical":175.000000,"armory":157.500000},"available":{"default":1,"outpost":0,"city":0,"mine":0,"military":4,"research":2,"engineering":2,"medical":0,"armory":4},"deconsTo":{"iron":1,"copper":1},"recipes":[{"required":{"iron":1,"copper":1,"uex":1},"output":1}]}

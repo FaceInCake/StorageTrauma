@@ -1,8 +1,1 @@
-{
-    "identifier": "carbon",
-    "name": "Carbon",
-    "prices": {"default":10,"outpost":13,"city":12,"research":11,"military":11,"mine":8},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":20},
-    "deconsTo": {},
-    "recipes": []
-}
+{"id":"carbon","name":"Carbon","category":"Material","desc":"Most commonly used in the manufacture of steel and plastic.","tags":["smallitem"],"prices":{"default":10,"outpost":13.000000,"city":12.500000,"mine":8.000000,"military":11.000000,"research":11.000000,"engineering":10.000000,"medical":10.000000,"armory":10.000000},"available":{"default":0,"outpost":1,"city":1,"mine":20,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{},"recipes":[]}

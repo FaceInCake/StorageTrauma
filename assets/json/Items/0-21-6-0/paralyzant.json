@@ -1,8 +1,1 @@
-{
-    "identifier": "paralyzant",
-    "name": "Paralyzant",
-    "prices": {"default":380,"outpost":380,"city":342,"research":342,"military":418,"mine":418},
-    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":1,"mine":0},
-    "deconsTo": {"chlorine":1,"paralyxis":1},
-    "recipes": [{"required":{"chloralhydrate":1,"paralyxis":1},"output":1}]
-}
+{"id":"paralyzant","name":"Paralyzant","category":"Material","desc":"Causes paralysis.","tags":["smallitem","chem","medical","syringe"],"prices":{"default":380,"outpost":380.000000,"city":342.000000,"mine":418.000000,"military":418.000000,"research":342.000000,"engineering":380.000000,"medical":380.000000,"armory":380.000000},"available":{"default":1,"outpost":0,"city":1,"mine":0,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"chlorine":1,"paralyxis":1},"recipes":[{"required":{"chloralhydrate":1,"paralyxis":1},"output":1}]}

@@ -1,8 +1,1 @@
-{
-    "identifier": "bikehorn",
-    "name": "Bike Horn",
-    "prices": {"default":1,"outpost":1,"city":1,"research":1,"military":1,"mine":1},
-    "available": {"default":0,"outpost":1,"city":1,"research":0,"military":0,"mine":0},
-    "deconsTo": {},
-    "recipes": []
-}
+{"id":"bikehorn","name":"Bike Horn","category":"Misc","desc":"HONK!","tags":["smallitem","hornitem"],"prices":{"default":1,"outpost":1.000000,"city":1.000000,"mine":1.000000,"military":1.000000,"research":1.000000,"engineering":1.000000,"medical":1.000000,"armory":1.000000},"available":{"default":1,"outpost":1,"city":1,"mine":0,"military":0,"research":0,"engineering":0,"medical":0,"armory":0},"deconsTo":{},"recipes":[]}

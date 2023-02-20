@@ -1,8 +1,1 @@
-{
-    "identifier": "mucusball",
-    "name": "Mucus Ball",
-    "prices": {"default":1},
-    "available": {"default":0},
-    "deconsTo": {"antibleeding1":1,"paralyxis":1,"calcium":1},
-    "recipes": []
-}
+{"id":"mucusball","name":"Mucus Ball","category":"Misc","desc":"A sticky ball of mucus.","tags":["smallitem"],"prices":{"default":1,"outpost":1.000000,"city":1.000000,"mine":1.000000,"military":1.000000,"research":1.000000,"engineering":1.000000,"medical":1.000000,"armory":1.000000},"available":{"default":0,"outpost":0,"city":0,"mine":0,"military":0,"research":0,"engineering":0,"medical":0,"armory":0},"deconsTo":{"antibleeding1":1,"paralyxis":1,"calcium":1},"recipes":[]}

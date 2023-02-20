@@ -1,8 +1,1 @@
-{
-    "identifier": "titanite",
-    "name": "Titanite",
-    "prices": {"default":250,"outpost":275,"city":312,"research":250,"military":250,"mine":187},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"titanium":3,"iron":1},
-    "recipes": []
-}
+{"id":"titanite","name":"Titanite","category":"Material","desc":"A mineral containing titanium and iron.","tags":["smallitem","ore"],"prices":{"default":250,"outpost":275.000000,"city":312.500000,"mine":187.500000,"military":250.000000,"research":250.000000,"engineering":250.000000,"medical":250.000000,"armory":250.000000},"available":{"default":0,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"titanium":3,"iron":1},"recipes":[]}

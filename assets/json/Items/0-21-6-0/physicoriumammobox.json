@@ -1,8 +1,1 @@
-{
-    "identifier": "physicoriumammobox",
-    "name": "Physicorium Ammunition Box",
-    "prices": {"default":300,"outpost":390,"city":360,"research":390,"military":270,"mine":360,"armory":270},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0,"armory":0},
-    "deconsTo": {"steel":1,"physicorium":1,"aluminium":1},
-    "recipes": [{"required":{"physicorium":1,"lead":1,"steel":1,"aluminium":1},"output":1},{"required":{"physicorium":1,"lead":1,"steel":1,"physicoriumammobox":1},"output":1}]
-}
+{"id":"physicoriumammobox","name":"Physicorium Ammunition Box","category":"Weapon","desc":"Coilgun ammunition made of alien material.","tags":["coilgunequipment","coilgunammo","ammobox"],"prices":{"default":300,"outpost":390.000000,"city":360.000000,"mine":360.000000,"military":270.000000,"research":390.000000,"engineering":300.000000,"medical":300.000000,"armory":270.000000},"available":{"default":0,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":1},"deconsTo":{"steel":1,"physicorium":1,"aluminium":1},"recipes":[{"required":{"physicorium":1,"lead":1,"steel":1,"aluminium":1},"output":1},{"required":{"physicorium":1,"lead":1,"steel":1,"physicoriumammobox":1},"output":1}]}

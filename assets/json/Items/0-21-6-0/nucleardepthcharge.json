@@ -1,8 +1,1 @@
-{
-    "identifier": "nucleardepthcharge",
-    "name": "Nuclear Depth Charge",
-    "prices": {"default":450,"outpost":607,"city":562,"research":562,"military":405,"mine":562},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":1,"mine":0},
-    "deconsTo": {"iron":1,"uranium":1,"incendium":1},
-    "recipes": [{"required":{"iron":2,"uranium":1,"ic4block":1},"output":1},{"required":{"depthchargeshell":1,"fuelrod":1,"uex":1},"output":1}]
-}
+{"id":"nucleardepthcharge","name":"Nuclear Depth Charge","category":"Weapon","desc":"A barrel of really big explosives. Will sink and then explode.","tags":["depthchargeammo"],"prices":{"default":450,"outpost":607.500000,"city":562.500000,"mine":562.500000,"military":405.000000,"research":562.500000,"engineering":450.000000,"medical":450.000000,"armory":450.000000},"available":{"default":0,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"iron":1,"uranium":1,"incendium":1},"recipes":[{"required":{"iron":2,"uranium":1,"ic4block":1},"output":1},{"required":{"depthchargeshell":1,"fuelrod":1,"uex":1},"output":1}]}

@@ -1,8 +1,1 @@
-{
-    "identifier": "petnametag",
-    "name": "Pet Name Tag",
-    "prices": {"default":10,"outpost":10,"city":10,"research":10,"military":10,"mine":10},
-    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1},
-    "deconsTo": {},
-    "recipes": []
-}
+{"id":"petnametag","name":"Pet Name Tag","category":"Equipment","desc":"Allows the naming of pets.","tags":["smallitem"],"prices":{"default":10,"outpost":10.000000,"city":10.000000,"mine":10.000000,"military":10.000000,"research":10.000000,"engineering":10.000000,"medical":10.000000,"armory":10.000000},"available":{"default":1,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{},"recipes":[]}

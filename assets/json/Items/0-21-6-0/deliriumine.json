@@ -1,8 +1,1 @@
-{
-    "identifier": "deliriumine",
-    "name": "Deliriumine",
-    "prices": {"default":250,"outpost":250,"city":225,"research":225,"military":275,"mine":275},
-    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":1,"mine":0},
-    "deconsTo": {},
-    "recipes": [{"required":{"dementonite":1,"ethanol":1},"output":2}]
-}
+{"id":"deliriumine","name":"Deliriumine","category":"Material","desc":"A psychosis-inducing toxin.","tags":["smallitem","chem","medical","syringe"],"prices":{"default":250,"outpost":250.000000,"city":225.000000,"mine":275.000000,"military":275.000000,"research":225.000000,"engineering":250.000000,"medical":250.000000,"armory":250.000000},"available":{"default":1,"outpost":0,"city":1,"mine":0,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{},"recipes":[{"required":{"dementonite":1,"ethanol":1},"output":2}]}

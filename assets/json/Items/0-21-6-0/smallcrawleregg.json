@@ -1,8 +1,1 @@
-{
-    "identifier": "smallcrawleregg",
-    "name": "Crawler Egg",
-    "prices": {"default":80},
-    "available": {"default":0},
-    "deconsTo": {"sulphuricacid":1},
-    "recipes": []
-}
+{"id":"smallcrawleregg","name":"Crawler Egg","category":"Misc","desc":"","tags":["smallitem","ignorebyai","monsterfood"],"prices":{"default":80,"outpost":80.000000,"city":80.000000,"mine":80.000000,"military":80.000000,"research":80.000000,"engineering":80.000000,"medical":80.000000,"armory":80.000000},"available":{"default":0,"outpost":0,"city":0,"mine":0,"military":0,"research":0,"engineering":0,"medical":0,"armory":0},"deconsTo":{"sulphuricacid":1},"recipes":[]}

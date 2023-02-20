@@ -1,8 +1,1 @@
-{
-    "identifier": "flashlight",
-    "name": "Flashlight",
-    "prices": {"default":200,"outpost":200,"city":180,"research":250,"military":250,"mine":200},
-    "available": {"default":0,"outpost":1,"city":3,"research":1,"military":1,"mine":1},
-    "deconsTo": {"aluminium":1,"lightcomponent":1},
-    "recipes": [{"required":{"aluminium":2,"lightcomponent":1},"output":1}]
-}
+{"id":"flashlight","name":"Flashlight","category":"Equipment","desc":"Handheld light.","tags":["smallitem","tool","provocative"],"prices":{"default":200,"outpost":200.000000,"city":180.000000,"mine":200.000000,"military":250.000000,"research":250.000000,"engineering":200.000000,"medical":200.000000,"armory":200.000000},"available":{"default":1,"outpost":1,"city":3,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"aluminium":1,"lightcomponent":1},"recipes":[{"required":{"aluminium":2,"lightcomponent":1},"output":1}]}

@@ -1,8 +1,1 @@
-{
-    "identifier": "captainspipe",
-    "name": "Captain's Pipe",
-    "prices": {"default":50,"outpost":50,"city":50,"research":50,"military":50,"mine":50},
-    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1},
-    "deconsTo": {},
-    "recipes": []
-}
+{"id":"captainspipe","name":"Captain's Pipe","category":"Misc","desc":"For calming the nerves when the sea is stormy.","tags":["smallitem"],"prices":{"default":50,"outpost":50.000000,"city":50.000000,"mine":50.000000,"military":50.000000,"research":50.000000,"engineering":50.000000,"medical":50.000000,"armory":50.000000},"available":{"default":1,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{},"recipes":[]}

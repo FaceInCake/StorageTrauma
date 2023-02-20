@@ -1,8 +1,1 @@
-{
-    "identifier": "iron",
-    "name": "Iron",
-    "prices": {"default":8,"outpost":10,"city":10,"research":8,"military":8,"mine":6},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":20},
-    "deconsTo": {},
-    "recipes": []
-}
+{"id":"iron","name":"Iron","category":"Material","desc":"Can be used in the manufacture of simple tools, or refined into steel by mixing it with carbon.","tags":["smallitem","petfood3"],"prices":{"default":8,"outpost":10.400000,"city":10.000000,"mine":6.400000,"military":8.800000,"research":8.800000,"engineering":8.000000,"medical":8.000000,"armory":8.000000},"available":{"default":0,"outpost":1,"city":1,"mine":20,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{},"recipes":[]}

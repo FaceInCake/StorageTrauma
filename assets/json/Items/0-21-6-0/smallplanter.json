@@ -1,8 +1,1 @@
-{
-    "identifier": "smallplanter",
-    "name": "Small Planter Box",
-    "prices": {"default":120,"outpost":120,"city":144,"research":108,"military":144,"mine":90},
-    "available": {"default":0,"outpost":1,"city":1,"research":2,"military":0,"mine":0},
-    "deconsTo": {"steel":1,"plastic":1},
-    "recipes": [{"required":{"steel":2,"plastic":1},"output":1}]
-}
+{"id":"smallplanter","name":"Small Planter Box","category":"Misc","desc":"Suitable for most Europan plantlife while small enough to be transported around by hand.","tags":["planter","mediumitem"],"prices":{"default":120,"outpost":120.000000,"city":144.000000,"mine":90.000000,"military":144.000000,"research":108.000000,"engineering":120.000000,"medical":120.000000,"armory":120.000000},"available":{"default":1,"outpost":1,"city":1,"mine":0,"military":0,"research":2,"engineering":0,"medical":0,"armory":0},"deconsTo":{"steel":1,"plastic":1},"recipes":[{"required":{"steel":1,"plastic":1},"output":1}]}

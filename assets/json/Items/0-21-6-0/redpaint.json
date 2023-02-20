@@ -1,8 +1,1 @@
-{
-    "identifier": "redpaint",
-    "name": "redpaint",
-    "prices": {"default":140,"outpost":154,"city":126,"research":168,"military":168,"mine":168},
-    "available": {"default":0,"outpost":1,"city":2,"research":1,"military":1,"mine":1},
-    "deconsTo": {"ethanol":1},
-    "recipes": [{"required":{"ethanol":1,"tin":1,"alienblood":1},"output":1}]
-}
+{"id":"redpaint","name":"Red Paint","category":"Misc","desc":"","tags":["smallitem","paint"],"prices":{"default":140,"outpost":154.000000,"city":126.000000,"mine":168.000000,"military":168.000000,"research":168.000000,"engineering":140.000000,"medical":140.000000,"armory":140.000000},"available":{"default":1,"outpost":1,"city":2,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"ethanol":1},"recipes":[{"required":{"ethanol":1,"tin":1,"alienblood":1},"output":1}]}

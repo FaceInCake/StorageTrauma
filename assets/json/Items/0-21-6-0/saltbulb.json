@@ -1,8 +1,1 @@
-{
-    "identifier": "saltbulb",
-    "name": "Salt Bulb",
-    "prices": {"default":65,"outpost":65,"city":78,"research":71,"military":52,"mine":48},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"sodium":1,"saltvineseed":1},
-    "recipes": []
-}
+{"id":"saltbulb","name":"Salt Bulb","category":"Material","desc":"Salty. Avoid moisture.","tags":["smallitem","plantitem","explodesinwater"],"prices":{"default":65,"outpost":65.000000,"city":78.000000,"mine":48.750000,"military":52.000000,"research":71.500000,"engineering":65.000000,"medical":65.000000,"armory":65.000000},"available":{"default":0,"outpost":1,"city":1,"mine":1,"military":1,"research":1,"engineering":0,"medical":0,"armory":0},"deconsTo":{"sodium":1,"saltvineseed":1},"recipes":[]}

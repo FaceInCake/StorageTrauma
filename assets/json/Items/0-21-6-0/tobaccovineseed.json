@@ -1,8 +1,1 @@
-{
-    "identifier": "tobaccovineseed",
-    "name": "Tobacco Vine Seed",
-    "prices": {"default":30,"outpost":30,"city":36,"research":27,"military":36,"mine":22},
-    "available": {"default":0,"outpost":0,"city":1,"research":2,"military":0,"mine":0},
-    "deconsTo": {"carbon":1},
-    "recipes": []
-}
+{"id":"tobaccovineseed","name":"Tobacco Vine Seed","category":"Misc","desc":"","tags":["smallitem","seed","plantitem"],"prices":{"default":30,"outpost":30.000000,"city":36.000000,"mine":22.500000,"military":36.000000,"research":27.000000,"engineering":30.000000,"medical":30.000000,"armory":30.000000},"available":{"default":1,"outpost":0,"city":1,"mine":0,"military":0,"research":2,"engineering":0,"medical":0,"armory":0},"deconsTo":{"carbon":1},"recipes":[]}
