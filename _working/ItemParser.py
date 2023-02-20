@@ -1,269 +1,409 @@
 "This Epic file contains a bunch of classes and functions for parsing and manipulating Barotrauma Items"
 
 from collections import defaultdict # Dictionary with default value, good for getting price of item, as it MIGHT vary per merchant
-from itertools import groupby # Used to help combine duplicate keys in a dict
 from tkinter import filedialog, messagebox # Dialog boxes
 from os import path, makedirs, remove # For creating cross-platform file URIs
 from sys import platform # windows or linux or whatnot
+from typing import NamedTuple,Self,Any,Literal,TypeVar,Protocol,Sequence,SupportsIndex,Final,Iterator
+from contextlib import suppress
+from functools import cache
 from xml.etree.ElementTree import parse, Element # Turn that text into objects!
 from glob import glob # Find them files
-import numpy as np # Epic math
-from scipy.sparse import csr_matrix # Can represent a directed graph, used for con or decon trees
-from cv2 import Mat, imread, imwrite, IMREAD_UNCHANGED # OpenCV image editing tools, yes its a bit overkill, bite me
+from numpy import multiply # Epic math
+# from scipy.sparse import csr_matrix # Can represent a directed graph, used for con or decon trees
+from cv2 import resize, Mat, imread, imwrite, IMREAD_UNCHANGED # OpenCV image editing tools, yes its a bit overkill, bite me
 
-class Recipe: pass
-class Item: pass
 
-def crop (img: Mat, rect:tuple[int,int,int,int])->Mat:
-    """Crops the given opencv `img` using the given xywh `rect`, returns the result"""
-    return img[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]]
+_RT = TypeVar('_RT', bound=object, covariant=True) # "Generic return type"
+_PT = TypeVar("_PT") # "Generic parameter type"
 
-class Recipe:
-    """Helper class for `Item`.
+class SupportGet (Protocol[_RT]):
+    def get (self, __key :str) -> _RT|None: return None
 
-    This object should be a member of the Item that this recipe results in.
-    
-    Parameters
-    ----------
-    required : `dict[str -> int]`
-        Set of required items. By their string identifier and the amount of that item needed.
-    output : `int`
-        The number of items that result from this craft
-    """
+class Nothing:
+    "Any getters return self or empty. Always falsy."
+    def __getattribute__(self, __name: str) -> Self: return self
+    def __call__(self, *args: Any, **kwds: Any) -> Self: return self
+    def __getitem__(self, __i: SupportsIndex) -> Self: return self
+    def __bool__ (self) -> Literal[False]: return False
+    def __iter__ (self) -> Iterator[Any]: return iter([])
 
-    __slots__ = "required", "output"
-    def __init__(self, required:dict[str,int], output:int, /):
-        self.required :dict[str,int] = required
-        self.output :int = int(output)
-    #
-    def __str__(self):
+def try_get (e :SupportGet[_PT], default:_PT, keys :Sequence[str|None]) -> _PT:
+    if len(keys)==0: return default
+    if keys[0] is not None: 
+        test = e.get(keys[0])
+        if test is not None: return test
+    return try_get(e, default, keys[1:])
+
+def maybe (obj :_PT|None) -> _PT|Nothing:
+    "Returns a falsy `Nothing` object if `obj` is None, effectively working as the save-navigation operator"
+    return Nothing() if obj is None else obj
+
+
+class ContentPackage (NamedTuple):
+    """Can be 'Vanilla' or any other mod package for example,
+    every content package is basically a list of URIs to xml files that contain various resources.
+    `version` should be in the format '0-20-0-0', for example. Everything else is a list of filepaths"""
+    name :str
+    version :str
+    items :list[str]
+    submarines :list[str]
+    characters :list[str]
+    afflictions :list[str]
+    structures :list[str]
+    # Theres more types but I dont care about them rn, add 'em when you want
+
+    @classmethod
+    def from_Element(cls, e:Element) -> Self:
+        def get_files (type:str) -> list[str]:
+            return [j for j in [i.get("file","") for i in e.findall(type)] if j!=""]
+        name = e.get("name","")
+        if name == "": raise ValueError("Invalid name or no name found")
+        version = e.get("gameversion","").replace(".","-")
+        if version == "": raise ValueError("Invalid version or no version found")
+        return cls(
+            name=name, version=version,
+            items= get_files("Item"),
+            submarines= get_files("Submarine"),
+            characters=  get_files("Character"),
+            afflictions= get_files("Afflictions"),
+            structures= get_files("Structure")
+        )
+
+class Pricing (NamedTuple):
+    """Contains info for getting the price of an item.
+    The `basePrice` is what it is, everything else is after the multiplier.
+    For example, `military` might have a price multiplier of 1.1, which is multiplied with the `basePrice`.  
+    You might need to do rounding where necessary."""
+    basePrice : int
+    outpost  : float
+    city     : float
+    mine     : float
+    military : float
+    research : float
+    engineering : float
+    medical  : float
+    armory   : float
+
+    @classmethod
+    def from_Element (cls, e:Element|None) -> Self|None:
+        "Expects the Price element `e`, returns None if `e` is None"
+        if e is None: return None
+        if e.tag != "Price" : raise ValueError(f"Expected a 'Price' element but was '{e.tag}'")
+        basePrice = e.get("baseprice", "")
+        if basePrice=="": raise KeyError("Expected a 'baseprice' attribute from Element `e`")
+        basePrice = int(basePrice)
+        pd :dict[str,float] = {
+            i : float(m) * basePrice
+            for i,m in [(
+                p.get("storeidentifier", ""),
+                p.get("multiplier", 1.0)
+                ) for p in e.findall("Price")
+            ] if i != ""
+        }
+        return Pricing(
+            basePrice= basePrice,
+            outpost=  pd.get("merchantoutpost", basePrice),
+            city=     pd.get("merchantcity", basePrice),
+            mine=     pd.get("merchantmine", basePrice),
+            military= pd.get("merchantmilitary", basePrice),
+            research= pd.get("merchantresearch", basePrice),
+            engineering= pd.get("merchantengineering", basePrice),
+            medical=  pd.get("merchantmedical", basePrice),
+            armory=   pd.get("merchantarmory", basePrice),
+        )
+
+    def to_json (self) -> str:
+        return '{"default":%d,"outpost":%f,"city":%f,"mine":%f,"military":%f,"research":%f,"engineering":%f,"medical":%f,"armory":%f}' % (
+            self.basePrice, self.outpost, self.city, self.mine, self.military, self.research, self.engineering, self.medical, self.armory )
+
+class Availability (NamedTuple):
+    "Contains info for the availability for an item."
+    default  : int
+    outpost  : int
+    city     : int
+    mine     : int
+    military : int
+    research : int
+    engineering : int
+    medical  : int
+    armory   : int
+
+    @classmethod
+    def from_Element (cls, e:Element|None) -> Self|None:
+        "Expects the parent Price element `e`, returns None if `e` is None"
+        if e is None: return None
+        if e.tag != "Price" : raise ValueError(f"Expected a 'Price' element but was '{e.tag}'")
+        baseAvail = 0 if e.get("sold")=="false" else int(e.get("minavaiable", 1))
+        pd :dict[str,int] = {
+            i : 0 if notSold else int(avail)
+            for i, avail, notSold in [(
+                p.get("storeidentifier", ""),
+                p.get("minavailable", 1),
+                p.get("sold") == "false"
+                ) for p in e.findall("Price")
+            ] if i != ""
+        }
+        return Availability( # TODO: Verify how the inheritence of base availability works
+            default= baseAvail,
+            outpost= pd.get("merchantoutpost", 0),
+            city= pd.get("merchantcity", 0),
+            mine= pd.get("merchantmine", 0),
+            military= pd.get("merchantmilitary", 0),
+            research= pd.get("merchantresearch", 0),
+            engineering= pd.get("merchantengineering", 0),
+            medical= pd.get("merchantmedical", 0),
+            armory= pd.get("merchantarmory", 0)
+        )
+
+    def to_json (self) -> str:
+        return '{"default":%d,"outpost":%d,"city":%d,"mine":%d,"military":%d,"research":%d,"engineering":%d,"medical":%d,"armory":%d}' % (
+            self.default, self.outpost, self.city, self.mine, self.military, self.research, self.engineering, self.medical, self.armory )
+
+DEFAULT_TIME :Final[Literal["15.0"]] = "15.0" #TODO: Verify me
+
+class Deconstructable (NamedTuple):
+    "Stores info about what an item deconstructs into"
+    output : dict[str,int]
+    "The resultant items, as 'item id' -> 'count'"
+    time : float
+    "The base of how many seconds it takes to decon"
+
+    @classmethod
+    def from_Element (cls, e:Element|None) -> Self|None:
+        "Expects Deconstruct Element `e`, returns None if `e` is None"
+        if e is None: return None
+        if e.tag != "Deconstruct": raise ValueError(f"Expected 'Deconstruct' Element but was '{e.tag}'")
+        time = e.get("time", "")
+        if time=="": raise KeyError("ASFASREFER")
+        items = e.findall("Item")
+        dd :dict[str,int] = defaultdict(lambda: 0)
+        for i in items: # An item can be listed multiple times, this code makes sure they get added up
+            id = i.get("identifier", "")
+            if id != "": dd[id] += int(i.get("amount", 1))
+        return Deconstructable(output=dict(dd), time=float(time))
+
+    def to_json (self) -> str:
+        return "{%s}" % (
+            ','.join(
+                f'"{k}":{v}'
+                for k,v in self.output.items()
+            )
+        )
+
+class Recipe (NamedTuple):
+    """Helper class for `Item`. This object should be a member of the Item that this recipe results in"""
+    required : dict[str,int]
+    "What items are required to craft an item as 'item id' -> 'count required'"
+    output : int
+    "The number of items that result from this recipe"
+    machine :str
+    "The machine you need to use to see this recipe"
+    time : float
+    "Number of seconds it takes to craft with this recipe"
+    skills : dict[str,int]
+    "Required skills to craft with this recipe, as 'skill id' -> 'level'"
+
+    @classmethod
+    def from_Element (cls, e:Element) -> Self|None:
+        "Expects a 'Fabricate' Element `e`, returns None if `e` is a vending machine recipe."
+        machine = e.get("suitablefabricators", "fabricator") #TODO: Verify default is always 'fabricator'
+        if machine == "vendingmachine": return None
+        time = e.get("requiredtime", DEFAULT_TIME)
+        return Recipe(
+            required= {
+                id : int(a)
+                for id, a in [(
+                    i.get("identifier", ""),
+                    i.get("amount", 1)
+                    ) for i in e.findall("RequiredItem")
+                ] if id != ""
+            },
+            output= int(e.get("amount", 1)),
+            machine= machine,
+            time= float(time),
+            skills= {
+                id : int(l)
+                for id, l in [(
+                    i.get("identifier", ""),
+                    i.get("level", "")
+                    ) for i in e.findall("RequiredSkill")
+                ] if id != "" and l != ""
+            }
+        )
+
+    def to_json (self):
         return '{"required":{%s},"output":%d}' % (
             ",".join(f'"{r}":{self.required[r]}' for r in self.required),
             self.output
         )
-    #
-#
 
-class Item:
-    """
-    Contains all information about an item. That we care about.
+Colour = tuple[float,float,float]
+WHITE = (1.0, 1.0, 1.0)
 
-    Constructors
-    ----------
-    from_element ( `Element`, `str` )
-        The XML Element to pull data from. It should atleast have a Price subelement.  
-        Ideally also pass the last dir the item's in to use for future relative paths.
-
-    Members
-    -----------
-    id : `str`
-        The identifier for this item. Used by the game.
-    basePrice : `int`
-        The base price of the item. Merchants usually have multipliers to affect this.
-    prices : `dict [str -> int]`
-        Indexed by the merchant id, check #Merchants. Gives the price after multiplier but before reputation modifier.
-        Ex: `self.prices.medical`
-    available : `dict [str -> int]`
-        Indexed by the merchant id, check #Merchants. Gives the number of available items for sale. Can be 0.
-        Ex: `self.available.outpost`
-    deconsTo : `dict[str -> int]`
-        List of item identifiers and the amount of that item it decons into
-    recipes : `tuple[Recipe]`
-        List of recipes. Each recipe is a list of a bunch of items required to craft this item, and the quantity outputed.
-    imgUri : `str`
-        Path to the image which contains the icon/sprite of this item
-    iconRect : `tuple[int,int,int.int]`
-        The xywh rectangle of where this item's icon is located in the `imgUri` image
-
-    Merchants
-    ----------------
-    - outpost
-    - city
-    - research
-    - military
-    - mine
-    - engineering
-    - medical
-    """
-
-    __slots__ = "name", "id", "basePrice", "prices", "available", "deconsTo", "recipes", "imgUri", "iconRect"
-    "Slots definition. Constrains members to only these names. Makes class faster and smaller. Requires upkeep"
-
-    def __init__(self, name:str, id:str, basePrice:int,
-        prices:defaultdict[str,int], available:defaultdict[str,int],
-        deconsTo:dict[str,int], recipes:tuple[Recipe], imgUri:str,
-        iconRect:tuple[int,int,int,int]
-    ):
-        self.name :str = name
-        self.id :str = id # Identifier string
-        self.basePrice :int = basePrice
-        self.prices :defaultdict[str,int] = prices
-        self.available :defaultdict[str,int] = available
-        self.deconsTo :dict[str,int] = deconsTo
-        self.recipes :tuple[Recipe] = recipes
-        self.imgUri :str = imgUri
-        self.iconRect :tuple[int,int,int,int] = iconRect
-
-    def __str__ (self):
-        return """{
-    "identifier": "%s",
-    "name": "%s",
-    "prices": {%s},
-    "available": {%s},
-    "deconsTo": {%s},
-    "recipes": [%s]
-}"""    % (
-            self.id, self.name,
-            ','.join((f'"default":{self.basePrice}',
-                *('"%s":%d' % (k,self.prices[k]) for k in self.prices)
-            )),
-            ','.join((f'"default":{self.available.default_factory()}',
-                *('"%s":%d' % (k,self.available[k]) for k in self.available)
-            )),
-            ','.join(f'"{k}":{v}' for k,v in self.deconsTo.items()),
-            ','.join(str(r) for r in self.recipes)
-        )
+class Texture (NamedTuple):
+    """Stores information needed to fetch a texture image for an item.
+    Used for InventoryIcon and Sprite."""
+    path : str
+    "The file path to the sprite sheet where the texture is in"
+    rect : tuple[int,int,int,int]
+    "(x,y,w,h) rectangle for where the icon is on the sprite sheet"
+    colour : Colour
+    "Colouring of this texture, defaults to all 1.0"
 
     @classmethod
-    def from_Element (cls, elm:Element) -> Item:
-        p :Element = elm.find("Price")
-        id :str = elm.get("identifier")
-        basePrice :int = int(p.get("baseprice"))
-        assert(basePrice is not None)
-        baseAvail :int = 0 if p.get("sold","")=="false" else int(p.get("minavaiable", 1))
-        d2 = elm.find("Deconstruct")
-        ii = elm.find("InventoryIcon") or elm.find("Sprite")
-        folder = elm.get("folder", "")
-        def _(): # Fetch sourceRect
-            sr = ii.get("sourcerect")
-            if sr is not None:
-                return tuple(int(n) for n in sr.split(',',3) )
-            ses = ii.get("sheetelementsize")
-            si = ii.get("sheetindex")
-            if ses is not None and si is not None:
-                w, h = ses.split(',', 1)
-                w, h = int(w), int(h)
-                x, y = si.split(',',1)
-                x, y = int(x), int(y)
-                return (x*w, y*h, w, h)
-            return KeyError("No icon rect attribute found")
-        sourceRect :tuple[int,int,int,int] = _()
-        return cls(
-            elm.tag if elm.tag!="Item" else
-                elm.get("name") or id,
-            id,
-            basePrice,
-            defaultdict( # Pricing
-                lambda: basePrice,
-                {   v.get("storeidentifier")[8:]:
-                        float(v.get("multiplier", 1.0)) * basePrice
-                    for v in p.findall("Price")
-                }
-            ),
-            defaultdict( # Available
-                lambda: 0,
-                {   v.get("storeidentifier")[8:]:
-                        0 if v.get("sold")=="false" else
-                        int(v.get("minavailable", baseAvail))
-                    for v in p.findall("Price")
-                }
-            ),
-            { # Deconstructs into
-                k : sum(int(i.get("amount",1)) for i in g)
-                for k, g in groupby(d2.findall("Item"), lambda i: i.get("identifier"))
-            } if d2 is not None else {},
-            tuple( # Recipes
-                Recipe(
-                    { # Requirements
-                        k : sum(int(i.get("amount",1)) for i in g)
-                        for k, g in groupby(recipe.findall("RequiredItem"), lambda i: i.get("identifier"))
-                    },
-                    recipe.get("amount", 1)
-                )
-                for recipe in elm.findall("Fabricate")
-                if recipe.get("suitablefabricators","") != "vendingmachine"
-                # FIXME: Gotta filter out vendingmachine recipes, as those arent recipes
-            ),
-            ii.get("texture") if ii.get("texture").startswith("Content/") else "Content/Items/"+folder+'/'+ii.get("texture"), # Where the image path is
-            sourceRect # icon rect
+    def from_Element (cls, e:Element, dir:str, colour:Colour|None=None) -> Self:
+        """Finds and parses out the source rect for an InventoryIcon OR Sprite.
+        `dir` should be the rel path to where the Element was found"""
+        tex = e.get("texture", "")
+        if tex == "": raise KeyError("Expected a 'texture' attribute but not found")
+        if not tex.startswith("Content/"):
+            tex = path.join(dir, tex)
+        rect = e.get("sourcerect", "")
+        if rect != "":
+            rect = tuple(int(s) for s in rect.split(",", 3))
+        else:
+            ses = e.get("sheetelementsize", "")
+            si = e.get("sheetindex", "")
+            if ses == "" or si == "":
+                raise KeyError("No sourcerect or sheetindex and sheetelementsize found")
+            w, h = tuple(int(s) for s in ses.split(",", 1))
+            x, y = tuple(int(s) for s in si.split(",", 1))
+            rect = tuple([x*w, y*h, w, h])
+        return Texture(path=tex, rect=rect, colour=colour or WHITE)
+
+class InventoryIcon (Texture):
+
+    @classmethod
+    def from_Element (cls, e:Element|None, dir:str, colour:Colour|None=None) -> Self|None:
+        "Same as Texture.from_Element(). Expects an 'InventoryIcon' Element, it may be None in which case None is returned"
+        if e is None: return None
+        if e.tag != "InventoryIcon": raise ValueError(f"Expected an 'InventoryIcon' Element but was '{e.tag}'")
+        return super().from_Element(e, dir, colour)
+
+class Sprite (Texture):
+
+    @classmethod
+    def from_Element (cls, e:Element, dir:str, colour:Colour|None=None) -> Self:
+        "Same as `Texture.from_Element()`, but expects a Sprite Element"
+        if e is None: raise TypeError("No Element supplied")
+        if e.tag.lower() != "sprite": raise ValueError(f"Expected an 'Sprite' Element but was '{e.tag}'")
+        return super().from_Element(e, dir, colour)
+
+class Item (NamedTuple):
+    "Contains all important information relavent for a given item"
+    id : str
+    "Identifier string"
+    tags : list[str]
+    "Used to index groups of items, usually"
+    name : str
+    "Full item name for a set language"
+    desc : str
+    "In game description for a set language"
+    category : str
+    "Self explanetory, chosen by the devs. Always English?"
+    price : Pricing | None
+    "Contains the item price for each merchant"
+    available : Availability | None
+    "Contains the number of items for sail for each merchant"
+    deconsTo : Deconstructable | None
+    "What this item deconstructs into, may not exist"
+    recipes : list[Recipe]
+    "A list of recipes that can result in this item, may be empty"
+    icon : InventoryIcon | None
+    "Info for how to get the inventory icon, may not exist and instead just use the Sprite"
+    sprite : Sprite
+    "Info for how to get the in game sprite texture for this item"
+
+    @classmethod
+    def from_Element (cls, e:Element, texts:dict[str,str], variantOf:Element|None = None) -> Self|None:
+        """Parses the given Element and constructs an Item object.
+        `texts` is for i18n as 'text id' -> 'text', see fetch_language().
+        Returns None if `e` is invalid, meaning a valid Item could not be created.
+        If the item is a variation of another item, pass in `variantOf`."""
+        # e.tag NOT guaranteed to be Item for whatever reason
+        dir = e.get("dir", "")
+        if dir == "": return None
+        def fetch (target:str) -> Element | None:
+            i = e.find(target)
+            if i is None: i = e.find(target.lower())
+            if i is None:
+                if variantOf is None: return None
+                j = variantOf.find(target)
+                if j is None: j = variantOf.find(target.lower())
+                return j
+            if variantOf is not None:
+                j = variantOf.find(target)
+                if j is None: j = variantOf.find(target.lower())
+                if j is not None:
+                    if not i:
+                        i.extend(iter(j)) # Update i with j's children if i doesnt have any
+                    ik = i.keys()
+                    for jk, ji in j.items():
+                        if jk not in ik:
+                            i.set(jk, ji) # Set attribute from variantOf if parent doesnt have it
+            return i
+        # end func
+        e_sprite = fetch("Sprite")
+        if e_sprite is None: return None
+        id :str = e.get("identifier") or e.get("file","")+f"_{hash(e)}"
+        name :str = texts.get(f"entityname.{e.get('nameidentifier', id)}", id)
+        desc :str = texts.get(f"entitydescription.{e.get('descriptionidentifier', id)}", "") #or texts.get(f"entitydescription.{id}", "")
+        def backup_get (target:str, default:str)->str:
+            return e.get(target.lower()) or e.get(target) or maybe(variantOf).get(target.lower()) or maybe(variantOf).get(target) or default
+        cat :str = backup_get("Category", "None")
+        with suppress(AttributeError): # Handle Genetic Material genericism
+            name, desc = (lambda g: (
+                (lambda t: name.replace("[type]", t)) (
+                    (lambda i: texts.get(i))
+                    (g.get("nameidentifier"))),
+                (lambda v0,v1: desc.replace("[value]", f"{v0}-{v1}"))
+                (g.get("tooltipvaluemin"), g.get("tooltipvaluemax"))
+            ))(fetch("GeneticMaterial"))
+        e_t :str = backup_get("Tags", "")
+        e_p :Element|None = fetch("Price")
+        e_f :list[Element] = e.findall("Fabricate") or maybe(variantOf).findall("Fabricate") or []
+        def parse_colour (key:str) -> Colour|None:
+            valueS = backup_get(key, "")
+            if valueS=="": return None
+            return tuple([
+                float(s) if '.' in s else int(s)/255.0
+                for s in valueS.split(",",3)
+            ][0:3])
+        _ic :Colour|None = parse_colour("InventoryIconColor")
+        _sc :Colour|None = parse_colour("SpriteColor")
+        return Item(
+            id=id, name=name, desc=desc, category=cat,
+            tags= [s.strip() for s in e_t.split(",")],
+            price= Pricing.from_Element(e_p),
+            available= Availability.from_Element(e_p),
+            deconsTo= Deconstructable.from_Element(fetch("Deconstruct")),
+            recipes= [r for r in (Recipe.from_Element(f) for f in e_f) if r is not None],
+            icon= InventoryIcon.from_Element(fetch("InventoryIcon"), dir, _ic),
+            sprite= Sprite.from_Element(e_sprite, dir, _sc)
         )
-    #
-#
 
-def filter_items (items :list[Element])->list[Element]:
-    "Filters out items that dont have a price and cant be picked up or whatever"
-    return [
-        i for i in items
-        if i.find("Price") is not None
-        and not i.get("identifier","").endswith("_event") # Ex. psychosisartifact_event
-    ]
-
-def fetch_all_xml_items (rootDir:str) -> list[Element]:
-    """Search the rootDir for all `Item`s. They should be in xml files within 'Content/Items/*'.
-    I also append 'folder' and 'file' attributes to the item for future use."""
-    # This file contains some useful info, dunno why its here, but it has the item names
-    inames :dict[str,str] = {
-        i.get("identifier") : i.get("name")
-        for i in parse(rootDir+"/spreadsheetdata.xml").getroot().findall("Item")
-    }
-    # Get all XML files that contain items
-    itemFileList :list[str] = glob(path.join(rootDir,"Content","Items","**","*.xml"))
-    print("Number of files:", len(itemFileList), "...")
-    # Sort through each file and parse out the items
-    allItems :list[Element] = []
-    for filePath in itemFileList:
-        tree :Element = parse(filePath).getroot() # Parse it
-        if tree.tag == "Items": # Prevent item assemblies or other prefabs
-            _, fileFolder, fileName = filePath.rsplit(path.sep,2)
-            for item in tree:
-                item.set("folder", fileFolder)
-                item.set("file", fileName)
-                item.set("name", inames.get(item.get("identifier",""), ""))
-                allItems.append(item)
-    print(f"Added %4d items" % len(allItems))
-    return allItems
-
-def fetch_game_version (rootDir:str)->str:
-    # Path to Vanilla Content Package
-    fpath :str = path.join(rootDir,"Content","ContentPackages","Vanilla.xml")
-    try:
-        with open(fpath, 'r') as fin:
-            sample = fin.read(1024)
-            s = 'gameversion="'
-            i = sample.find(s)
-            if i >= 0:
-                j = sample.find('"', i+len(s))
-                if j >= 0:
-                    return sample[ i+len(s) : j ].replace(".","-")
-    except Exception as e:
-        pass
-    else:
-        e = "Couldn't find it?"
-    return Exception("Failed to fetch game version", e)
-
-def export_items_to_json (items :list[Item], targetDir:str):
-    if not path.isdir(targetDir):
-        makedirs(targetDir)
-    with open(targetDir+"/!ItemList.json", 'w') as fout:
-        fout.write(
-            '[\n\t' +
-            ',\n\t'.join('"'+i.id+'"' for i in items)
-            + '\n]\n'
+    def to_json (self) -> str:
+        return '{"id":"%s","name":"%s","category":"%s","desc":"%s","tags":[%s],"prices":%s,"available":%s,"deconsTo":%s,"recipes":[%s]}' % (
+            self.id, self.name, self.category,
+            self.desc.replace('"', '\\"'),
+            ",".join(f'"{s}"' for s in self.tags),
+            self.price.to_json() if self.price is not None else "{}",
+            self.available.to_json() if self.available is not None else "{}",
+            self.deconsTo.to_json() if self.deconsTo is not None else "{}",
+            ",".join(r.to_json() for r in self.recipes)
         )
-    for item in items:
-        name :str = targetDir+'/'+item.id+".json"
-        with open(name, 'w') as fout:
-            fout.write(str(item))
+
 
 def fetch_barotrauma_path ()->str|None:
-    steamGame :str = path.join("Steam","steamapps","common","Barotrauma")
+    steamGame :str = "Steam/steamapps/common/Barotrauma"
     tryThese :list = {
         "win32": [
-            "C:\\Program Files\\"+steamGame,
-            "C:\\Program Files (x86)\\"+steamGame,
-            "D:\\Program Files\\"+steamGame,
-            "D:\\Program Files (x86)\\"+steamGame,
-            "D:\\"+steamGame,
+            "C:/Program Files/"+steamGame,
+            "C:/Program Files (x86)/"+steamGame,
+            "D:/Program Files/"+steamGame,
+            "D:/Program Files (x86)/"+steamGame,
+            "D:/"+steamGame,
         ],
         "linux": [
             "~/.steam/"+steamGame,
@@ -290,95 +430,196 @@ def fetch_barotrauma_path ()->str|None:
         if path.isdir(dir): return dir
     return None
 
-def construct_decon_graph(items:list[Item])->csr_matrix:
-    """Parses the list of items and outputs a directed graph.
+def fetch_content_package(rootDir:str, name:str)->ContentPackage:
+    """An example for `name` is 'Vanilla."""
+    fpath :str = rootDir+"/Content/ContentPackages/"+name+".xml"
+    tree :Element = parse(fpath).getroot()
+    return ContentPackage.from_Element(tree)
 
-    Node = An item
+def fetch_xml_elements (rootDir:str, URIs :list[str]) -> dict[str, Element]:
+    """Parses all given xml resources for their contained elements.
+    Also attaches the folder it was in, relative to Barotrauma, and attaches the file NAME."""
+    allElms :dict[str, Element] = {}
+    filePathList :list[str] = [path.join(rootDir,p).replace('\\','/') for p in URIs]
+    for filePath in filePathList:
+        tree :Element = parse(filePath).getroot()
+        dir, file = filePath.rsplit("/", 1)
+        dir = path.relpath(dir, rootDir)
+        file = file.rsplit(".",1)[0]
+        for elm in tree:
+            elm.set("dir", dir)
+            elm.set("file", file)
+            id = elm.get("identifier","")
+            if id!="": allElms[id] = elm
+    print("Parsed out %4d elements" % len(allElms))
+    return allElms
 
-    Edge = What item deconstructs into what
+def fetch_language (rootDir:str, langName:str) -> dict[str,str]:
+    "Returns a dictionary of 'text id' -> 'text' for the given language name"
+    files = glob(rootDir+"/Content/Texts/"+langName+"/*.xml")
+    textDict :dict[str,str] = {}
+    for filePath in files:
+        textDict.update({
+            str(branch.tag) : str(branch.text)
+            for branch in parse(filePath).getroot()
+        })
+    print("Parsed out %5d text resources" % len(textDict))
+    return textDict
+        
+def fetch_items (xmlItems :dict[str,Element], texts :dict[str,str]) -> dict[str,Item]:
+    items0 :list[Item|None] = [
+        Item.from_Element(e, texts, try_get(xmlItems, None, (e.get("variantof"),)))
+        for e in xmlItems.values()        
+    ]
+    items :dict[str,Item] = { i.id : i for i in items0 if i is not None}
+    print("Parsed out %4d Items" % len(items))
+    return items
+
+def filter_items (items :dict[str,Item]) -> dict[str,Item]:
+    "Modifies `items`, returns the filtered out items!"
+    rest :dict[str,Item] = {}
+    for id, i in list(items.items()):
+        if i.price is None and len(i.recipes)==0 and i.deconsTo is None:
+            rest[id] = items.pop(id)
+    print("Filtered out %3d Items, %4d remaining" % (
+        len(rest), len(items)
+    ))
+    return rest
+
+
+def export_items_to_json (items :dict[str,Item], targetDir:str):
+    if not path.isdir(targetDir): makedirs(targetDir)
+    with open(targetDir+"/!ItemList.json", 'w') as fout:
+        fout.write('['+','.join(f'"{i}"' for i in items.keys())+']')
+    for id, item in items.items():
+        name :str = targetDir+'/'+id+".json"
+        with open(name, 'w') as fout:
+            fout.write(item.to_json())
+
+class ImageDownloader:
+    "Construct me with the rootDir in order to call `download_sprites/icons`"
+    ICON_SIZE :Final[int] = 64
+
+    def __init__(self, rootDir:str) -> None:
+        self.__rootDir = rootDir
+
+    @cache
+    def __get_img (self, filePath:str) -> Mat:
+        "Fetches the given sprite sheet, also caches it for re-use"
+        return imread(path.join(self.__rootDir, filePath), IMREAD_UNCHANGED)
+
+    def __prepare_folder (self, dir:str):
+        "Makes and clears the given directory path"
+        makedirs(dir, exist_ok=True)
+        all(remove(p) for p in glob(f"{dir}/*.png")) # should only be PNGs
     
-    Weight = The resultant amount of the head item from the tail item 
-    """
-    itemDict :dict[str,tuple[int, Item]] = {item.id : (i,item) for i,item in enumerate(items)}
-    # First = Index, Second = Item
+    def __get_resize (self, i:Texture) -> tuple[int,int]:
+        """Soley used when needing to use an items Sprite for their Icon,
+        calculates the new smaller size while maintaining aspect ratio"""
+        S = ImageDownloader.ICON_SIZE # shorthand
+        w, h = tuple(i.rect[2:4])
+        return tuple([S, round(S*h/w)]) if w > h else tuple([round(S*w/h), S])
 
-    def fillOut (index:int, item:Item):
-        retr = [0] * len(items)
-        for b in item.deconsTo:
-            resultIndex, _ = itemDict[b.item]
-            retr[resultIndex] = b.count
-        return retr
+    @staticmethod
+    def __crop (img: Mat, rect:tuple[int,int,int,int])->Mat:
+        """Crops the given opencv `img` using the given xywh `rect`, returns the result"""
+        return img[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]]
 
-    return csr_matrix(np.array([
-        fillOut(index, item)
-        for index, item in enumerate(items)
-    ]))
+    @staticmethod
+    def __colour_image (img: Mat, colour:Colour) -> Mat:
+        if colour != WHITE:
+            c = list(colour)
+            c.reverse() # RGB -> BGR
+            return multiply(img[:,:], [*c, 1.0])
+        return img
 
-def how_much(graph, target:Item, *items:Item):
-    """Returns how many items of `target` can be gained using
-    the given `items`, usually through deconstruction."""
-    print(target, "=", *items)
+    def download_sprites (self, items:dict[str,Item], targetDir:str) -> bool:
+        "Attempts to download the sprites for the given `items`, looking in `self.rootDir`, exporting to `targetDir`"
+        self.__prepare_folder(targetDir)
+        return all(
+            imwrite(
+                f"{targetDir}/{id}.png",
+                self.__colour_image(
+                    self.__crop(
+                        self.__get_img(item.sprite.path),
+                        item.sprite.rect),
+                    item.sprite.colour)
+            ) for id, item in items.items()
+        )    
 
-def download_icons (rootDir:str, items:list[Item], targetDir:str)->bool:
-    """Attempts to download the icons for all `items`, looking in `rootdDir`, exporting to `targetDir`."""
-    # Fetches the icon atlases and places them in a dictionary if it doesnt exist in the dictionary yet
-    imgFiles :dict[str,Mat] = {}
-    def getImg (uri:str)->Mat:
-        if uri not in imgFiles:
-            imgFiles[uri] = imread(path.join(rootDir, uri), IMREAD_UNCHANGED)
-        return imgFiles[uri]
-    # Makes or clears the targetDir
-    if not path.isdir(targetDir):
-        makedirs(targetDir)
-    else:
-        for p in glob(targetDir+"/*"):
-            remove(p) 
-    # Get'em
-    return all(
-        imwrite(
-            f"{targetDir}/{item.id}.png",
-            crop(getImg(item.imgUri), item.iconRect)
-        ) for item in items
-    )
+    def download_icons (self, items:dict[str,Item], targetDir:str) -> bool:
+        "Attempts to download the icons for the given `items`, same as download_icons, but backs up to resized sprites if needed"
+        self.__prepare_folder(targetDir)
+        return all(
+            imwrite(
+                f"{targetDir}/{id}.png",
+                self.__colour_image(
+                    resize(
+                        self.__crop(
+                            self.__get_img(item.icon.path),
+                            item.icon.rect),
+                        self.__get_resize(item.icon)),
+                    item.icon.colour),
+            ) if item.icon is not None else
+            imwrite(
+                f"{targetDir}/{id}.png",
+                self.__colour_image(
+                    resize(
+                        self.__crop(
+                            self.__get_img(item.sprite.path),
+                            item.sprite.rect),
+                        self.__get_resize(item.sprite)),
+                    item.sprite.colour)
+            ) for id, item in items.items()
+        )
+# end ImageDownloader
 
-def export_items_to_searchDoc (items :list[Item], itemNameDic :dict[str,str], targetPath :str):
-    if not path.isdir(path.dirname(targetPath)): makedirs(path.dirname(targetPath))
-    with open(targetPath, 'w') as fout:
-        fout.write(
-            "["+
+def export_items_to_searchDoc (items:dict[str,Item], targetPath:str):
+    "`others` is any filtered out items from `items`, as they may still be referenced to"
+    makedirs(path.dirname(targetPath), exist_ok=True)
+    with open(targetPath, 'w') as fout: fout.write(
+        "[%s]" % (
             ",".join(
-                """{"identifier":"%s","name":"%s","recipes":"%s","deconsTo":"%s","prices":"%s"}"""
-                % ( i.id, i.name,
+                '{"id":"%s","name":"%s","category":"%s","desc":"%s","tags":"%s","price":"%s","deconsTo":"%s","recipes":"%s"}' % (
+                    id, item.name, item.category,
+                    item.desc.replace('"', '\\"'),
+                    ",".join(item.tags),
+                    str(maybe(item.price).basePrice or ""),
+                    ",".join(
+                        items[i].name
+                        for i in (maybe(item.deconsTo).output.keys() or list[str]())
+                    ),
                     ";".join(
                         ",".join(
-                            itemNameDic[k]
-                            for k in j.required.keys()
-                        ) for j in i.recipes
-                    ),
-                    ",".join(
-                        itemNameDic[j]
-                        for j in i.deconsTo.keys()
-                    ),
-                    str(i.prices.default_factory())
-                )
-                for i in items
-            )+
-            "]"
+                            items[i].name
+                            for i in r.required.keys()
+                        ) for r in item.recipes
+                    )
+                ) for id, item in items.items()
+            )
         )
+    )
 
-if __name__=="__main__":
-    rootDir :str = fetch_barotrauma_path()
+def main ():
+    rootDir = fetch_barotrauma_path()
+    if rootDir is None: raise IOError("Failed to find where Barotrauma is")
     print("Baro :", rootDir)
-    version :str = fetch_game_version(rootDir)
-    print("Version :", version)
-    xmlItems0 :list[Element] = fetch_all_xml_items(rootDir)
-    itemNameDic :dict[str,str] = {i.get("identifier"):i.tag if i.tag!="Item" else i.get("name") or i.get("identifier") for i in xmlItems0}
-    xmlItems :list[Element] = filter_items(xmlItems0)
-    items :list[Item] = [Item.from_Element(e) for e in xmlItems]
+    package = fetch_content_package(rootDir, "Vanilla")
+    print("Version :", package.version)
+    xmlItems = fetch_xml_elements(rootDir, package.items)
+    texts = fetch_language(rootDir, "English")
+    items = fetch_items(xmlItems, texts)
+    filter_items(items)
+
+    export_items_to_json(items, f"assets/json/items/{package.version}")
+    export_items_to_searchDoc(items, f"assets/json/items/{package.version}/!SearchDoc.json")
     
-    export_items_to_json(items, "assets/json/Items/"+version)
-    download_icons(rootDir, items, "assets/images/items")
-    export_items_to_searchDoc(items, itemNameDic, f"assets/json/Items/{version}/!SearchDoc.json")
-    
+    # imgdl = ImageDownloader(rootDir)
+    # imgdl.download_sprites(items, f"assets/images/items/{package.version}/sprites")
+    # imgdl.download_icons(items, f"assets/images/items/{package.version}/icons")
+    # del imgdl
+
     print("Done!")
     exit(0)
+
+if __name__=="__main__": main()
