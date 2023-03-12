@@ -14,7 +14,6 @@ var index = elasticlunr(function(){
     this.saveDocument(true);
 });
 
-
 var lastBg = "warning";
 function updateProgressBar(percentile, bg, text) {
     $("#progress").attr("aria-valuenow", `${percentile}`);
@@ -88,11 +87,5 @@ $(async function main () {
     await Promise.all(imagePromises);
     // Finish displaying
     updateProgressBar(100, 'success', 'Displaying');
-    // $(".loader").animate({
-    //     padding: "0px"
-    // }, 200, () => {
-        $(".loader").slideUp(() => {
-            $(".loader").remove();
-        });
-    // });
+    $(".loader").slideUp(1000);
 });
