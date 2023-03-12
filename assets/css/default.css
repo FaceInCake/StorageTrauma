@@ -1,4 +1,14 @@
+:root {
+    --bs-link-hover-color: inherit;
+}
+
 html, body { height: 100%; }
+
+a {text-decoration: none;}
+
+[onclick] {
+    cursor: pointer;
+}
 
 .navbar {
     background-color: slateblue;
@@ -10,6 +20,3 @@ table.table caption.title {
     font-size: large;
 }
 
-[onclick] {
-    cursor: pointer;
-}
