@@ -1,8 +1,0 @@
-{
-    "identifier": "calcium",
-    "name": "Calcium",
-    "prices": {"default":31,"outpost":40,"city":38,"research":34,"military":34,"mine":24},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":10},
-    "deconsTo": {},
-    "recipes": []
-}

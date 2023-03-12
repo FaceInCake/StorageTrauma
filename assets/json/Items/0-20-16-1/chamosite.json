@@ -1,8 +1,0 @@
-{
-    "identifier": "chamosite",
-    "name": "Chamosite",
-    "prices": {"default":130,"outpost":143,"city":162,"research":130,"military":130,"mine":97},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"iron":2,"aluminium":2},
-    "recipes": []
-}

@@ -1,8 +1,0 @@
-{
-    "identifier": "oxygenitetank",
-    "name": "Oxygenite Tank",
-    "prices": {"default":175,"outpost":175,"city":157,"research":175,"military":175,"mine":218},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":1},
-    "deconsTo": {"aluminium":1,"liquidoxygenite":2},
-    "recipes": [{"required":{"aluminium":2,"liquidoxygenite":2},"output":1}]
-}

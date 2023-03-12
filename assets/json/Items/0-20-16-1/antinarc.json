@@ -1,8 +1,0 @@
-{
-    "identifier": "antinarc",
-    "name": "Naloxone",
-    "prices": {"default":160,"medical":144},
-    "available": {"default":0,"medical":1},
-    "deconsTo": {"stabilozine":1},
-    "recipes": [{"required":{"antidama1":1,"stabilozine":1},"output":1}]
-}

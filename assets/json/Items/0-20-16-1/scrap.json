@@ -1,8 +1,0 @@
-{
-    "identifier": "scrap",
-    "name": "Scrap",
-    "prices": {"default":5},
-    "available": {"default":0},
-    "deconsTo": {"iron":1,"thorium":1,"steel":1,"aluminium":1,"titaniumaluminiumalloy":1,"copper":1,"rubber":1,"carbon":1,"lead":1},
-    "recipes": []
-}

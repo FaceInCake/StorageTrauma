@@ -1,8 +1,0 @@
-{
-    "identifier": "quartz",
-    "name": "Quartz",
-    "prices": {"default":100,"outpost":110,"city":125,"research":100,"military":100,"mine":75},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"silicon":2},
-    "recipes": []
-}

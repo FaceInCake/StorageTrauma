@@ -1,8 +1,0 @@
-{
-    "identifier": "wrench",
-    "name": "Wrench",
-    "prices": {"default":20,"outpost":20,"city":20,"research":25,"military":25,"mine":20,"engineering":18},
-    "available": {"default":0,"outpost":1,"city":5,"research":1,"military":1,"mine":1,"engineering":10},
-    "deconsTo": {"iron":1},
-    "recipes": [{"required":{"iron":2},"output":1}]
-}

@@ -1,8 +1,0 @@
-{
-    "identifier": "adrenalinegland",
-    "name": "Adrenaline Gland",
-    "prices": {"default":250,"outpost":225,"city":275,"research":300,"military":225,"mine":212},
-    "available": {"default":0,"outpost":0,"city":2,"research":3,"military":0,"mine":0},
-    "deconsTo": {"adrenaline":4},
-    "recipes": []
-}

@@ -1,8 +1,0 @@
-{
-    "identifier": "oxygentank",
-    "name": "Oxygen Tank",
-    "prices": {"default":75,"outpost":75,"city":67,"research":75,"military":75,"mine":93},
-    "available": {"default":0,"outpost":10,"city":15,"research":10,"military":10,"mine":20},
-    "deconsTo": {"aluminium":1},
-    "recipes": [{"required":{"aluminium":2},"output":1}]
-}

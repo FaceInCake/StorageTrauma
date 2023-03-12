@@ -1,8 +1,0 @@
-{
-    "identifier": "wateringcan",
-    "name": "Watering Can",
-    "prices": {"default":80,"outpost":80,"city":96,"research":72,"military":96,"mine":60},
-    "available": {"default":0,"outpost":1,"city":1,"research":2,"military":0,"mine":0},
-    "deconsTo": {"steel":1,"plastic":1},
-    "recipes": [{"required":{"steel":2,"plastic":1},"output":1}]
-}

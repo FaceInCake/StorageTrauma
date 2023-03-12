@@ -1,8 +1,0 @@
-{
-    "identifier": "titanite",
-    "name": "Titanite",
-    "prices": {"default":250,"outpost":275,"city":312,"research":250,"military":250,"mine":187},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"titanium":3,"iron":1},
-    "recipes": []
-}

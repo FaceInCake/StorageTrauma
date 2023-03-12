@@ -1,8 +1,0 @@
-{
-    "identifier": "weldingfueltank",
-    "name": "Welding Fuel Tank",
-    "prices": {"default":120,"outpost":120,"city":120,"research":150,"military":150,"mine":108,"engineering":108,"tutorial":60},
-    "available": {"default":0,"outpost":6,"city":7,"research":3,"military":3,"mine":15,"engineering":10,"tutorial":3},
-    "deconsTo": {"aluminium":1},
-    "recipes": [{"required":{"aluminium":2,"ethanol":1},"output":1},{"required":{"weldingfueltank":1,"ethanol":1},"output":1}]
-}

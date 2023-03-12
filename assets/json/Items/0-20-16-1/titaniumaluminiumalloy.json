@@ -1,8 +1,0 @@
-{
-    "identifier": "titaniumaluminiumalloy",
-    "name": "Titanium-Aluminum Alloy",
-    "prices": {"default":150,"outpost":195,"city":187,"research":165,"military":135,"mine":135},
-    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":2,"mine":3},
-    "deconsTo": {"aluminium":1,"titanium":1},
-    "recipes": [{"required":{"titanium":1,"aluminium":2},"output":1}]
-}

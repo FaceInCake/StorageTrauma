@@ -1,8 +1,0 @@
-{
-    "identifier": "plasmacutter",
-    "name": "Plasma Cutter",
-    "prices": {"default":150,"outpost":150,"city":150,"research":187,"military":187,"mine":135,"engineering":135},
-    "available": {"default":0,"outpost":3,"city":2,"research":2,"military":2,"mine":10,"engineering":5},
-    "deconsTo": {"steel":1,"plastic":1},
-    "recipes": [{"required":{"steel":2,"plastic":2},"output":1}]
-}

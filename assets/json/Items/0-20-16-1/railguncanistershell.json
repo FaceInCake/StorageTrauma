@@ -1,8 +1,0 @@
-{
-    "identifier": "railguncanistershell",
-    "name": "Canister Shell",
-    "prices": {"default":95,"outpost":114,"city":114,"research":114,"military":85,"mine":114,"armory":85},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":5,"mine":0,"armory":5},
-    "deconsTo": {"lead":1,"steel":1},
-    "recipes": [{"required":{"lead":1,"steel":2},"output":1},{"required":{"lead":1,"railguncanistershell":1},"output":1}]
-}

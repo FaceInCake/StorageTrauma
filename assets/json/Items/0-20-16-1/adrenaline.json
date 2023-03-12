@@ -1,8 +1,0 @@
-{
-    "identifier": "adrenaline",
-    "name": "Adrenaline",
-    "prices": {"default":60,"outpost":75,"city":75,"research":54,"military":54,"mine":66,"medical":54},
-    "available": {"default":0,"outpost":0,"city":0,"research":4,"military":2,"mine":0,"medical":4},
-    "deconsTo": {},
-    "recipes": []
-}

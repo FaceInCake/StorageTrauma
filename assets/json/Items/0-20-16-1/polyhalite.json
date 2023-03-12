@@ -1,8 +1,0 @@
-{
-    "identifier": "polyhalite",
-    "name": "Polyhalite",
-    "prices": {"default":50,"outpost":55,"city":62,"research":50,"military":50,"mine":37},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"potassium":1,"calcium":1},
-    "recipes": []
-}

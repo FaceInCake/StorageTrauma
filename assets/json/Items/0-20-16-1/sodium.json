@@ -1,8 +1,0 @@
-{
-    "identifier": "sodium",
-    "name": "Sodium",
-    "prices": {"default":33,"outpost":42,"city":41,"research":36,"military":36,"mine":26},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":10},
-    "deconsTo": {},
-    "recipes": []
-}

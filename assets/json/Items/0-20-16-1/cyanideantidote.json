@@ -1,8 +1,0 @@
-{
-    "identifier": "cyanideantidote",
-    "name": "CyanideAntidote",
-    "prices": {"default":125,"outpost":125,"city":125,"research":125,"military":125,"mine":125,"medical":112},
-    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1,"medical":2},
-    "deconsTo": {"stabilozine":1},
-    "recipes": [{"required":{"cyanide":1,"stabilozine":1},"output":1}]
-}

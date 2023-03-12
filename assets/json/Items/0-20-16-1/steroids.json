@@ -1,8 +1,0 @@
-{
-    "identifier": "steroids",
-    "name": "AnabolicSteroids",
-    "prices": {"default":350,"outpost":350,"city":315,"research":315,"military":385,"mine":385},
-    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":2,"mine":0},
-    "deconsTo": {"antidama2":1},
-    "recipes": [{"required":{"tonicliquid":1,"antidama2":1},"output":1}]
-}

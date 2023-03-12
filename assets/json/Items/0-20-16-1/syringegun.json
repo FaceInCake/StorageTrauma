@@ -1,8 +1,0 @@
-{
-    "identifier": "syringegun",
-    "name": "Syringe Gun",
-    "prices": {"default":190,"outpost":190,"city":171,"research":237,"military":237,"mine":190,"medical":237},
-    "available": {"default":0,"outpost":0,"city":0,"research":1,"military":0,"mine":0,"medical":1},
-    "deconsTo": {"aluminium":1,"plastic":1},
-    "recipes": [{"required":{"aluminium":2,"plastic":2},"output":1}]
-}

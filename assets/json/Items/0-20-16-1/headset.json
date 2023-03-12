@@ -1,8 +1,0 @@
-{
-    "identifier": "headset",
-    "name": "Headset",
-    "prices": {"default":105,"outpost":105,"city":94,"research":105,"military":105,"mine":105},
-    "available": {"default":0,"outpost":3,"city":10,"research":4,"military":6,"mine":6},
-    "deconsTo": {"plastic":2,"copper":1},
-    "recipes": [{"required":{"plastic":1,"fpgacircuit":1},"output":1}]
-}

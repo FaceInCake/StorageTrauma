@@ -1,8 +1,0 @@
-{
-    "identifier": "antiparalysis",
-    "name": "ParalysisAntidote",
-    "prices": {"default":200,"outpost":200,"city":180,"research":180,"military":220,"mine":220,"medical":180},
-    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1,"medical":2},
-    "deconsTo": {"stabilozine":1},
-    "recipes": [{"required":{"paralyzant":1,"stabilozine":1},"output":1}]
-}

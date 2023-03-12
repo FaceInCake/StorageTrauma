@@ -1,8 +1,0 @@
-{
-    "identifier": "divingmask",
-    "name": "Diving Mask",
-    "prices": {"default":100,"outpost":90,"city":85,"research":100,"military":100,"mine":125},
-    "available": {"default":0,"outpost":5,"city":7,"research":5,"military":6,"mine":15},
-    "deconsTo": {"plastic":1,"rubber":1},
-    "recipes": [{"required":{"plastic":1,"rubber":2},"output":1}]
-}

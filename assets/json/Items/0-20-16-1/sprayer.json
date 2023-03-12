@@ -1,8 +1,0 @@
-{
-    "identifier": "sprayer",
-    "name": "Sprayer",
-    "prices": {"default":120,"outpost":120,"city":108,"research":150,"military":150,"mine":108},
-    "available": {"default":0,"outpost":3,"city":5,"research":2,"military":2,"mine":10},
-    "deconsTo": {"steel":1,"plastic":1},
-    "recipes": [{"required":{"steel":1,"plastic":2},"output":1}]
-}

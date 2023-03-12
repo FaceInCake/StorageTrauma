@@ -1,8 +1,0 @@
-{
-    "identifier": "c4block",
-    "name": "C-4 Block",
-    "prices": {"default":160,"outpost":224,"city":200,"research":200,"military":144,"mine":160,"armory":144},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":3,"mine":0,"armory":3},
-    "deconsTo": {},
-    "recipes": [{"required":{"uex":1,"plastic":1},"output":1}]
-}

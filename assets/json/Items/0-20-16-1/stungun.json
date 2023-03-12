@@ -1,8 +1,0 @@
-{
-    "identifier": "stungun",
-    "name": "Stun Gun",
-    "prices": {"default":180,"outpost":243,"city":225,"research":225,"military":162,"mine":225,"armory":162},
-    "available": {"default":0,"outpost":0,"city":2,"research":0,"military":4,"mine":0,"armory":4},
-    "deconsTo": {"steel":1,"plastic":1},
-    "recipes": [{"required":{"steel":2,"plastic":2},"output":1}]
-}

@@ -1,8 +1,0 @@
-{
-    "identifier": "fiberplant",
-    "name": "Fiber Plant",
-    "prices": {"default":100,"outpost":130,"city":125,"research":90,"military":100,"mine":90},
-    "available": {"default":0,"outpost":0,"city":3,"research":6,"military":0,"mine":0},
-    "deconsTo": {"organicfiber":3},
-    "recipes": []
-}

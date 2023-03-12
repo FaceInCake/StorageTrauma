@@ -1,8 +1,0 @@
-{
-    "identifier": "mediummudraptoregg",
-    "name": "Mudraptor Egg",
-    "prices": {"default":800},
-    "available": {"default":0},
-    "deconsTo": {"alienblood":1,"adrenalinegland":1},
-    "recipes": []
-}

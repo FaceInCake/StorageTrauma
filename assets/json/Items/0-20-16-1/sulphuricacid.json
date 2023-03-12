@@ -1,8 +1,0 @@
-{
-    "identifier": "sulphuricacid",
-    "name": "SulphuricAcid",
-    "prices": {"default":80,"outpost":100,"city":100,"research":72,"military":72,"mine":88,"armory":72},
-    "available": {"default":0,"outpost":0,"city":0,"research":4,"military":2,"mine":0,"armory":2},
-    "deconsTo": {},
-    "recipes": []
-}

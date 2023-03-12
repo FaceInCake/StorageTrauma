@@ -1,8 +1,0 @@
-{
-    "identifier": "creepingorange",
-    "name": "Pomegrenade",
-    "prices": {"default":20,"outpost":20,"city":24,"research":22,"military":16,"mine":15},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"carbon":1,"creepingorangevineseed":1},
-    "recipes": []
-}

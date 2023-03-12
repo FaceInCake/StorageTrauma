@@ -1,8 +1,0 @@
-{
-    "identifier": "hmg",
-    "name": "hmg",
-    "prices": {"default":900,"outpost":1350,"city":1125,"research":1125,"military":810,"armory":810,"mine":1125},
-    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"armory":1,"mine":1},
-    "deconsTo": {"physicorium":2,"titaniumaluminiumalloy":2,"rubber":1},
-    "recipes": [{"required":{"physicorium":2,"titaniumaluminiumalloy":3,"rubber":1},"output":1}]
-}

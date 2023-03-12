@@ -1,8 +1,0 @@
-{
-    "identifier": "ic4block",
-    "name": "IC-4 Block",
-    "prices": {"default":400,"outpost":560,"city":500,"research":500,"military":360,"mine":400,"armory":360},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":1,"mine":0,"armory":1},
-    "deconsTo": {},
-    "recipes": [{"required":{"c4block":1,"incendium":1},"output":1}]
-}

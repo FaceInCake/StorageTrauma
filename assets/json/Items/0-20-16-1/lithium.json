@@ -1,8 +1,0 @@
-{
-    "identifier": "lithium",
-    "name": "Lithium",
-    "prices": {"default":88,"outpost":114,"city":110,"research":96,"military":96,"mine":70},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":5},
-    "deconsTo": {},
-    "recipes": []
-}

@@ -1,8 +1,0 @@
-{
-    "identifier": "spinelingspikeloot",
-    "name": "spinelingspikeloot",
-    "prices": {"default":100,"outpost":100,"city":100,"research":150,"military":100,"mine":100},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"carbon":1,"zinc":1},
-    "recipes": []
-}

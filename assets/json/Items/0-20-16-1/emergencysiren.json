@@ -1,8 +1,0 @@
-{
-    "identifier": "emergencysiren",
-    "name": "Emergency Siren",
-    "prices": {"default":150,"outpost":150,"city":150,"research":187,"military":150,"mine":150,"engineering":135},
-    "available": {"default":0,"outpost":1,"city":0,"research":1,"military":1,"mine":1,"engineering":1},
-    "deconsTo": {"plastic":1,"copper":1,"steel":1},
-    "recipes": [{"required":{"fpgacircuit":1,"steel":1},"output":1}]
-}

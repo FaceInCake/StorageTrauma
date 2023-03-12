@@ -1,8 +1,0 @@
-{
-    "identifier": "meth",
-    "name": "Methamphetamine",
-    "prices": {"default":50,"outpost":50,"city":45,"research":45,"military":55,"mine":55},
-    "available": {"default":0,"outpost":0,"city":2,"research":3,"military":1,"mine":0},
-    "deconsTo": {"phosphorus":1,"chlorine":1,"carbon":1},
-    "recipes": [{"required":{"phosphorus":1,"chlorine":2,"carbon":2},"output":1}]
-}

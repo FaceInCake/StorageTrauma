@@ -1,8 +1,0 @@
-{
-    "identifier": "seedbag",
-    "name": "Seed Bag",
-    "prices": {"default":60,"outpost":60,"city":72,"research":54,"military":72,"mine":45},
-    "available": {"default":0,"outpost":1,"city":1,"research":2,"military":0,"mine":0},
-    "deconsTo": {},
-    "recipes": [{"required":{"organicfiber":2},"output":1}]
-}

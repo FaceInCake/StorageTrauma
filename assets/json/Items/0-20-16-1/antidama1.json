@@ -1,8 +1,0 @@
-{
-    "identifier": "antidama1",
-    "name": "Morphine",
-    "prices": {"default":100,"outpost":100,"city":100,"research":100,"military":100,"mine":100,"medical":90},
-    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1,"medical":1},
-    "deconsTo": {"opium":1},
-    "recipes": [{"required":{"opium":2},"output":1}]
-}

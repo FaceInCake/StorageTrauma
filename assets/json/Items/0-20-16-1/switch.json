@@ -1,8 +1,0 @@
-{
-    "identifier": "switch",
-    "name": "Switch",
-    "prices": {"default":125,"outpost":125,"city":125,"research":125,"military":125,"mine":125,"engineering":112},
-    "available": {"default":0,"outpost":1,"city":0,"research":1,"military":1,"mine":1,"engineering":10},
-    "deconsTo": {"plastic":2,"copper":1},
-    "recipes": [{"required":{"fpgacircuit":1,"plastic":1},"output":1}]
-}

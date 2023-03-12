@@ -1,8 +1,0 @@
-{
-    "identifier": "oxygeniteshard",
-    "name": "Oxygenite Shard",
-    "prices": {"default":200,"outpost":200,"city":200,"research":229,"military":220,"mine":180},
-    "available": {"default":0,"outpost":0,"city":0,"research":1,"military":0,"mine":1},
-    "deconsTo": {"liquidoxygenite":2},
-    "recipes": []
-}

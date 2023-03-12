@@ -1,8 +1,0 @@
-{
-    "identifier": "divingknife",
-    "name": "Diving Knife",
-    "prices": {"default":29,"outpost":43,"city":36,"research":36,"military":26,"mine":36,"armory":26},
-    "available": {"default":0,"outpost":6,"city":8,"research":2,"military":15,"mine":2,"armory":15},
-    "deconsTo": {"iron":1},
-    "recipes": [{"required":{"iron":2},"output":1}]
-}

@@ -1,8 +1,0 @@
-{
-    "identifier": "stannite",
-    "name": "Stannite",
-    "prices": {"default":50,"outpost":55,"city":62,"research":50,"military":50,"mine":37},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"copper":1,"iron":1,"tin":1},
-    "recipes": []
-}

@@ -1,8 +1,0 @@
-{
-    "identifier": "raptorbane",
-    "name": "Raptor Bane",
-    "prices": {"default":40,"outpost":40,"city":48,"research":44,"military":32,"mine":30},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"carbon":1,"raptorbaneseed":1},
-    "recipes": []
-}

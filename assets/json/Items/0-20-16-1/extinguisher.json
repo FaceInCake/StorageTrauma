@@ -1,8 +1,0 @@
-{
-    "identifier": "extinguisher",
-    "name": "Fire Extinguisher",
-    "prices": {"default":100,"outpost":100,"city":90,"research":100,"military":100,"mine":100},
-    "available": {"default":0,"outpost":3,"city":4,"research":2,"military":2,"mine":2},
-    "deconsTo": {"aluminium":1,"sodium":1},
-    "recipes": [{"required":{"aluminium":1,"sodium":2},"output":1}]
-}

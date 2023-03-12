@@ -1,8 +1,0 @@
-{
-    "identifier": "40mmstungrenade",
-    "name": "40mm Stun Grenade",
-    "prices": {"default":120,"outpost":180,"city":150,"research":150,"military":108,"mine":150,"armory":108},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":4,"mine":0,"armory":4},
-    "deconsTo": {"iron":1,"phosphorus":1},
-    "recipes": [{"required":{"iron":1,"phosphorus":1,"flashpowder":1},"output":1}]
-}

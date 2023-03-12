@@ -1,8 +1,0 @@
-{
-    "identifier": "incendiumgrenade",
-    "name": "Incendium Grenade",
-    "prices": {"default":175,"outpost":262,"city":218,"research":218,"military":157,"mine":218,"armory":157},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":2,"mine":0,"armory":2},
-    "deconsTo": {},
-    "recipes": [{"required":{"iron":2,"incendium":1},"output":2}]
-}

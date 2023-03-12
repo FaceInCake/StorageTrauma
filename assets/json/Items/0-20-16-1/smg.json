@@ -1,8 +1,0 @@
-{
-    "identifier": "smg",
-    "name": "SMG",
-    "prices": {"default":390,"outpost":585,"city":487,"research":487,"military":351,"mine":487,"armory":351},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":2,"mine":0,"armory":2},
-    "deconsTo": {"plastic":1,"titaniumaluminiumalloy":1},
-    "recipes": [{"required":{"plastic":1,"titaniumaluminiumalloy":2},"output":1}]
-}

@@ -1,8 +1,0 @@
-{
-    "identifier": "steel",
-    "name": "Steel Bar",
-    "prices": {"default":28,"outpost":36,"city":35,"research":28,"military":25,"mine":25},
-    "available": {"default":0,"outpost":7,"city":10,"research":6,"military":15,"mine":20},
-    "deconsTo": {"carbon":1,"iron":1},
-    "recipes": [{"required":{"carbon":1,"iron":2},"output":1}]
-}

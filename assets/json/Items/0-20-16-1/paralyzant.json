@@ -1,8 +1,0 @@
-{
-    "identifier": "paralyzant",
-    "name": "Paralyzant",
-    "prices": {"default":350,"outpost":350,"city":315,"research":315,"military":385,"mine":385},
-    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":1,"mine":0},
-    "deconsTo": {"chlorine":1,"paralyxis":1},
-    "recipes": [{"required":{"chloralhydrate":1,"paralyxis":1},"output":1}]
-}

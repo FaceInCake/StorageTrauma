@@ -1,8 +1,0 @@
-{
-    "identifier": "textdisplay",
-    "name": "Text Display",
-    "prices": {"default":200,"outpost":200,"city":180,"research":250,"military":200,"mine":200,"engineering":180},
-    "available": {"default":0,"outpost":1,"city":1,"research":1,"military":1,"mine":1,"engineering":1},
-    "deconsTo": {"copper":1,"tin":1,"silicon":1,"plastic":1},
-    "recipes": [{"required":{"fpgacircuit":1,"tin":1,"silicon":1},"output":1}]
-}

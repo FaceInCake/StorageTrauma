@@ -1,8 +1,0 @@
-{
-    "identifier": "geneticmaterialcrawler_unresearched",
-    "name": "Unidentified Genetic Material",
-    "prices": {"default":300,"city":300,"research":360},
-    "available": {"default":0,"city":0,"research":1},
-    "deconsTo": {"geneticmaterialcrawler":1},
-    "recipes": []
-}

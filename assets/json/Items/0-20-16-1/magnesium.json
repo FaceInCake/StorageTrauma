@@ -1,8 +1,0 @@
-{
-    "identifier": "magnesium",
-    "name": "Magnesium",
-    "prices": {"default":65,"outpost":84,"city":81,"research":71,"military":71,"mine":52},
-    "available": {"default":0,"outpost":2,"city":4,"research":4,"military":4,"mine":6},
-    "deconsTo": {},
-    "recipes": []
-}

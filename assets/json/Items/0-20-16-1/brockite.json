@@ -1,8 +1,0 @@
-{
-    "identifier": "brockite",
-    "name": "Brockite",
-    "prices": {"default":150,"outpost":165,"city":187,"research":150,"military":150,"mine":112},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"phosphorus":1,"thorium":1},
-    "recipes": []
-}

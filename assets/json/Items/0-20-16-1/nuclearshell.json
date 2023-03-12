@@ -1,8 +1,0 @@
-{
-    "identifier": "nuclearshell",
-    "name": "Nuclear Shell",
-    "prices": {"default":470,"outpost":634,"city":587,"research":587,"military":423,"mine":587,"armory":423},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":1,"mine":0,"armory":1},
-    "deconsTo": {"steel":1,"uranium":1,"incendium":1},
-    "recipes": [{"required":{"steel":1,"uranium":1,"ic4block":1},"output":1},{"required":{"steel":1,"fuelrod":1,"uex":1},"output":1}]
-}

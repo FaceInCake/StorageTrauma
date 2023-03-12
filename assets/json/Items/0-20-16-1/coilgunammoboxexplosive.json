@@ -1,8 +1,0 @@
-{
-    "identifier": "coilgunammoboxexplosive",
-    "name": "Exploding Ammunition Box",
-    "prices": {"default":350,"outpost":455,"city":420,"research":455,"military":315,"mine":420,"armory":315},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0,"armory":0},
-    "deconsTo": {"steel":1,"sodium":1,"aluminium":1},
-    "recipes": [{"required":{"c4block":1,"steel":1,"aluminium":1},"output":1},{"required":{"c4block":1,"steel":1,"coilgunammoboxexplosive":1},"output":1}]
-}

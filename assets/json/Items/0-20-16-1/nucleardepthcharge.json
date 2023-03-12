@@ -1,8 +1,0 @@
-{
-    "identifier": "nucleardepthcharge",
-    "name": "Nuclear Depth Charge",
-    "prices": {"default":450,"outpost":607,"city":562,"research":562,"military":405,"mine":562},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":1,"mine":0},
-    "deconsTo": {"iron":1,"uranium":1,"incendium":1},
-    "recipes": [{"required":{"depthchargeshell":1,"uranium":1,"ic4block":1},"output":1},{"required":{"depthchargeshell":1,"fuelrod":1,"uex":1},"output":1}]
-}

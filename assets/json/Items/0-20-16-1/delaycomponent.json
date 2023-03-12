@@ -1,8 +1,0 @@
-{
-    "identifier": "delaycomponent",
-    "name": "Delay Component",
-    "prices": {"default":100,"outpost":100,"city":100,"research":125,"military":100,"mine":100,"engineering":90},
-    "available": {"default":0,"outpost":1,"city":0,"research":1,"military":1,"mine":1,"engineering":1},
-    "deconsTo": {"plastic":1,"copper":1,"tin":1},
-    "recipes": [{"required":{"fpgacircuit":1,"tin":1},"output":1}]
-}

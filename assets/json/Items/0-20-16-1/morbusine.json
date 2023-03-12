@@ -1,8 +1,0 @@
-{
-    "identifier": "morbusine",
-    "name": "Morbusine",
-    "prices": {"default":650,"outpost":650,"city":585,"research":585,"military":715,"mine":715},
-    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":1,"mine":0},
-    "deconsTo": {"sulphuricacid":1,"deusizine":1},
-    "recipes": [{"required":{"sulphuricacid":1,"deusizine":1},"output":1}]
-}

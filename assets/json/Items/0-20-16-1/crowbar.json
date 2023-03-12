@@ -1,8 +1,0 @@
-{
-    "identifier": "crowbar",
-    "name": "Crowbar",
-    "prices": {"default":20,"outpost":20,"city":18,"research":25,"military":25,"mine":20},
-    "available": {"default":0,"outpost":1,"city":15,"research":1,"military":1,"mine":1},
-    "deconsTo": {"iron":1},
-    "recipes": [{"required":{"iron":2},"output":1}]
-}

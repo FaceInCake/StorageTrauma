@@ -1,8 +1,0 @@
-{
-    "identifier": "flamerunique",
-    "name": "Prototype Steam Cannon",
-    "prices": {"default":755},
-    "available": {"default":0},
-    "deconsTo": {"steel":1,"plastic":1},
-    "recipes": []
-}

@@ -1,8 +1,0 @@
-{
-    "identifier": "flamer",
-    "name": "Flamer",
-    "prices": {"default":105,"outpost":105,"city":94,"research":131,"military":131,"mine":105,"armory":131},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":1,"mine":0,"armory":1},
-    "deconsTo": {"steel":1,"rubber":1},
-    "recipes": [{"required":{"steel":2,"rubber":2},"output":1}]
-}

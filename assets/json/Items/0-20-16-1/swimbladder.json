@@ -1,8 +1,0 @@
-{
-    "identifier": "swimbladder",
-    "name": "Swim Bladder",
-    "prices": {"default":250,"outpost":225,"city":250,"research":275,"military":250,"mine":225},
-    "available": {"default":0,"outpost":0,"city":2,"research":3,"military":0,"mine":0},
-    "deconsTo": {"stabilozine":2,"antibloodloss1":3},
-    "recipes": []
-}

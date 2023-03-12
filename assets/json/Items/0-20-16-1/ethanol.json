@@ -1,8 +1,0 @@
-{
-    "identifier": "ethanol",
-    "name": "Ethanol",
-    "prices": {"default":60,"outpost":60,"city":54,"research":54,"military":66,"mine":66},
-    "available": {"default":0,"outpost":1,"city":8,"research":10,"military":1,"mine":1},
-    "deconsTo": {},
-    "recipes": []
-}

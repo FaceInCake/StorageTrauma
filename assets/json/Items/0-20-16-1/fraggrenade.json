@@ -1,8 +1,0 @@
-{
-    "identifier": "fraggrenade",
-    "name": "Frag Grenade",
-    "prices": {"default":150,"outpost":202,"city":187,"research":187,"military":135,"mine":187,"armory":135},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":3,"mine":0,"armory":3},
-    "deconsTo": {"iron":1,"sodium":1},
-    "recipes": [{"required":{"iron":1,"uex":1},"output":1}]
-}

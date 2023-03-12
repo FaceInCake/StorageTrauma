@@ -1,8 +1,0 @@
-{
-    "identifier": "combatdivingsuit",
-    "name": "Combat Diving Suit",
-    "prices": {"default":560,"outpost":504,"city":476,"research":560,"military":560,"mine":700,"armory":476},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":3,"mine":0,"armory":3},
-    "deconsTo": {"ballisticfiber":1,"titaniumaluminiumalloy":2,"rubber":2},
-    "recipes": [{"required":{"divingsuit":1,"ballisticfiber":1,"titaniumaluminiumalloy":1,"rubber":1},"output":1}]
-}

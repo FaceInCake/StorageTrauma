@@ -1,8 +1,0 @@
-{
-    "identifier": "incendiumfueltank",
-    "name": "Incendium Fuel Tank",
-    "prices": {"default":250,"outpost":275,"city":250,"research":312,"military":312,"mine":350},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"aluminium":1},
-    "recipes": [{"required":{"aluminium":2,"incendium":1},"output":1},{"required":{"incendiumfueltank":1,"incendium":1},"output":1}]
-}

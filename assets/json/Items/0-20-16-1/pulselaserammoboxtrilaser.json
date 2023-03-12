@@ -1,8 +1,0 @@
-{
-    "identifier": "pulselaserammoboxtrilaser",
-    "name": "Pulse Tri-Laser Fuel Box",
-    "prices": {"default":435,"outpost":565,"city":522,"research":565,"military":391,"mine":522,"armory":391},
-    "available": {"default":0,"outpost":0,"city":0,"research":1,"military":0,"mine":0,"armory":0},
-    "deconsTo": {"fulgurium":1,"aluminium":1},
-    "recipes": [{"required":{"fulgurium":1,"alienblood":1,"aluminium":1},"output":1},{"required":{"fulgurium":1,"alienblood":1,"pulselaserammoboxtrilaser":1},"output":1}]
-}

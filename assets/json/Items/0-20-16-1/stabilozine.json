@@ -1,8 +1,0 @@
-{
-    "identifier": "stabilozine",
-    "name": "Stabilozine",
-    "prices": {"default":40,"outpost":40,"city":36,"research":36,"military":44,"mine":44,"medical":36},
-    "available": {"default":0,"outpost":6,"city":0,"research":15,"military":0,"mine":0,"medical":15},
-    "deconsTo": {},
-    "recipes": []
-}

@@ -1,8 +1,0 @@
-{
-    "identifier": "abyssdivingsuit",
-    "name": "Abyss Diving Suit",
-    "prices": {"default":550,"outpost":495,"city":467,"research":550,"military":550,"mine":687},
-    "available": {"default":0,"outpost":1,"city":2,"research":1,"military":2,"mine":2},
-    "deconsTo": {"titaniumaluminiumalloy":3,"rubber":2},
-    "recipes": [{"required":{"divingsuit":1,"titaniumaluminiumalloy":2,"rubber":1},"output":1}]
-}

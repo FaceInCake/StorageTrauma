@@ -1,8 +1,0 @@
-{
-    "identifier": "titanium",
-    "name": "Titanium",
-    "prices": {"default":65,"outpost":84,"city":81,"research":71,"military":71,"mine":52},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":3},
-    "deconsTo": {},
-    "recipes": []
-}

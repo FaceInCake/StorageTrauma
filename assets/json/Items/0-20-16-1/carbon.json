@@ -1,8 +1,0 @@
-{
-    "identifier": "carbon",
-    "name": "Carbon",
-    "prices": {"default":10,"outpost":13,"city":12,"research":11,"military":11,"mine":8},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":20},
-    "deconsTo": {},
-    "recipes": []
-}

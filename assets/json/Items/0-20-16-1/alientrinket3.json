@@ -1,8 +1,0 @@
-{
-    "identifier": "alientrinket3",
-    "name": "Alien Ornament",
-    "prices": {"default":300,"outpost":255,"city":255,"research":600,"military":375,"mine":300},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"physicorium":1},
-    "recipes": []
-}

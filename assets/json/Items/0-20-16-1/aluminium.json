@@ -1,8 +1,0 @@
-{
-    "identifier": "aluminium",
-    "name": "Aluminum",
-    "prices": {"default":42,"outpost":54,"city":52,"research":46,"military":46,"mine":33},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":10},
-    "deconsTo": {},
-    "recipes": []
-}

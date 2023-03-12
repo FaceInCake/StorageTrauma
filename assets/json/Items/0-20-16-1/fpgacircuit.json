@@ -1,8 +1,0 @@
-{
-    "identifier": "fpgacircuit",
-    "name": "FPGA Circuit",
-    "prices": {"default":80,"outpost":80,"city":80,"research":100,"military":80,"mine":80,"engineering":72},
-    "available": {"default":0,"outpost":1,"city":0,"research":1,"military":1,"mine":1,"engineering":1},
-    "deconsTo": {"copper":1},
-    "recipes": [{"required":{"plastic":1,"copper":2,"tin":1},"output":1},{"required":{"plastic":1,"copper":2,"tin":1},"output":2}]
-}

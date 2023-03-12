@@ -1,8 +1,0 @@
-{
-    "identifier": "tobaccovineseed",
-    "name": "Tobacco Vine Seed",
-    "prices": {"default":30,"outpost":30,"city":36,"research":27,"military":36,"mine":22},
-    "available": {"default":0,"outpost":0,"city":1,"research":2,"military":0,"mine":0},
-    "deconsTo": {"carbon":1},
-    "recipes": []
-}

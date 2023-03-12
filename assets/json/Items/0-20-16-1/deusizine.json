@@ -1,8 +1,0 @@
-{
-    "identifier": "deusizine",
-    "name": "Deusizine",
-    "prices": {"default":500,"medical":450},
-    "available": {"default":0,"medical":1},
-    "deconsTo": {"antibleeding3":1,"opium":1,"liquidoxygenite":1},
-    "recipes": [{"required":{"antibleeding3":1,"antidama2":1,"liquidoxygenite":1},"output":1}]
-}

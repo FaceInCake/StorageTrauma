@@ -1,8 +1,0 @@
-{
-    "identifier": "plastic",
-    "name": "Plastic",
-    "prices": {"default":45,"outpost":58,"city":56,"research":45,"military":40,"mine":40},
-    "available": {"default":0,"outpost":7,"city":10,"research":12,"military":9,"mine":15},
-    "deconsTo": {"silicon":1,"carbon":1},
-    "recipes": [{"required":{"silicon":2,"carbon":1},"output":1}]
-}

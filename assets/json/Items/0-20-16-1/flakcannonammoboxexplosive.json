@@ -1,8 +1,0 @@
-{
-    "identifier": "flakcannonammoboxexplosive",
-    "name": "flakcannonammoboxexplosive",
-    "prices": {"default":450,"outpost":585,"city":540,"research":585,"military":405,"mine":540,"armory":405},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":8,"mine":0,"armory":8},
-    "deconsTo": {"steel":1,"c4block":1,"aluminium":1},
-    "recipes": [{"required":{"c4block":2,"steel":1,"aluminium":1},"output":1},{"required":{"uex":2,"steel":1,"flakcannonammoboxexplosive":1},"output":1}]
-}

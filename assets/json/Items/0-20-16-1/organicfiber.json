@@ -1,8 +1,0 @@
-{
-    "identifier": "organicfiber",
-    "name": "Organic Fiber",
-    "prices": {"default":30,"outpost":39,"city":37,"research":30,"military":27,"mine":27},
-    "available": {"default":0,"outpost":4,"city":8,"research":7,"military":3,"mine":2},
-    "deconsTo": {},
-    "recipes": []
-}

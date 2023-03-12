@@ -1,8 +1,0 @@
-{
-    "identifier": "aragonite",
-    "name": "Aragonite",
-    "prices": {"default":80,"outpost":88,"city":100,"research":80,"military":80,"mine":60},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0},
-    "deconsTo": {"calcium":2},
-    "recipes": []
-}

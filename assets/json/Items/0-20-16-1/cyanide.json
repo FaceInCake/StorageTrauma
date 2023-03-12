@@ -1,8 +1,0 @@
-{
-    "identifier": "cyanide",
-    "name": "Cyanide",
-    "prices": {"default":200,"outpost":200,"city":180,"research":180,"military":220,"mine":220},
-    "available": {"default":0,"outpost":0,"city":1,"research":1,"military":1,"mine":0},
-    "deconsTo": {"chloralhydrate":1,"sodium":1},
-    "recipes": [{"required":{"chloralhydrate":1,"sodium":1},"output":1}]
-}

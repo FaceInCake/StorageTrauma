@@ -1,8 +1,0 @@
-{
-    "identifier": "alienshell",
-    "name": "Physicorium Shell",
-    "prices": {"default":300,"outpost":450,"city":375,"research":375,"military":270,"mine":375,"armory":270},
-    "available": {"default":0,"outpost":0,"city":0,"research":0,"military":0,"mine":0,"armory":0},
-    "deconsTo": {"physicorium":1},
-    "recipes": [{"required":{"physicorium":1,"titanium":1},"output":1}]
-}

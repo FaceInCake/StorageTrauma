@@ -1,8 +1,0 @@
-{
-    "identifier": "shellshield",
-    "name": "Moloch Shell Fragment",
-    "prices": {"default":1},
-    "available": {"default":0},
-    "deconsTo": {},
-    "recipes": []
-}
