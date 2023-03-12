@@ -1,14 +1,14 @@
 {
     "emmet.includeLanguages": {
         "jekyll": "html",
+        "liquid": "html",
         "scss": "css"
     },
     "files.associations": {
         "*.yaml": "yaml",
         "*.md": "markdown",
-        "*.js": "liquid-javascript",
-        "*.css": "liquid-css",
-        "*.scss": "liquid-scss"
+        // "*.js": "liquid-javascript"
     },
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "liquid.format.enable": false,
 }
