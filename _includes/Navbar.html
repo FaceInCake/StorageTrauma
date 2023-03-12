@@ -14,12 +14,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {%if page.url=="/ViewItems.html" %}active{%endif%}" href="{{site.baseurl}}/ViewItems.html"
-                    {%if page.url=="{{site.baseurl}}/ViewItems.html" %}aria-current="page"{%endif%}>
+                    {%if page.url=="/ViewItems.html" %}aria-current="page"{%endif%}>
                         View Items
                     </a>
                 </li>
             </ul>
-            <form class="d-flex" role="search" method="get" action="Search.html">
+            <form class="d-flex" role="search" method="get" action="{{site.baseurl}}/Search.html">
                 <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-info d-lg-none" type="submit">Search</button>
             </form>
