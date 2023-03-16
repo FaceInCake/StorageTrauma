@@ -2,9 +2,16 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Jekyll Full Build",
+            "type": "shell",
+            "command": "jekyll build --baseurl=''",
+            "group": "build",
+        },
+        {
             "label": "Jekyll Serve",
             "type": "shell",
             "command": "jekyll serve --incremental --open-url --baseurl=''",
+            "dependsOn": "Jekyll Full Build",
             "problemMatcher": [],
             "group": {
                 "kind": "build",

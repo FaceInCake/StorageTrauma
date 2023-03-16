@@ -29,7 +29,7 @@ function viewItem (id) {
 }
 
 function card (item) {
-    let imageUrl = `{{site.baseurl}}/assets/images/items/{{ page.version }}/icons/${item.id}.png`;
+    let imageUrl = `{{site.baseurl}}/assets/images/items/{{page.version}}/icons/${item.id}.png`;
     let price = !!item.price? item.price+" mk" : "∅";
     let con = !!item.recipes? 'success' : 'danger';
     let dec = !!item.deconsTo? 'success' : 'danger';
@@ -49,10 +49,16 @@ function card (item) {
     </div>`
 }
 
+function onError (args) {
+    alert("Failed to search: ("+args+")");
+    history.back();
+}
+
 $(async function main () {
     // Populate search index
     updateProgressBar(20, 'info', 'Fetching');
-    let searchDoc = await $.getJSON("{{site.baseurl}}/assets/json/items/{{ page.version }}/!SearchDoc.json");
+    let docUrl = "{{site.baseurl}}/assets/json/items/{{ page.version }}/!SearchDoc.json";
+    let searchDoc = await $.getJSON(docUrl);
     searchDoc.forEach(elm => index.addDoc(elm)); // console.log(elm)
     // Execute search
     updateProgressBar(50, 'success', 'Searching');
