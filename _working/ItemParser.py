@@ -11,8 +11,8 @@ from xml.etree.ElementTree import parse, Element # Turn that text into objects!
 from glob import glob # Find them files
 from numpy import multiply # Epic math
 # from scipy.sparse import csr_matrix # Can represent a directed graph, used for con or decon trees
-from cv2 import resize, Mat, imread, imwrite, IMREAD_UNCHANGED # OpenCV image editing tools, yes its a bit overkill, bite me
-
+from cv2 import resize, imread, imwrite, IMREAD_UNCHANGED # OpenCV image editing tools, yes its a bit overkill, bite me
+from cv2.typing import MatLike
 
 _RT = TypeVar('_RT', bound=object, covariant=True) # "Generic return type"
 _PT = TypeVar("_PT") # "Generic parameter type"
@@ -43,7 +43,7 @@ def maybe (obj :_PT|None) -> _PT|Nothing:
 class ContentPackage (NamedTuple):
     """Can be 'Vanilla' or any other mod package for example,
     every content package is basically a list of URIs to xml files that contain various resources.
-    `version` should be in the format '0-20-0-0', for example. Everything else is a list of filepaths"""
+    `version` should be in the format: '0-20-0-0' for example. Everything else is a list of filepaths"""
     name :str
     version :str
     items :list[str]
@@ -51,6 +51,7 @@ class ContentPackage (NamedTuple):
     characters :list[str]
     afflictions :list[str]
     structures :list[str]
+    npc_sets :list[str]
     # Theres more types but I dont care about them rn, add 'em when you want
 
     @classmethod
@@ -67,101 +68,86 @@ class ContentPackage (NamedTuple):
             submarines= get_files("Submarine"),
             characters=  get_files("Character"),
             afflictions= get_files("Afflictions"),
-            structures= get_files("Structure")
+            structures= get_files("Structure"),
+            npc_sets= get_files("NPCSets")
         )
 
-class Pricing (NamedTuple):
-    """Contains info for getting the price of an item.
-    The `basePrice` is what it is, everything else is after the multiplier.
-    For example, `military` might have a price multiplier of 1.1, which is multiplied with the `basePrice`.  
-    You might need to do rounding where necessary."""
-    basePrice : int
-    outpost  : float
-    city     : float
-    mine     : float
-    military : float
-    research : float
-    engineering : float
-    medical  : float
-    armory   : float
+class Listing:
 
-    @classmethod
-    def from_Element (cls, e:Element|None) -> Self|None:
-        "Expects the Price element `e`, returns None if `e` is None"
-        if e is None: return None
-        if e.tag != "Price" : raise ValueError(f"Expected a 'Price' element but was '{e.tag}'")
-        basePrice = e.get("baseprice", "")
-        if basePrice=="": raise KeyError("Expected a 'baseprice' attribute from Element `e`")
-        basePrice = int(basePrice)
-        pd :dict[str,float] = {
-            i : float(m) * basePrice
-            for i,m in [(
-                p.get("storeidentifier", ""),
-                p.get("multiplier", 1.0)
-                ) for p in e.findall("Price")
-            ] if i != ""
-        }
-        return Pricing(
-            basePrice= basePrice,
-            outpost=  pd.get("merchantoutpost", basePrice),
-            city=     pd.get("merchantcity", basePrice),
-            mine=     pd.get("merchantmine", basePrice),
-            military= pd.get("merchantmilitary", basePrice),
-            research= pd.get("merchantresearch", basePrice),
-            engineering= pd.get("merchantengineering", basePrice),
-            medical=  pd.get("merchantmedical", basePrice),
-            armory=   pd.get("merchantarmory", basePrice),
+    __slots__ = 'id', 'basePrice', 'available', 'multiplier', 'buyMod', 'maxAvail', 'minDifficulty', 'repReq'
+    def __init__(self, basePrice:int, available:int, maxAvailable:int|None, multiplier:float=1.0,
+                 buyingPriceModifier:float=1.0, minDifficulty:int=0, repRequired:dict[str,int]={}):
+        self.basePrice :int = basePrice
+        self.available :int = available
+        self.multiplier :float = multiplier
+        self.buyMod :float = buyingPriceModifier
+        self.maxAvail :int = maxAvailable or available
+        self.minDifficulty :int = minDifficulty
+        self.repReq :dict[str,int] = repRequired
+    
+    def is_available (self, curDiff:int, rep:dict[str,int]) -> bool:
+        return  self.is_not_sold() and (
+                curDiff >= self.minDifficulty) and (
+                all(
+                    rep.get(fac,0) >= val
+                    for fac,val in self.repReq.items()
+                ))
+
+    def get_price (self) -> int:
+        return round(self.basePrice * self.multiplier * self.buyMod)
+    
+    def is_not_sold (self) -> bool:
+        return self.available==0 and self.maxAvail==0
+    
+
+def get_listings (e:Element|None) -> defaultdict[str,Listing] | None:
+    """Pass the parent 'Price' element to this function"""
+    if e is None: return None
+    if e.tag != "Price" : raise ValueError(f"Expected a 'Price' element but was '{e.tag}'")
+    basePrice :int = int(e.get("baseprice", 0))
+    if basePrice==0: raise KeyError("Expected a valid 'baseprice' attribute from Element `e`")
+    baseSold :str = e.get("sold", "")
+    baseAvail :int|None =        int(_)   if (_:= e.get("minavailable", "")).isdecimal() else None
+    baseMaxAvail :int|None =     int(_)   if (_:= e.get("maxavailable", "")).isdecimal() else None
+    baseMultiplier :float|None = float(_) if (_:= e.get("multiplier", "")) else None
+    baseBuyMod :float|None =     float(_) if (_:= e.get("buyingpricemodifier", "")) else None
+    baseDifficulty :int|None =   int(_)   if (_:= e.get("minleveldifficulty","")).isdecimal() else None
+    baseRepReq :dict[str,int] = {
+        fac : int(m)
+        for r in e.findall("Reputation")
+        if (fac := r.get("faction","")) != ""
+        and (m := r.get("min","")) != ""
+    }
+    prefix = "merchant"
+    pd :dict[str,Listing] = {
+        id : Listing(basePrice,
+            available= 0 if p.get("sold",baseSold)=="false" else int(p.get("minavailable","") or baseAvail or 1),
+            maxAvailable= int(p.get("maxavailable","") or baseMaxAvail or 0) or None ,
+            multiplier= float(p.get("multiplier","") or baseMultiplier or 1.0),
+            buyingPriceModifier= float(p.get("buyingpricemodifier","") or baseBuyMod or 1.0),
+            minDifficulty= int(p.get("minleveldifficulty","") or baseDifficulty or 0),
+            repRequired= {
+                fac : int(m)
+                for r in p.findall("Reputation")
+                if (fac := r.get("faction","")) != ""
+                and (m := r.get("min","")) != ""
+            } or baseRepReq
         )
-
-    def to_json (self) -> str:
-        return '{"default":%d,"outpost":%f,"city":%f,"mine":%f,"military":%f,"research":%f,"engineering":%f,"medical":%f,"armory":%f}' % (
-            self.basePrice, self.outpost, self.city, self.mine, self.military, self.research, self.engineering, self.medical, self.armory )
-
-class Availability (NamedTuple):
-    "Contains info for the availability for an item."
-    default  : int
-    outpost  : int
-    city     : int
-    mine     : int
-    military : int
-    research : int
-    engineering : int
-    medical  : int
-    armory   : int
-
-    @classmethod
-    def from_Element (cls, e:Element|None) -> Self|None:
-        "Expects the parent Price element `e`, returns None if `e` is None"
-        if e is None: return None
-        if e.tag != "Price" : raise ValueError(f"Expected a 'Price' element but was '{e.tag}'")
-        baseAvail = 0 if e.get("sold")=="false" else int(e.get("minavaiable", 1))
-        pd :dict[str,int] = {
-            i : 0 if notSold else int(avail)
-            for i, avail, notSold in [(
-                p.get("storeidentifier", ""),
-                p.get("minavailable", 1),
-                p.get("sold") == "false"
-                ) for p in e.findall("Price")
-            ] if i != ""
-        }
-        return Availability( # TODO: Verify how the inheritence of base availability works
-            default= baseAvail,
-            outpost= pd.get("merchantoutpost", 0),
-            city= pd.get("merchantcity", 0),
-            mine= pd.get("merchantmine", 0),
-            military= pd.get("merchantmilitary", 0),
-            research= pd.get("merchantresearch", 0),
-            engineering= pd.get("merchantengineering", 0),
-            medical= pd.get("merchantmedical", 0),
-            armory= pd.get("merchantarmory", 0)
-        )
-
-    def to_json (self) -> str:
-        return '{"default":%d,"outpost":%d,"city":%d,"mine":%d,"military":%d,"research":%d,"engineering":%d,"medical":%d,"armory":%d}' % (
-            self.default, self.outpost, self.city, self.mine, self.military, self.research, self.engineering, self.medical, self.armory )
+        for p in e.findall("Price")
+        if (_id := p.get("storeidentifier","")) != ""
+        and (id := _id[len(prefix):] if _id.startswith(prefix) else _id)
+    }
+    default = Listing(basePrice,
+        available= 0 if e.get("sold","")=="false" else int(baseAvail or 0),
+        maxAvailable= int(baseMaxAvail or 0) or None,
+        multiplier= float(baseMultiplier or 0.0) or 1.0,
+        buyingPriceModifier= float(baseBuyMod or 0.0) or 1.0,
+        minDifficulty= int(baseDifficulty or 0),
+        repRequired= baseRepReq
+    )
+    return defaultdict(lambda: default, pd)
 
 DEFAULT_TIME :Final[Literal["15.0"]] = "15.0" #TODO: Verify me
-
 class Deconstructable (NamedTuple):
     "Stores info about what an item deconstructs into"
     output : dict[str,int]
@@ -175,13 +161,13 @@ class Deconstructable (NamedTuple):
         if e is None: return None
         if e.tag != "Deconstruct": raise ValueError(f"Expected 'Deconstruct' Element but was '{e.tag}'")
         time = e.get("time", "")
-        if time=="": raise KeyError("ASFASREFER")
+        if time=="": raise KeyError("ASFASREFER") # TODO: me
         items = e.findall("Item")
         dd :dict[str,int] = defaultdict(lambda: 0)
         for i in items: # An item can be listed multiple times, this code makes sure they get added up
             id = i.get("identifier", "")
             if id != "": dd[id] += int(i.get("amount", 1))
-        return Deconstructable(output=dict(dd), time=float(time))
+        return cls(output=dict(dd), time=float(time))
 
     def to_json (self) -> str:
         return "{%s}" % (
@@ -210,7 +196,7 @@ class Recipe (NamedTuple):
         machine = e.get("suitablefabricators", "fabricator") #TODO: Verify default is always 'fabricator'
         if machine == "vendingmachine": return None
         time = e.get("requiredtime", DEFAULT_TIME)
-        return Recipe(
+        return cls(
             required= {
                 id : int(a)
                 for id, a in [(
@@ -261,7 +247,8 @@ class Texture (NamedTuple):
             tex = path.join(dir, tex)
         rect = e.get("sourcerect", "")
         if rect != "":
-            rect = tuple(int(s) for s in rect.split(",", 3))
+            rectList = [int(s) for s in rect.split(",", 3)]
+            rect = (rectList[0], rectList[1], rectList[2], rectList[3])
         else:
             ses = e.get("sheetelementsize", "")
             si = e.get("sheetindex", "")
@@ -269,8 +256,8 @@ class Texture (NamedTuple):
                 raise KeyError("No sourcerect or sheetindex and sheetelementsize found")
             w, h = tuple(int(s) for s in ses.split(",", 1))
             x, y = tuple(int(s) for s in si.split(",", 1))
-            rect = tuple([x*w, y*h, w, h])
-        return Texture(path=tex, rect=rect, colour=colour or WHITE)
+            rect = (x*w, y*h, w, h)
+        return cls(path=tex, rect=rect, colour=colour or WHITE)
 
 class InventoryIcon (Texture):
 
@@ -302,10 +289,8 @@ class Item (NamedTuple):
     "In game description for a set language"
     category : str
     "Self explanetory, chosen by the devs. Always English?"
-    price : Pricing | None
-    "Contains the item price for each merchant"
-    available : Availability | None
-    "Contains the number of items for sail for each merchant"
+    listing : Listing
+    "Contains info for the availability and pricing of the item"
     deconsTo : Deconstructable | None
     "What this item deconstructs into, may not exist"
     recipes : list[Recipe]
@@ -354,29 +339,29 @@ class Item (NamedTuple):
         cat :str = backup_get("Category", "None")
         with suppress(AttributeError): # Handle Genetic Material genericism
             name, desc = (lambda g: (
-                (lambda t: name.replace("[type]", t)) (
-                    (lambda i: texts.get(i))
-                    (g.get("nameidentifier"))),
+                (lambda t: name.replace("[type]", t)) ( #type: ignore
+                    (lambda i: texts.get(i)) #type: ignore
+                    (g.get("nameidentifier"))), #type: ignore
                 (lambda v0,v1: desc.replace("[value]", f"{v0}-{v1}"))
-                (g.get("tooltipvaluemin"), g.get("tooltipvaluemax"))
+                (g.get("tooltipvaluemin"), g.get("tooltipvaluemax")) #type: ignore
             ))(fetch("GeneticMaterial"))
         e_t :str = backup_get("Tags", "")
         e_p :Element|None = fetch("Price")
         e_f :list[Element] = e.findall("Fabricate") or maybe(variantOf).findall("Fabricate") or []
         def parse_colour (key:str) -> Colour|None:
-            valueS = backup_get(key, "")
-            if valueS=="": return None
-            return tuple([
+            valueStr = backup_get(key, "")
+            if valueStr=="": return None
+            valueList = [
                 float(s) if '.' in s else int(s)/255.0
-                for s in valueS.split(",",3)
-            ][0:3])
+                for s in valueStr.split(",",3)
+            ]
+            return (valueList[0], valueList[1], valueList[2])
         _ic :Colour|None = parse_colour("InventoryIconColor")
         _sc :Colour|None = parse_colour("SpriteColor")
-        return Item(
+        return cls(
             id=id, name=name, desc=desc, category=cat,
             tags= [s.strip() for s in e_t.split(",")],
-            price= Pricing.from_Element(e_p),
-            available= Availability.from_Element(e_p),
+            listing=get_listings(e_p),
             deconsTo= Deconstructable.from_Element(fetch("Deconstruct")),
             recipes= [r for r in (Recipe.from_Element(f) for f in e_f) if r is not None],
             icon= InventoryIcon.from_Element(fetch("InventoryIcon"), dir, _ic),
@@ -436,11 +421,24 @@ def fetch_content_package(rootDir:str, name:str)->ContentPackage:
     tree :Element = parse(fpath).getroot()
     return ContentPackage.from_Element(tree)
 
-def fetch_xml_elements (rootDir:str, URIs :list[str]) -> dict[str, Element]:
+def fetch_merchants (rootDir:str, URLs:list[str])->list[str]:
+    "Fetches the different types of merchants, `URLs` should be the contentPackage.npc_sets"
+    prefix = "merchant"
+    return [
+        id[len(prefix):] if id.startswith(prefix) else id
+        for url in URLs
+        for npcset in parse(rootDir + url).getroot()
+        for npc in npcset.findall("npc")
+        if npc.get("campaigninteractiontype")=="Store"
+        and (id := npc.get("identifier","")) != ""
+        and id != "merchanttutorial"
+    ]
+
+def fetch_xml_elements (rootDir:str, URLs :list[str]) -> dict[str, Element]:
     """Parses all given xml resources for their contained elements.
     Also attaches the folder it was in, relative to Barotrauma, and attaches the file NAME."""
     allElms :dict[str, Element] = {}
-    filePathList :list[str] = [path.join(rootDir,p).replace('\\','/') for p in URIs]
+    filePathList :list[str] = [path.join(rootDir,p).replace('\\','/') for p in URLs]
     for filePath in filePathList:
         tree :Element = parse(filePath).getroot()
         dir, file = filePath.rsplit("/", 1)
@@ -497,14 +495,14 @@ def export_items_to_json (items :dict[str,Item], targetDir:str):
             fout.write(item.to_json())
 
 class ImageDownloader:
-    "Construct me with the rootDir in order to call `download_sprites/icons`"
-    ICON_SIZE :Final[int] = 64
+    "Construct me with the rootDir in order to call `download_` `sprites`/`icons`"
+    ICON_SIZE :Final[Literal[64]] = 64
 
     def __init__(self, rootDir:str) -> None:
         self.__rootDir = rootDir
 
     @cache
-    def __get_img (self, filePath:str) -> Mat:
+    def __get_img (self, filePath:str) -> MatLike:
         "Fetches the given sprite sheet, also caches it for re-use"
         return imread(path.join(self.__rootDir, filePath), IMREAD_UNCHANGED)
 
@@ -514,19 +512,18 @@ class ImageDownloader:
         all(remove(p) for p in glob(f"{dir}/*.png")) # should only be PNGs
     
     def __get_resize (self, i:Texture) -> tuple[int,int]:
-        """Soley used when needing to use an items Sprite for their Icon,
-        calculates the new smaller size while maintaining aspect ratio"""
+        """Calculates the new smaller size while maintaining aspect ratio"""
         S = ImageDownloader.ICON_SIZE # shorthand
         w, h = tuple(i.rect[2:4])
-        return tuple([S, round(S*h/w)]) if w > h else tuple([round(S*w/h), S])
+        return (S, round(S*h/w)) if w > h else (round(S*w/h), S)
 
     @staticmethod
-    def __crop (img: Mat, rect:tuple[int,int,int,int])->Mat:
+    def __crop (img: MatLike, rect:tuple[int,int,int,int]) -> MatLike:
         """Crops the given opencv `img` using the given xywh `rect`, returns the result"""
         return img[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]]
 
     @staticmethod
-    def __colour_image (img: Mat, colour:Colour) -> Mat:
+    def __colour_image (img: MatLike, colour:Colour) -> MatLike:
         if colour != WHITE:
             c = list(colour)
             c.reverse() # RGB -> BGR
@@ -606,13 +603,14 @@ def main ():
     print("Baro :", rootDir)
     package = fetch_content_package(rootDir, "Vanilla")
     print("Version :", package.version)
+    merchants = fetch_merchants(rootDir, package.npc_sets)
     xmlItems = fetch_xml_elements(rootDir, package.items)
     texts = fetch_language(rootDir, "English")
     items = fetch_items(xmlItems, texts)
     filter_items(items)
 
-    export_items_to_json(items, f"assets/json/items/{package.version}")
-    export_items_to_searchDoc(items, f"assets/json/items/{package.version}/!SearchDoc.json")
+    # export_items_to_json(items, f"assets/json/items/{package.version}")
+    # export_items_to_searchDoc(items, f"assets/json/items/{package.version}/!SearchDoc.json")
     
     # imgdl = ImageDownloader(rootDir)
     # imgdl.download_sprites(items, f"assets/images/items/{package.version}/sprites")
@@ -620,6 +618,6 @@ def main ():
     # del imgdl
 
     print("Done!")
-    exit(0)
+    return 0
 
-if __name__=="__main__": main()
+if __name__=="__main__": exit(main())

@@ -1,4 +1,4 @@
-baseurl: "/BaroEconomy"
+baseurl: "/StorageTrauma"
 exclude: [README.md]
 defaults:
   - scope:

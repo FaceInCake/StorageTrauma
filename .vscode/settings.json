@@ -11,4 +11,5 @@
     },
     "python.analysis.typeCheckingMode": "basic",
     "liquid.format.enable": false,
+    "cmake.configureOnOpen": false,
 }
