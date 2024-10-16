@@ -41,7 +41,7 @@ def maybe (obj :_PT|None) -> _PT|Nothing:
 class ContentPackage (NamedTuple):
     """Can be 'Vanilla' or any other mod package for example,
     every content package is basically a list of URIs to xml files that contain various resources.
-    `version` should be in the format '0-20-0-0', for example. Everything else is a list of filepaths"""
+    `version` should be in the format: '0-20-0-0' for example. Everything else is a list of filepaths"""
     name :str
     version :str
     items :list[str]
@@ -49,6 +49,7 @@ class ContentPackage (NamedTuple):
     characters :list[str]
     afflictions :list[str]
     structures :list[str]
+    npc_sets :list[str]
     # Theres more types but I dont care about them rn, add 'em when you want
 
     @classmethod
@@ -65,7 +66,8 @@ class ContentPackage (NamedTuple):
             submarines= get_files("Submarine"),
             characters=  get_files("Character"),
             afflictions= get_files("Afflictions"),
-            structures= get_files("Structure")
+            structures= get_files("Structure"),
+            npc_sets= []
         )
 
 class Pricing (NamedTuple):
@@ -159,7 +161,6 @@ class Availability (NamedTuple):
             self.default, self.outpost, self.city, self.mine, self.military, self.research, self.engineering, self.medical, self.armory )
 
 DEFAULT_TIME :Final[Literal["15.0"]] = "15.0" #TODO: Verify me
-
 class Deconstructable (NamedTuple):
     "Stores info about what an item deconstructs into"
     output : dict[str,int]
@@ -173,12 +174,13 @@ class Deconstructable (NamedTuple):
         if e is None: return None
         if e.tag != "Deconstruct": raise ValueError(f"Expected 'Deconstruct' Element but was '{e.tag}'")
         time = e.get("time", "")
-        if time=="": raise KeyError("ASFASREFER")
+        if time=="": raise KeyError("ASFASREFER") # TODO: me
         items = e.findall("Item")
         dd :dict[str,int] = defaultdict(lambda: 0)
         for i in items: # An item can be listed multiple times, this code makes sure they get added up
             id = i.get("identifier", "")
             if id != "": dd[id] += int(i.get("amount", 1))
+        return cls(output=dict(dd), time=float(time))
         return cls(output=dict(dd), time=float(time))
 
     def to_json (self) -> str:
@@ -301,10 +303,10 @@ class Item (NamedTuple):
     "In game description for a set language"
     category : str
     "Self explanetory, chosen by the devs. Always English?"
-    price : Pricing | None
-    "Contains the item price for each merchant"
-    available : Availability | None
-    "Contains the number of items for sail for each merchant"
+    pricing : Pricing | None
+    "Contains pricing information if it exists"
+    availability : Availability | None
+    "Contains information on count of items sold if sold"
     deconsTo : Deconstructable | None
     "What this item deconstructs into, may not exist"
     recipes : list[Recipe]
@@ -358,9 +360,9 @@ class Item (NamedTuple):
             name, desc = (lambda g: (
                 (lambda t: name.replace("[type]", t)) (
                     (lambda i: texts.get(i,""))
-                    (g.get("nameidentifier",""))),
+                    (g.get("nameidentifier",""))), #type: ignore
                 (lambda v0,v1: desc.replace("[value]", f"{v0}-{v1}"))
-                (g.get("tooltipvaluemin"), g.get("tooltipvaluemax"))
+                (g.get("tooltipvaluemin"), g.get("tooltipvaluemax")) #type: ignore
             ))(fetch("GeneticMaterial"))
         e_t :str = backup_get("Tags", "")
         e_p :Element|None = fetch("Price")
@@ -378,8 +380,8 @@ class Item (NamedTuple):
         return cls(
             id=id, name=name, desc=desc, category=cat,
             tags= [s.strip() for s in e_t.split(",")],
-            price= Pricing.from_Element(e_p),
-            available= Availability.from_Element(e_p),
+            pricing= Pricing.from_Element(e_p),
+            availability= Availability.from_Element(e_p),
             deconsTo= Deconstructable.from_Element(fetch("Deconstruct")),
             recipes= [r for r in (Recipe.from_Element(f) for f in e_f) if r is not None],
             icon= InventoryIcon.from_Element(e_icon, maybe(e_icon).get('__dir') or dir, _ic),
@@ -391,8 +393,8 @@ class Item (NamedTuple):
             self.id, self.name, self.category,
             self.desc.replace('"', '\\"'),
             ",".join(f'"{s}"' for s in self.tags),
-            self.price.to_json() if self.price is not None else "{}",
-            self.available.to_json() if self.available is not None else "{}",
+            self.pricing.to_json() if self.pricing is not None else "{}",
+            self.availability.to_json() if self.availability is not None else "{}",
             self.deconsTo.to_json() if self.deconsTo is not None else "{}",
             ",".join(r.to_json() for r in self.recipes)
         )
@@ -441,11 +443,24 @@ def fetch_content_package(rootDir:str, name:str)->ContentPackage:
     tree :Element = parse(fpath).getroot()
     return ContentPackage.from_Element(tree)
 
-def fetch_xml_elements (rootDir:str, URIs :list[str]) -> dict[str, Element]:
+def fetch_merchants (rootDir:str, URLs:list[str])->list[str]:
+    "Fetches the different types of merchants, `URLs` should be the contentPackage.npc_sets"
+    prefix = "merchant"
+    return [
+        id[len(prefix):] if id.startswith(prefix) else id
+        for url in URLs
+        for npcset in parse(rootDir + url).getroot()
+        for npc in npcset.findall("npc")
+        if npc.get("campaigninteractiontype")=="Store"
+        and (id := npc.get("identifier","")) != ""
+        and id != "merchanttutorial"
+    ]
+
+def fetch_xml_elements (rootDir:str, URLs :list[str]) -> dict[str, Element]:
     """Parses all given xml resources for their contained elements.
     Also attaches the folder it was in, relative to Barotrauma, and attaches the file NAME."""
     allElms :dict[str, Element] = {}
-    filePathList :list[str] = [path.join(rootDir,p).replace('\\','/') for p in URIs]
+    filePathList :list[str] = [path.join(rootDir,p).replace('\\','/') for p in URLs]
     for filePath in filePathList:
         tree :Element = parse(filePath).getroot()
         dir, file = filePath.rsplit("/", 1)
@@ -504,7 +519,7 @@ def filter_items (items :dict[str,Item]) -> dict[str,Item]:
     "Modifies `items`, returns the filtered out items!"
     rest :dict[str,Item] = {}
     for id, i in list(items.items()):
-        if i.price is None and len(i.recipes)==0 and i.deconsTo is None:
+        if i.pricing is None and len(i.recipes)==0 and i.deconsTo is None:
             rest[id] = items.pop(id)
     print("Filtered out %3d Items, %4d remaining" % (
         len(rest), len(items)
@@ -531,7 +546,7 @@ def export_items_to_searchDoc (items:dict[str,Item], targetPath:str):
                     id, item.name, item.category,
                     item.desc.replace('"', '\\"'),
                     ",".join(item.tags),
-                    str(maybe(item.price).basePrice or ""),
+                    str(maybe(item.pricing).basePrice or ""),
                     ",".join(
                         items[i].name
                         for i in (maybe(item.deconsTo).output.keys() or list[str]())
@@ -553,7 +568,7 @@ def export_items_to_viewlist (items:dict[str,Item], targetPath:str):
     for item in items.values():
         craftable = 1 if len(item.recipes) > 0 else 0
         deconable = 1 if item.deconsTo is not None else 0
-        rep = f'["{item.id}","{item.name}",{maybe(item.price).basePrice or "\"\""},{craftable},{deconable}]'
+        rep = f'["{item.id}","{item.name}",{maybe(item.pricing).basePrice or "\"\""},{craftable},{deconable}]'
         lines.append(rep)
     with open(targetPath, 'w') as fout:
         fout.write(f'[{",".join(lines)}]')
@@ -565,6 +580,7 @@ def main ():
     print("Baro :", rootDir)
     package = fetch_content_package(rootDir, "Vanilla")
     print("Version :", package.version)
+    merchants = fetch_merchants(rootDir, package.npc_sets)
     xmlItems = fetch_xml_elements(rootDir, package.items)
     texts = fetch_language(rootDir, "English")
     items = fetch_items(xmlItems, texts)
@@ -583,6 +599,6 @@ def main ():
     del imgdl
 
     print("Done!")
-    exit(0)
+    return 0
 
-if __name__=="__main__": main()
+if __name__=="__main__": exit(main())

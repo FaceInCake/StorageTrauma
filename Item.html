@@ -1,5 +1,6 @@
 ---
 title: View Item
+style: ViewItem
 scripts: [Item]
 ---
 
@@ -26,10 +27,19 @@ scripts: [Item]
                 <span class="visually-hidden">Loading...</span>
             </span>
         </span>
+    </span>
+    <div id="header-text">
+        <text id="item-name" class="fs-1">Loading...</text>
+        <text id="item-categories" class="fw-semibold">...</text>
     </div>
 </div>
-
-<br>
+<div id="preface">
+    <div id="details">
+        <p id="item-desc" class="mb-1"></p>
+        <small id="item-tags" class="text-muted"></small>
+    </div>
+    <span id="item-sprite"></span>
+</div>
 <div class="table-responsive">
     <table class="table table-sm" id="p-table">
         <caption class="title">Prices</caption>
@@ -61,50 +71,3 @@ scripts: [Item]
         </tbody>
     </table>
 </div>
-
-<br>
-<div class="table-responsive">
-    <table class="table table-sm">
-        <caption class="title">Available</caption>
-        <thead>
-            <tr>
-                <th>Base</th>
-                <th>Outpost</th>
-                <th>City</th>
-                <th>Medical</th>
-                <th>Engineering</th>
-                <th>Armory</th>
-                <th>Research</th>
-                <th>Military</th>
-                <th>Mining</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td id="a-base">?</td>
-                <td id="a-outpost">?</td>
-                <td id="a-city">?</td>
-                <td id="a-medical">?</td>
-                <td id="a-engineering">?</td>
-                <td id="a-armory">?</td>
-                <td id="a-research">?</td>
-                <td id="a-military">?</td>
-                <td id="a-mine">?</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<br>
-<table class="table table-bordered">
-    <caption class="title">Deconstructs Into</caption>
-    <tbody>
-        <tr id="decons-into"></tr>
-    </tbody>
-</table>
-
-<br>
-<table class="table">
-    <caption class="title">Recipes</caption>
-    <tbody id="recipes"></tbody>
-</table>
