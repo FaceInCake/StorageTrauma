@@ -2,16 +2,14 @@
 
 from collections import defaultdict # Dictionary with default value, good for getting price of item, as it MIGHT vary per merchant
 from tkinter import filedialog, messagebox # Dialog boxes
-from os import path, makedirs, remove # For creating cross-platform file URIs
+from os import path, makedirs # For creating cross-platform file URIs
 from sys import platform # windows or linux or whatnot
 from typing import NamedTuple,Self,Any,Literal,TypeVar,Protocol,Sequence,SupportsIndex,Final,Iterator
 from contextlib import suppress
-from functools import cache
 from xml.etree.ElementTree import parse, Element # Turn that text into objects!
+from json import load as load_json
 from glob import glob # Find them files
-from numpy import multiply # Epic math
 # from scipy.sparse import csr_matrix # Can represent a directed graph, used for con or decon trees
-from cv2 import resize, Mat, imread, imwrite, IMREAD_UNCHANGED # OpenCV image editing tools, yes its a bit overkill, bite me
 
 
 _RT = TypeVar('_RT', bound=object, covariant=True) # "Generic return type"
@@ -101,7 +99,7 @@ class Pricing (NamedTuple):
                 ) for p in e.findall("Price")
             ] if i != ""
         }
-        return Pricing(
+        return cls(
             basePrice= basePrice,
             outpost=  pd.get("merchantoutpost", basePrice),
             city=     pd.get("merchantcity", basePrice),
@@ -144,7 +142,7 @@ class Availability (NamedTuple):
                 ) for p in e.findall("Price")
             ] if i != ""
         }
-        return Availability( # TODO: Verify how the inheritence of base availability works
+        return cls( # TODO: Verify how the inheritence of base availability works
             default= baseAvail,
             outpost= pd.get("merchantoutpost", 0),
             city= pd.get("merchantcity", 0),
@@ -181,7 +179,7 @@ class Deconstructable (NamedTuple):
         for i in items: # An item can be listed multiple times, this code makes sure they get added up
             id = i.get("identifier", "")
             if id != "": dd[id] += int(i.get("amount", 1))
-        return Deconstructable(output=dict(dd), time=float(time))
+        return cls(output=dict(dd), time=float(time))
 
     def to_json (self) -> str:
         return "{%s}" % (
@@ -210,7 +208,7 @@ class Recipe (NamedTuple):
         machine = e.get("suitablefabricators", "fabricator") #TODO: Verify default is always 'fabricator'
         if machine == "vendingmachine": return None
         time = e.get("requiredtime", DEFAULT_TIME)
-        return Recipe(
+        return cls(
             required= {
                 id : int(a)
                 for id, a in [(
@@ -261,7 +259,8 @@ class Texture (NamedTuple):
             tex = path.join(dir, tex)
         rect = e.get("sourcerect", "")
         if rect != "":
-            rect = tuple(int(s) for s in rect.split(",", 3))
+            vals = tuple(int(s) for s in rect.split(",", 3))
+            rect = (vals[0], vals[1], vals[2], vals[3])
         else:
             ses = e.get("sheetelementsize", "")
             si = e.get("sheetindex", "")
@@ -269,8 +268,8 @@ class Texture (NamedTuple):
                 raise KeyError("No sourcerect or sheetindex and sheetelementsize found")
             w, h = tuple(int(s) for s in ses.split(",", 1))
             x, y = tuple(int(s) for s in si.split(",", 1))
-            rect = tuple([x*w, y*h, w, h])
-        return Texture(path=tex, rect=rect, colour=colour or WHITE)
+            rect = (x*w, y*h, w, h)
+        return cls(path=tex, rect=rect, colour=colour or WHITE)
 
 class InventoryIcon (Texture):
 
@@ -322,21 +321,23 @@ class Item (NamedTuple):
         Returns None if `e` is invalid, meaning a valid Item could not be created.
         If the item is a variation of another item, pass in `variantOf`."""
         # e.tag NOT guaranteed to be Item for whatever reason
-        dir = e.get("dir", "")
+        dir = e.get("dir", "") # dir is supplied by me, used for sprites/icons
         if dir == "": return None
-        def fetch (target:str) -> Element | None:
+        def fetch (target:str) -> Element|None:
             i = e.find(target)
             if i is None: i = e.find(target.lower())
             if i is None:
                 if variantOf is None: return None
                 j = variantOf.find(target)
                 if j is None: j = variantOf.find(target.lower())
+                if j is None: return None
+                j.set('__dir', variantOf.get('dir',''))
                 return j
             if variantOf is not None:
                 j = variantOf.find(target)
                 if j is None: j = variantOf.find(target.lower())
                 if j is not None:
-                    if not i:
+                    if not len(i):
                         i.extend(iter(j)) # Update i with j's children if i doesnt have any
                     ik = i.keys()
                     for jk, ji in j.items():
@@ -345,6 +346,7 @@ class Item (NamedTuple):
             return i
         # end func
         e_sprite = fetch("Sprite")
+        e_icon = fetch("InventoryIcon")
         if e_sprite is None: return None
         id :str = e.get("identifier") or e.get("file","")+f"_{hash(e)}"
         name :str = texts.get(f"entityname.{e.get('nameidentifier', id)}", id)
@@ -352,11 +354,11 @@ class Item (NamedTuple):
         def backup_get (target:str, default:str)->str:
             return e.get(target.lower()) or e.get(target) or maybe(variantOf).get(target.lower()) or maybe(variantOf).get(target) or default
         cat :str = backup_get("Category", "None")
-        with suppress(AttributeError): # Handle Genetic Material genericism
+        with suppress(AttributeError): # Handle Genetic Material genericism, I decided to use functional programming here becuase I can and its fun
             name, desc = (lambda g: (
                 (lambda t: name.replace("[type]", t)) (
-                    (lambda i: texts.get(i))
-                    (g.get("nameidentifier"))),
+                    (lambda i: texts.get(i,""))
+                    (g.get("nameidentifier",""))),
                 (lambda v0,v1: desc.replace("[value]", f"{v0}-{v1}"))
                 (g.get("tooltipvaluemin"), g.get("tooltipvaluemax"))
             ))(fetch("GeneticMaterial"))
@@ -366,21 +368,22 @@ class Item (NamedTuple):
         def parse_colour (key:str) -> Colour|None:
             valueS = backup_get(key, "")
             if valueS=="": return None
-            return tuple([
+            nums = [
                 float(s) if '.' in s else int(s)/255.0
                 for s in valueS.split(",",3)
-            ][0:3])
+            ]
+            return (nums[0], nums[1], nums[2])
         _ic :Colour|None = parse_colour("InventoryIconColor")
         _sc :Colour|None = parse_colour("SpriteColor")
-        return Item(
+        return cls(
             id=id, name=name, desc=desc, category=cat,
             tags= [s.strip() for s in e_t.split(",")],
             price= Pricing.from_Element(e_p),
             available= Availability.from_Element(e_p),
             deconsTo= Deconstructable.from_Element(fetch("Deconstruct")),
             recipes= [r for r in (Recipe.from_Element(f) for f in e_f) if r is not None],
-            icon= InventoryIcon.from_Element(fetch("InventoryIcon"), dir, _ic),
-            sprite= Sprite.from_Element(e_sprite, dir, _sc)
+            icon= InventoryIcon.from_Element(e_icon, maybe(e_icon).get('__dir') or dir, _ic),
+            sprite= Sprite.from_Element(e_sprite, e_sprite.get('__dir') or dir, _sc)
         )
 
     def to_json (self) -> str:
@@ -409,6 +412,8 @@ def fetch_barotrauma_path ()->str|None:
             "~/.steam/"+steamGame,
             "~/.local/share/"+steamGame,
             "~/"+steamGame,
+            "~/snap/steam/common/.local/share/"+steamGame,
+            "/home/faceincake/snap/steam/common/.steam/steam/steamapps/common/Barotrauma"
         ],
         "darwin": [ # Mac OS X
             "~/Library/Application Support/"+steamGame,
@@ -469,11 +474,31 @@ def fetch_language (rootDir:str, langName:str) -> dict[str,str]:
 def fetch_items (xmlItems :dict[str,Element], texts :dict[str,str]) -> dict[str,Item]:
     items0 :list[Item|None] = [
         Item.from_Element(e, texts, try_get(xmlItems, None, (e.get("variantof"),)))
-        for e in xmlItems.values()        
+        for e in xmlItems.values()
     ]
     items :dict[str,Item] = { i.id : i for i in items0 if i is not None}
     print("Parsed out %4d Items" % len(items))
     return items
+
+def refetch_items (folderPath:str) -> dict[str,Item]:
+    retr :dict[str,Item] = {}
+    for path in glob(folderPath+"/*.json"):
+        with open(path) as fin:
+            o = load_json(fin)
+            p = o['prices']
+            if p:
+                p['basePrice'] = p['default']
+                del p['default']
+            retr[o['id']] = Item(
+                o['id'], o['tags'], o['name'], o['desc'], o['category'],
+                Pricing(**p) if p else None,
+                Availability(**o['available']) if o['available'] else None,
+                Deconstructable(o['deconsTo'], 30) if o['deconsTo'] else None,
+                [Recipe(r['required'], r['output'], "Undefined", 30, {}) for r in o['recipes']],
+                None,
+                Sprite("No", (0,0,0,0), (0,0,0))
+            )
+    return retr
 
 def filter_items (items :dict[str,Item]) -> dict[str,Item]:
     "Modifies `items`, returns the filtered out items!"
@@ -487,95 +512,17 @@ def filter_items (items :dict[str,Item]) -> dict[str,Item]:
     return rest
 
 
-def export_items_to_json (items :dict[str,Item], targetDir:str):
-    if not path.isdir(targetDir): makedirs(targetDir)
-    with open(targetDir+"/!ItemList.json", 'w') as fout:
+def export_items_to_json (items:dict[str,Item], targetDir:str):
+    makedirs(targetDir+'/items', exist_ok=True)
+    with open(targetDir+"/ItemList.json", 'w') as fout:
         fout.write('['+','.join(f'"{i}"' for i in items.keys())+']')
     for id, item in items.items():
-        name :str = targetDir+'/'+id+".json"
+        name :str = targetDir+'/items/'+id+".json"
         with open(name, 'w') as fout:
             fout.write(item.to_json())
 
-class ImageDownloader:
-    "Construct me with the rootDir in order to call `download_sprites/icons`"
-    ICON_SIZE :Final[int] = 64
-
-    def __init__(self, rootDir:str) -> None:
-        self.__rootDir = rootDir
-
-    @cache
-    def __get_img (self, filePath:str) -> Mat:
-        "Fetches the given sprite sheet, also caches it for re-use"
-        return imread(path.join(self.__rootDir, filePath), IMREAD_UNCHANGED)
-
-    def __prepare_folder (self, dir:str):
-        "Makes and clears the given directory path"
-        makedirs(dir, exist_ok=True)
-        all(remove(p) for p in glob(f"{dir}/*.png")) # should only be PNGs
-    
-    def __get_resize (self, i:Texture) -> tuple[int,int]:
-        """Soley used when needing to use an items Sprite for their Icon,
-        calculates the new smaller size while maintaining aspect ratio"""
-        S = ImageDownloader.ICON_SIZE # shorthand
-        w, h = tuple(i.rect[2:4])
-        return tuple([S, round(S*h/w)]) if w > h else tuple([round(S*w/h), S])
-
-    @staticmethod
-    def __crop (img: Mat, rect:tuple[int,int,int,int])->Mat:
-        """Crops the given opencv `img` using the given xywh `rect`, returns the result"""
-        return img[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]]
-
-    @staticmethod
-    def __colour_image (img: Mat, colour:Colour) -> Mat:
-        if colour != WHITE:
-            c = list(colour)
-            c.reverse() # RGB -> BGR
-            return multiply(img[:,:], [*c, 1.0])
-        return img
-
-    def download_sprites (self, items:dict[str,Item], targetDir:str) -> bool:
-        "Attempts to download the sprites for the given `items`, looking in `self.rootDir`, exporting to `targetDir`"
-        self.__prepare_folder(targetDir)
-        return all(
-            imwrite(
-                f"{targetDir}/{id}.png",
-                self.__colour_image(
-                    self.__crop(
-                        self.__get_img(item.sprite.path),
-                        item.sprite.rect),
-                    item.sprite.colour)
-            ) for id, item in items.items()
-        )    
-
-    def download_icons (self, items:dict[str,Item], targetDir:str) -> bool:
-        "Attempts to download the icons for the given `items`, same as download_icons, but backs up to resized sprites if needed"
-        self.__prepare_folder(targetDir)
-        return all(
-            imwrite(
-                f"{targetDir}/{id}.png",
-                self.__colour_image(
-                    resize(
-                        self.__crop(
-                            self.__get_img(item.icon.path),
-                            item.icon.rect),
-                        self.__get_resize(item.icon)),
-                    item.icon.colour),
-            ) if item.icon is not None else
-            imwrite(
-                f"{targetDir}/{id}.png",
-                self.__colour_image(
-                    resize(
-                        self.__crop(
-                            self.__get_img(item.sprite.path),
-                            item.sprite.rect),
-                        self.__get_resize(item.sprite)),
-                    item.sprite.colour)
-            ) for id, item in items.items()
-        )
-# end ImageDownloader
 
 def export_items_to_searchDoc (items:dict[str,Item], targetPath:str):
-    "`others` is any filtered out items from `items`, as they may still be referenced to"
     makedirs(path.dirname(targetPath), exist_ok=True)
     with open(targetPath, 'w') as fout: fout.write(
         "[%s]" % (
@@ -600,6 +547,18 @@ def export_items_to_searchDoc (items:dict[str,Item], targetPath:str):
         )
     )
 
+
+def export_items_to_viewlist (items:dict[str,Item], targetPath:str):
+    lines :list[str] = []
+    for item in items.values():
+        craftable = 1 if len(item.recipes) > 0 else 0
+        deconable = 1 if item.deconsTo is not None else 0
+        rep = f'["{item.id}","{item.name}",{maybe(item.price).basePrice or "\"\""},{craftable},{deconable}]'
+        lines.append(rep)
+    with open(targetPath, 'w') as fout:
+        fout.write(f'[{",".join(lines)}]')
+
+
 def main ():
     rootDir = fetch_barotrauma_path()
     if rootDir is None: raise IOError("Failed to find where Barotrauma is")
@@ -611,13 +570,17 @@ def main ():
     items = fetch_items(xmlItems, texts)
     filter_items(items)
 
-    export_items_to_json(items, f"assets/json/items/{package.version}")
-    export_items_to_searchDoc(items, f"assets/json/items/{package.version}/!SearchDoc.json")
+    # items = refetch_items(f"assets/json/1-0-7-0/items")
+
+    # export_items_to_json(items, f"assets/json/{package.version}")
+    # export_items_to_searchDoc(items, f"assets/json/{package.version}/SearchDoc.json")
+    # export_items_to_viewlist(items, f"assets/json/{package.version}/ViewItemsList.json")
     
-    # imgdl = ImageDownloader(rootDir)
-    # imgdl.download_sprites(items, f"assets/images/items/{package.version}/sprites")
-    # imgdl.download_icons(items, f"assets/images/items/{package.version}/icons")
-    # del imgdl
+    from ItemImageDownloader import ImageDownloader
+    imgdl = ImageDownloader(rootDir)
+    imgdl.download_sprites(items, f"assets/images/items/{package.version}/sprites")
+    imgdl.download_icons(items, f"assets/images/items/{package.version}/icons")
+    del imgdl
 
     print("Done!")
     exit(0)

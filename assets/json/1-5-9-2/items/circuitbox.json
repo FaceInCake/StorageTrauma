@@ -1,0 +1,1 @@
+{"id":"circuitbox","name":"Circuit Box","category":"Electrical","desc":"Allows creating complex circuits in a compact and portable container.","tags":["smallitem"],"prices":{},"available":{},"deconsTo":{"plastic":1,"copper":1,"tin":1},"recipes":[{"required":{"plastic":2,"copper":4,"tin":4},"output":1},{"required":{"plastic":2,"copper":2,"tin":2},"output":1}]}

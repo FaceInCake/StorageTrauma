@@ -7,8 +7,9 @@
     "files.associations": {
         "*.yaml": "yaml",
         "*.md": "markdown",
-        // "*.js": "liquid-javascript"
+        "*.js": "liquid-javascript"
     },
     "python.analysis.typeCheckingMode": "basic",
-    "liquid.format.enable": false,
+    "python.analysis.autoImportCompletions": true,
+    // "liquid.format.enable": false,
 }

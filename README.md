@@ -1,4 +1,4 @@
-# BaroEconomy
+# StorageTrauma
 Manager and calculator for your submarines inventory with the game economy in the game Barotrauma.
 
 This program is a webapp, statically generated through GitHub. <br>

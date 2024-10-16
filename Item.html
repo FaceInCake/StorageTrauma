@@ -3,6 +3,18 @@ title: View Item
 scripts: [Item]
 ---
 
+<div class="container-lg">
+    <div class="w-auto p-2">
+        <img class="invisible" src="" alt="Item Icon" height="64"/>
+        <span class="spinner-grow" role="status" style="height: 64px;">
+            <span class="visually-hidden">Loading...</span>
+        </span>
+        <div class="w-auto" style="flex-direction: column; row-gap: 10px;">
+            <span id="item-name"></span>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col">
         <h2 id="item-name">...</h2>
@@ -19,7 +31,7 @@ scripts: [Item]
 
 <br>
 <div class="table-responsive">
-    <table class="table table-sm">
+    <table class="table table-sm" id="p-table">
         <caption class="title">Prices</caption>
         <thead>
             <tr>

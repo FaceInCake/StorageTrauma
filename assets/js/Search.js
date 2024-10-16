@@ -3,6 +3,7 @@
 
 // Create search index
 var index = elasticlunr(function(){
+    this.addField("id");
     this.setRef("id");
     this.addField("name");
     this.addField("desc");
@@ -41,8 +42,8 @@ function card (item) {
                 <img alt="MyItem" src="${imageUrl}">
             </div>
             <div class="icons">
-                <i class="fas fa-hammer text-${con}" aria-hidden="true"></i>
-                <i class="fas fa-cogs text-${dec}" aria-hidden="true"></i>
+                <i class="fas fa-hammer text-${con}" aria-hidden="true">C</i>
+                <i class="fas fa-cogs text-${dec}" aria-hidden="true">D</i>
             </div>
             <div>${price}</div>
         </div>
@@ -57,7 +58,7 @@ function onError (args) {
 $(async function main () {
     // Populate search index
     updateProgressBar(20, 'info', 'Fetching');
-    let docUrl = "{{site.baseurl}}/assets/json/items/{{ page.version }}/!SearchDoc.json";
+    let docUrl = "{{site.baseurl}}/assets/json/{{ page.version }}/SearchDoc.json";
     let searchDoc = await $.getJSON(docUrl);
     searchDoc.forEach(elm => index.addDoc(elm)); // console.log(elm)
     // Execute search
@@ -67,13 +68,14 @@ $(async function main () {
     });
     const results = await index.search(params.search, {
         fields: {
-            name: {boost: 10},
-            category: {boost: 8},
-            tags: {boost: 6},
-            desc: {boost: 2},
-            recipes: {boost: 0.9},
-            deconsTo: {boost: 1.1},
-            prices: {boost: 0.1}
+            name: {boost: 1.5},
+            id: {boost: 1.1},
+            category: {boost: 1},
+            tags: {boost: 1},
+            desc: {boost: 0.4},
+            recipes: {boost: 0.4},
+            deconsTo: {boost: 0.4},
+            price: {boost: 0.3}
         },
         expand: true
     });
