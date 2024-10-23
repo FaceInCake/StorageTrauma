@@ -12,7 +12,7 @@ from cv2 import resize, imread, imwrite, IMREAD_UNCHANGED # OpenCV image editing
 from cv2.typing import MatLike
 
 def __validate_path (target:str) -> str:
-    "recursive helper function"
+    "recursive helper function for `path_to`"
     if isdir(target): return target
     head, tail = path_split(target)
     if head=='':
@@ -24,16 +24,17 @@ def __validate_path (target:str) -> str:
         if m := re_tail.match(test):
             return head+'/'+m[0]
     raise IOError(f"Invalid directory '{tail}' at '{head}'")
+
 def path_to (targetPath:str) -> str:
     "Will attempt to find the file at the given path. Checks for case-sensitivity"
-    targetPath = targetPath.replace('\\', '/') # windows is fine with forward-slashes 
+    targetPath = targetPath.replace('\\', '/') # modern windows is fine with forward-slashes 
     if isfile(targetPath): return targetPath
     head, tail = path_split(targetPath)
     head = __validate_path(head)
     re_tail = compile('(?i)'+tail)
     candidates = listdir(head)
     for test in candidates:
-        if m := re_tail.match(test):
+        if (m := re_tail.match(test)):
             return head + '/' + m[0]
     raise IOError(f"Invalid file name '{tail}' at '{head}'")
 

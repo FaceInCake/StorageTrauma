@@ -2,18 +2,24 @@
 
 from collections import defaultdict # Dictionary with default value, good for getting price of item, as it MIGHT vary per merchant
 from tkinter import filedialog, messagebox # Dialog boxes
-from os import path, makedirs # For creating cross-platform file URIs
+from os import path, makedirs, remove # For creating cross-platform file URIs
 from sys import platform # windows or linux or whatnot
-from typing import NamedTuple,Self,Any,Literal,TypeVar,Protocol,Sequence,SupportsIndex,Final,Iterator
+from typing import NamedTuple,Self,Any,Literal,TypeVar,Protocol,Sequence,Final,Iterator, TypedDict
 from contextlib import suppress
+from functools import cache
 from xml.etree.ElementTree import parse, Element # Turn that text into objects!
-from json import load as load_json
 from glob import glob # Find them files
+from json import load as json_load
+from numpy import multiply # Epic math
 # from scipy.sparse import csr_matrix # Can represent a directed graph, used for con or decon trees
+from cv2 import resize, imread, imwrite, IMREAD_UNCHANGED # OpenCV image editing tools, yes its a bit overkill, bite me
+from cv2.typing import MatLike
 
+_RT = TypeVar('_RT', bound=object, covariant=True)
+"Generic return type"
 
-_RT = TypeVar('_RT', bound=object, covariant=True) # "Generic return type"
-_PT = TypeVar("_PT") # "Generic parameter type"
+_PT = TypeVar("_PT")
+"Generic parameter type"
 
 class SupportGet (Protocol[_RT]):
     def get (self, __key :str) -> _RT|None: return None
@@ -22,9 +28,13 @@ class Nothing:
     "Any getters return self or empty. Always falsy."
     def __getattribute__(self, __name: str) -> Self: return self
     def __call__(self, *args: Any, **kwds: Any) -> Self: return self
-    def __getitem__(self, __i: SupportsIndex) -> Self: return self
+    def __getitem__(self, __i: Any) -> Self: return self
     def __bool__ (self) -> Literal[False]: return False
     def __iter__ (self) -> Iterator[Any]: return iter([])
+
+def maybe (obj :_PT|None) -> _PT|Nothing:
+    "Returns a falsy `Nothing` object if `obj` is None, effectively working as the save-navigation operator"
+    return Nothing() if obj is None else obj
 
 def try_get (e :SupportGet[_PT], default:_PT, keys :Sequence[str|None]) -> _PT:
     if len(keys)==0: return default
@@ -32,10 +42,6 @@ def try_get (e :SupportGet[_PT], default:_PT, keys :Sequence[str|None]) -> _PT:
         test = e.get(keys[0])
         if test is not None: return test
     return try_get(e, default, keys[1:])
-
-def maybe (obj :_PT|None) -> _PT|Nothing:
-    "Returns a falsy `Nothing` object if `obj` is None, effectively working as the save-navigation operator"
-    return Nothing() if obj is None else obj
 
 
 class ContentPackage (NamedTuple):
@@ -67,98 +73,92 @@ class ContentPackage (NamedTuple):
             characters=  get_files("Character"),
             afflictions= get_files("Afflictions"),
             structures= get_files("Structure"),
-            npc_sets= []
+            npc_sets= get_files("NPCSets")
         )
 
-class Pricing (NamedTuple):
-    """Contains info for getting the price of an item.
-    The `basePrice` is what it is, everything else is after the multiplier.
-    For example, `military` might have a price multiplier of 1.1, which is multiplied with the `basePrice`.  
-    You might need to do rounding where necessary."""
+
+# <Clear/>
+# price can be alone
+# <Price basePrice sold canbespecial /> (ex: flamerunique, cheaper fabrication items (can sell, cannot buy))
+
+class Listing (TypedDict, total=False):
+    "contains pricing information for single source of purchase, (a merchant). See `PricingInfo`"
     basePrice : int
-    outpost  : float
-    city     : float
-    mine     : float
-    military : float
-    research : float
-    engineering : float
-    medical  : float
-    armory   : float
+    minAvailable : int
+    "Should be provided. If not provided, sold should be False. 0 technically works though too, sold overrides this"
+    maxAvailable : int|None
+    "Defaults to minAvailable, which will be represented by None"
+    sold : bool
+    "Merchants can offer it"
+    canBeSpecial : bool
+    "Can the item be on sale, basically"
+    multiplier : float
+    "Different merchants have different multiplers for the basePrice"
+    minDifficulty : int
+    "The minimum difficulty percentage point for this item to be offered"
+    repRequired : dict[str, int]
+    "[merchant:str] -> reputationPoints, minimum reputation needed to buy this item from this merchant"
+    buyingPriceModifier : float
+    "Additional price multiplier that is only applied to the purchasing of the item, not selling"
+    # displaynonempty : bool # used for oxygentanks and stuff that have/show a durability
+    requiresUnlock : bool
+    "Some unique items require a skill point or event unlock to be to actually buy/sell that item"
 
-    @classmethod
-    def from_Element (cls, e:Element|None) -> Self|None:
-        "Expects the Price element `e`, returns None if `e` is None"
-        if e is None: return None
-        if e.tag != "Price" : raise ValueError(f"Expected a 'Price' element but was '{e.tag}'")
-        basePrice = e.get("baseprice", "")
-        if basePrice=="": raise KeyError("Expected a 'baseprice' attribute from Element `e`")
-        basePrice = int(basePrice)
-        pd :dict[str,float] = {
-            i : float(m) * basePrice
-            for i,m in [(
-                p.get("storeidentifier", ""),
-                p.get("multiplier", 1.0)
-                ) for p in e.findall("Price")
-            ] if i != ""
+DEFAULT_LISTING = Listing(
+    basePrice= 0,
+    minAvailable= 0,
+    maxAvailable= None,
+    sold= True,
+    canBeSpecial= True,
+    multiplier= 1.0,
+    minDifficulty= 0,
+    repRequired= {},
+    buyingPriceModifier= 1.0,
+    requiresUnlock= False
+)
+
+def Element_to_Listing (e:Element) -> Listing:
+    kwargs = {
+        k : type(DEFAULT_LISTING[k])(x)
+        for k in DEFAULT_LISTING.keys()
+        if (x := e.get(k.lower()))
+    }
+    if (x := e.findall('Reputation')):
+        kwargs['repRequired'] = {
+            o.get('faction','') : int(o.get('min',0))
+            for o in x
         }
-        return cls(
-            basePrice= basePrice,
-            outpost=  pd.get("merchantoutpost", basePrice),
-            city=     pd.get("merchantcity", basePrice),
-            mine=     pd.get("merchantmine", basePrice),
-            military= pd.get("merchantmilitary", basePrice),
-            research= pd.get("merchantresearch", basePrice),
-            engineering= pd.get("merchantengineering", basePrice),
-            medical=  pd.get("merchantmedical", basePrice),
-            armory=   pd.get("merchantarmory", basePrice),
-        )
+    return Listing(**kwargs)
+   
+def Listing_to_Json (l:Listing) -> str:
+    return str({
+        k :
+            v if isinstance(v, (int,float)) else
+            str(v).lower() if isinstance(v, bool) else
+            str(v).replace("'", '"') # is dict
+        for k,v in l.items()
+    }).replace("'", '"')
 
-    def to_json (self) -> str:
-        return '{"default":%d,"outpost":%f,"city":%f,"mine":%f,"military":%f,"research":%f,"engineering":%f,"medical":%f,"armory":%f}' % (
-            self.basePrice, self.outpost, self.city, self.mine, self.military, self.research, self.engineering, self.medical, self.armory )
+PricingInfo = defaultdict[str, Listing]
+"[MerchantName:str] -> Listing"
 
-class Availability (NamedTuple):
-    "Contains info for the availability for an item."
-    default  : int
-    outpost  : int
-    city     : int
-    mine     : int
-    military : int
-    research : int
-    engineering : int
-    medical  : int
-    armory   : int
+def Element_to_PricingInfo (parent:Element|None) -> PricingInfo | None:
+    if parent is None: return None
+    if parent.tag != "Price" : raise ValueError(f"Expected a 'Price' element but was '{parent.tag}'")
+    default = Element_to_Listing(parent)
+    pinfo :defaultdict[str, Listing] = defaultdict(lambda: default)
+    for p in parent.findall('Price'):
+        if (id := p.get('storeidentifier','')):
+            for k,v in parent.items(): # iter through attributes
+                p.set(k, p.get(k, v)) # extend `p` attributes with `parent` attributes
+            pinfo[id.removeprefix('merchant')] = Element_to_Listing(p)
+    # TODO: a `<Clear/>` within a price tag... wth do we do?
+    return pinfo
 
-    @classmethod
-    def from_Element (cls, e:Element|None) -> Self|None:
-        "Expects the parent Price element `e`, returns None if `e` is None"
-        if e is None: return None
-        if e.tag != "Price" : raise ValueError(f"Expected a 'Price' element but was '{e.tag}'")
-        baseAvail = 0 if e.get("sold")=="false" else int(e.get("minavaiable", 1))
-        pd :dict[str,int] = {
-            i : 0 if notSold else int(avail)
-            for i, avail, notSold in [(
-                p.get("storeidentifier", ""),
-                p.get("minavailable", 1),
-                p.get("sold") == "false"
-                ) for p in e.findall("Price")
-            ] if i != ""
-        }
-        return cls( # TODO: Verify how the inheritence of base availability works
-            default= baseAvail,
-            outpost= pd.get("merchantoutpost", 0),
-            city= pd.get("merchantcity", 0),
-            mine= pd.get("merchantmine", 0),
-            military= pd.get("merchantmilitary", 0),
-            research= pd.get("merchantresearch", 0),
-            engineering= pd.get("merchantengineering", 0),
-            medical= pd.get("merchantmedical", 0),
-            armory= pd.get("merchantarmory", 0)
-        )
-
-    def to_json (self) -> str:
-        return '{"default":%d,"outpost":%d,"city":%d,"mine":%d,"military":%d,"research":%d,"engineering":%d,"medical":%d,"armory":%d}' % (
-            self.default, self.outpost, self.city, self.mine, self.military, self.research, self.engineering, self.medical, self.armory )
+def PricingInfo_to_Json (p:PricingInfo) -> str:
+    dic = dict(p)
+    dic['default'] = maybe(p.default_factory)() or {}
+    return str(dic).replace("'", '"')
 
 DEFAULT_TIME :Final[Literal["15.0"]] = "15.0" #TODO: Verify me
 class Deconstructable (NamedTuple):
@@ -180,7 +180,6 @@ class Deconstructable (NamedTuple):
         for i in items: # An item can be listed multiple times, this code makes sure they get added up
             id = i.get("identifier", "")
             if id != "": dd[id] += int(i.get("amount", 1))
-        return cls(output=dict(dd), time=float(time))
         return cls(output=dict(dd), time=float(time))
 
     def to_json (self) -> str:
@@ -261,8 +260,8 @@ class Texture (NamedTuple):
             tex = path.join(dir, tex)
         rect = e.get("sourcerect", "")
         if rect != "":
-            vals = tuple(int(s) for s in rect.split(",", 3))
-            rect = (vals[0], vals[1], vals[2], vals[3])
+            rectList = [int(s) for s in rect.split(",", 3)]
+            rect = (rectList[0], rectList[1], rectList[2], rectList[3])
         else:
             ses = e.get("sheetelementsize", "")
             si = e.get("sheetindex", "")
@@ -303,10 +302,8 @@ class Item (NamedTuple):
     "In game description for a set language"
     category : str
     "Self explanetory, chosen by the devs. Always English?"
-    pricing : Pricing | None
-    "Contains pricing information if it exists"
-    availability : Availability | None
-    "Contains information on count of items sold if sold"
+    priceInfo : PricingInfo | None
+    "Contains info for the availability and pricing of the item"
     deconsTo : Deconstructable | None
     "What this item deconstructs into, may not exist"
     recipes : list[Recipe]
@@ -323,23 +320,21 @@ class Item (NamedTuple):
         Returns None if `e` is invalid, meaning a valid Item could not be created.
         If the item is a variation of another item, pass in `variantOf`."""
         # e.tag NOT guaranteed to be Item for whatever reason
-        dir = e.get("dir", "") # dir is supplied by me, used for sprites/icons
+        dir = e.get("dir", "")
         if dir == "": return None
-        def fetch (target:str) -> Element|None:
-            i = e.find(target)
+        def fetch (target:str) -> Element | None:
+            i = l[-1] if (l := e.findall(target)) else None
             if i is None: i = e.find(target.lower())
             if i is None:
                 if variantOf is None: return None
                 j = variantOf.find(target)
                 if j is None: j = variantOf.find(target.lower())
-                if j is None: return None
-                j.set('__dir', variantOf.get('dir',''))
                 return j
             if variantOf is not None:
                 j = variantOf.find(target)
                 if j is None: j = variantOf.find(target.lower())
                 if j is not None:
-                    if not len(i):
+                    if not i:
                         i.extend(iter(j)) # Update i with j's children if i doesnt have any
                     ik = i.keys()
                     for jk, ji in j.items():
@@ -348,7 +343,6 @@ class Item (NamedTuple):
             return i
         # end func
         e_sprite = fetch("Sprite")
-        e_icon = fetch("InventoryIcon")
         if e_sprite is None: return None
         id :str = e.get("identifier") or e.get("file","")+f"_{hash(e)}"
         name :str = texts.get(f"entityname.{e.get('nameidentifier', id)}", id)
@@ -356,11 +350,11 @@ class Item (NamedTuple):
         def backup_get (target:str, default:str)->str:
             return e.get(target.lower()) or e.get(target) or maybe(variantOf).get(target.lower()) or maybe(variantOf).get(target) or default
         cat :str = backup_get("Category", "None")
-        with suppress(AttributeError): # Handle Genetic Material genericism, I decided to use functional programming here becuase I can and its fun
+        with suppress(AttributeError): # Handle Genetic Material genericism
             name, desc = (lambda g: (
-                (lambda t: name.replace("[type]", t)) (
-                    (lambda i: texts.get(i,""))
-                    (g.get("nameidentifier",""))), #type: ignore
+                (lambda t: name.replace("[type]", t)) ( #type: ignore
+                    (lambda i: texts.get(i)) #type: ignore
+                    (g.get("nameidentifier"))), #type: ignore
                 (lambda v0,v1: desc.replace("[value]", f"{v0}-{v1}"))
                 (g.get("tooltipvaluemin"), g.get("tooltipvaluemax")) #type: ignore
             ))(fetch("GeneticMaterial"))
@@ -368,34 +362,32 @@ class Item (NamedTuple):
         e_p :Element|None = fetch("Price")
         e_f :list[Element] = e.findall("Fabricate") or maybe(variantOf).findall("Fabricate") or []
         def parse_colour (key:str) -> Colour|None:
-            valueS = backup_get(key, "")
-            if valueS=="": return None
-            nums = [
+            valueStr = backup_get(key, "")
+            if valueStr=="": return None
+            valueList = [
                 float(s) if '.' in s else int(s)/255.0
-                for s in valueS.split(",",3)
+                for s in valueStr.split(",",3)
             ]
-            return (nums[0], nums[1], nums[2])
+            return (valueList[0], valueList[1], valueList[2])
         _ic :Colour|None = parse_colour("InventoryIconColor")
         _sc :Colour|None = parse_colour("SpriteColor")
         return cls(
             id=id, name=name, desc=desc, category=cat,
             tags= [s.strip() for s in e_t.split(",")],
-            pricing= Pricing.from_Element(e_p),
-            availability= Availability.from_Element(e_p),
+            priceInfo=Element_to_PricingInfo(e_p),
             deconsTo= Deconstructable.from_Element(fetch("Deconstruct")),
             recipes= [r for r in (Recipe.from_Element(f) for f in e_f) if r is not None],
-            icon= InventoryIcon.from_Element(e_icon, maybe(e_icon).get('__dir') or dir, _ic),
-            sprite= Sprite.from_Element(e_sprite, e_sprite.get('__dir') or dir, _sc)
+            icon= InventoryIcon.from_Element(fetch("InventoryIcon"), dir, _ic),
+            sprite= Sprite.from_Element(e_sprite, dir, _sc)
         )
 
     def to_json (self) -> str:
-        return '{"id":"%s","name":"%s","category":"%s","desc":"%s","tags":[%s],"prices":%s,"available":%s,"deconsTo":%s,"recipes":[%s]}' % (
+        return '{"id":"%s","name":"%s","category":"%s","desc":"%s","tags":[%s],"priceInfo":%s,"deconsTo":%s,"recipes":[%s]}' % (
             self.id, self.name, self.category,
             self.desc.replace('"', '\\"'),
             ",".join(f'"{s}"' for s in self.tags),
-            self.pricing.to_json() if self.pricing is not None else "{}",
-            self.availability.to_json() if self.availability is not None else "{}",
-            self.deconsTo.to_json() if self.deconsTo is not None else "{}",
+            PricingInfo_to_Json(self.priceInfo) if self.priceInfo else r"{}",
+            self.deconsTo.to_json() if self.deconsTo is not None else r"{}",
             ",".join(r.to_json() for r in self.recipes)
         )
 
@@ -414,8 +406,6 @@ def fetch_barotrauma_path ()->str|None:
             "~/.steam/"+steamGame,
             "~/.local/share/"+steamGame,
             "~/"+steamGame,
-            "~/snap/steam/common/.local/share/"+steamGame,
-            "/home/faceincake/snap/steam/common/.steam/steam/steamapps/common/Barotrauma"
         ],
         "darwin": [ # Mac OS X
             "~/Library/Application Support/"+steamGame,
@@ -489,25 +479,24 @@ def fetch_language (rootDir:str, langName:str) -> dict[str,str]:
 def fetch_items (xmlItems :dict[str,Element], texts :dict[str,str]) -> dict[str,Item]:
     items0 :list[Item|None] = [
         Item.from_Element(e, texts, try_get(xmlItems, None, (e.get("variantof"),)))
-        for e in xmlItems.values()
+        for e in xmlItems.values()        
     ]
     items :dict[str,Item] = { i.id : i for i in items0 if i is not None}
     print("Parsed out %4d Items" % len(items))
     return items
 
-def refetch_items (folderPath:str) -> dict[str,Item]:
+def refetch_partial_items (folderPath:str) -> dict[str,Item]:
     retr :dict[str,Item] = {}
     for path in glob(folderPath+"/*.json"):
         with open(path) as fin:
-            o = load_json(fin)
+            o = json_load(fin)
             p = o['prices']
             if p:
                 p['basePrice'] = p['default']
                 del p['default']
             retr[o['id']] = Item(
                 o['id'], o['tags'], o['name'], o['desc'], o['category'],
-                Pricing(**p) if p else None,
-                Availability(**o['available']) if o['available'] else None,
+                PricingInfo(**p) if p else None,
                 Deconstructable(o['deconsTo'], 30) if o['deconsTo'] else None,
                 [Recipe(r['required'], r['output'], "Undefined", 30, {}) for r in o['recipes']],
                 None,
@@ -519,25 +508,24 @@ def filter_items (items :dict[str,Item]) -> dict[str,Item]:
     "Modifies `items`, returns the filtered out items!"
     rest :dict[str,Item] = {}
     for id, i in list(items.items()):
-        if i.pricing is None and len(i.recipes)==0 and i.deconsTo is None:
+        if i.priceInfo is None and len(i.recipes)==0 and i.deconsTo is None:
             rest[id] = items.pop(id)
     print("Filtered out %3d Items, %4d remaining" % (
         len(rest), len(items)
     ))
     return rest
 
-
-def export_items_to_json (items:dict[str,Item], targetDir:str):
-    makedirs(targetDir+'/items', exist_ok=True)
+def export_items_to_json (items :dict[str,Item], targetDir:str):
+    if not path.isdir(targetDir): makedirs(targetDir)
     with open(targetDir+"/ItemList.json", 'w') as fout:
         fout.write('['+','.join(f'"{i}"' for i in items.keys())+']')
     for id, item in items.items():
-        name :str = targetDir+'/items/'+id+".json"
+        name :str = f"{targetDir}/items/{id}.json"
         with open(name, 'w') as fout:
             fout.write(item.to_json())
 
-
 def export_items_to_searchDoc (items:dict[str,Item], targetPath:str):
+    "`others` is any filtered out items from `items`, as they may still be referenced to"
     makedirs(path.dirname(targetPath), exist_ok=True)
     with open(targetPath, 'w') as fout: fout.write(
         "[%s]" % (
@@ -546,7 +534,7 @@ def export_items_to_searchDoc (items:dict[str,Item], targetPath:str):
                     id, item.name, item.category,
                     item.desc.replace('"', '\\"'),
                     ",".join(item.tags),
-                    str(maybe(item.pricing).basePrice or ""),
+                    str(maybe(item.priceInfo)['default']['basePrice'] or ""),
                     ",".join(
                         items[i].name
                         for i in (maybe(item.deconsTo).output.keys() or list[str]())
@@ -562,16 +550,24 @@ def export_items_to_searchDoc (items:dict[str,Item], targetPath:str):
         )
     )
 
-
 def export_items_to_viewlist (items:dict[str,Item], targetPath:str):
     lines :list[str] = []
     for item in items.values():
         craftable = 1 if len(item.recipes) > 0 else 0
         deconable = 1 if item.deconsTo is not None else 0
-        rep = f'["{item.id}","{item.name}",{maybe(item.pricing).basePrice or "\"\""},{craftable},{deconable}]'
+        bp = maybe(item.priceInfo)['default'].get('basePrice') or "\"\""
+        rep = f'["{item.id}","{item.name}",{bp},{craftable},{deconable}]'
         lines.append(rep)
     with open(targetPath, 'w') as fout:
         fout.write(f'[{",".join(lines)}]')
+
+def export_default_price_info (targetPath:str, merchants:list[str]):
+    global DEFAULT_LISTING
+    makedirs(path.dirname(targetPath), exist_ok=True)
+    with open(targetPath, 'w') as fout:
+        merchStr = ",".join(merchants)
+        defStr = Listing_to_Json(DEFAULT_LISTING)
+        fout.write(f'{{"merchants":[{merchStr}],"default":{defStr}}}')
 
 
 def main ():
@@ -586,17 +582,18 @@ def main ():
     items = fetch_items(xmlItems, texts)
     filter_items(items)
 
-    # items = refetch_items(f"assets/json/1-0-7-0/items")
+    # items = refetch_partial_items(f"assets/json/{package.version}/items")
 
-    # export_items_to_json(items, f"assets/json/{package.version}")
-    # export_items_to_searchDoc(items, f"assets/json/{package.version}/SearchDoc.json")
-    # export_items_to_viewlist(items, f"assets/json/{package.version}/ViewItemsList.json")
-    
-    from ItemImageDownloader import ImageDownloader
-    imgdl = ImageDownloader(rootDir)
-    imgdl.download_sprites(items, f"assets/images/items/{package.version}/sprites")
-    imgdl.download_icons(items, f"assets/images/items/{package.version}/icons")
-    del imgdl
+    export_items_to_json(items, f"assets/json/{package.version}")
+    export_default_price_info(f"assets/json/{package.version}/DefaultListing.json", merchants)
+    export_items_to_searchDoc(items, f"assets/json/{package.version}/SearchDoc.json")
+    export_items_to_viewlist(items, f"assets/json/{package.version}/ViewItemsList.json")
+
+    # from ItemImageDownloader import ImageDownloader
+    # imgdl = ImageDownloader(rootDir)
+    # imgdl.download_sprites(items, f"assets/images/items/{package.version}/sprites")
+    # imgdl.download_icons(items, f"assets/images/items/{package.version}/icons")
+    # del imgdl
 
     print("Done!")
     return 0
