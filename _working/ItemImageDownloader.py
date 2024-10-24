@@ -4,7 +4,7 @@ from functools import cache
 from os import makedirs, remove, listdir
 from os.path import split as path_split, isdir, isfile, join as path_join
 from typing import Final
-from ItemParser import Texture, Colour, Item, WHITE
+from BaroInterface import Texture, Colour, Item, WHITE
 from glob import glob
 from re import compile
 from numpy import multiply # Epic math
