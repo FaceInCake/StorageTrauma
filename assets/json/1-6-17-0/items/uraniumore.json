@@ -1,0 +1,1 @@
+{"id":"uraniumore","name":"Uranium Ore","category":"Material","desc":"A mineral containing large concentrations of uranium.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":200,"sold":false}},"deconsTo":{"uranium":3},"recipes":[]}

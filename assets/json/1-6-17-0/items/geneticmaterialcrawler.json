@@ -1,0 +1,1 @@
+{"id":"geneticmaterialcrawler","name":"Genetic Material (Crawler)","category":"Material","desc":"Increases swimming speed by 10-50%.","tags":["smallitem","geneticmaterial"],"priceInfo":{"city":{},"research":{"multiplier":1.2},"default":{"basePrice":750,"sold":false}},"deconsTo":{"geneticmaterialcrawler":1},"recipes":[]}

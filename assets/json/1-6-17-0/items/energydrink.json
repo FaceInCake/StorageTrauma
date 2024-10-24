@@ -1,0 +1,1 @@
+{"id":"energydrink","name":"Energy Drink","category":"Medical,Material","desc":"Mantis Energy keeps you skittering from dawn till dusk!","tags":["smallitem","chem","medical"],"priceInfo":{"nightclub":{"minAvailable":4},"default":{"basePrice":40,"sold":false}},"deconsTo":{},"recipes":[]}

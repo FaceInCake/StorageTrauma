@@ -1,0 +1,1 @@
+{"id":"chitinhelmet","name":"Chitin Helmet","category":"Equipment","desc":"A tough helmet made of chitin.","tags":["smallitem"],"priceInfo":{"outpost":{},"city":{},"research":{},"military":{"multiplier":1.6},"mine":{},"default":{"basePrice":175,"sold":false}},"deconsTo":{"chitin":1},"recipes":[{"required":{"chitin":1},"output":1}]}

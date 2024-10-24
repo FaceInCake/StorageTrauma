@@ -1,0 +1,1 @@
+{"id":"geneticmaterialthresher","name":"Genetic Material (Tiger Thresher)","category":"Material","desc":"Decreases the subject's oxygen consumption by 20-100%.","tags":["smallitem","geneticmaterial"],"priceInfo":{"city":{},"research":{"multiplier":1.2},"default":{"basePrice":750,"sold":false}},"deconsTo":{"geneticmaterialthresher":1},"recipes":[]}

@@ -1,0 +1,1 @@
+{"id":"captainscap2","name":"Renegade's Hat","category":"Equipment","desc":"Strikes fear into the hearts of your enemies.","tags":["smallitem"],"priceInfo":{"outpost":{"minAvailable":1},"city":{"minAvailable":1,"multiplier":0.9},"research":{"minAvailable":1},"military":{"minAvailable":1},"mine":{"minAvailable":1},"default":{"basePrice":75}},"deconsTo":{},"recipes":[]}

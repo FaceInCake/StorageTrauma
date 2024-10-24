@@ -1,0 +1,1 @@
+{"merchants":["outpost","city","mine","research","military","armory","medical","engineering","nightclub","armsdealer","clown","husk"],"default":{"basePrice":0,"minAvailable":0,"maxAvailable":null,"sold":true,"canBeSpecial":true,"multiplier":1.0,"minDifficulty":0,"repRequired":{},"buyingPriceModifier":1.0,"requiresUnlock":false}}

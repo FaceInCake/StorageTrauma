@@ -1,0 +1,1 @@
+{"id":"alientranslator","name":"???","category":"Alien","desc":"Strange symbols are etched on this circular tablet.","tags":["smallitem"],"priceInfo":{"outpost":{"multiplier":0.2},"city":{"multiplier":0.2},"research":{"multiplier":2},"military":{"multiplier":"0.2 "},"mine":{},"default":{"basePrice":500,"sold":false}},"deconsTo":{},"recipes":[]}

@@ -1,0 +1,1 @@
+{"id":"huskstinger","name":"Husk Stinger","category":"Weapon","desc":"A makeshift stabbing tool.","tags":["smallitem"],"priceInfo":{"husk":{"minAvailable":1,"maxAvailable":2,"sold":true,"repRequired":{"huskcult":70}},"default":{"basePrice":500,"sold":false}},"deconsTo":{},"recipes":[]}

@@ -1,0 +1,1 @@
+{"id":"chamosite","name":"Chamosite","category":"Material","desc":"A mineral consisting of iron and aluminum.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":130,"sold":false}},"deconsTo":{"iron":2,"aluminium":2},"recipes":[]}

@@ -1,0 +1,1 @@
+{"id":"hydroxyapatite","name":"Hydroxyapatite","category":"Material","desc":"A mineral composed of calcium and phosphorus.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":100,"sold":false}},"deconsTo":{"calcium":1,"phosphorus":2},"recipes":[]}

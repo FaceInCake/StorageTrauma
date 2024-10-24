@@ -1,0 +1,1 @@
+{"id":"banditclothes1","name":"Bandit Outfit","category":"Equipment","desc":"","tags":["smallitem","clothing"],"priceInfo":{"outpost":{},"city":{"multiplier":0.9},"research":{},"military":{},"mine":{},"default":{"basePrice":75,"sold":false}},"deconsTo":{"organicfiber":1},"recipes":[]}

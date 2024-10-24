@@ -1,0 +1,1 @@
+{"id":"beerbottle2","name":"Beer Bottle","category":"Medical,Misc","desc":"","tags":["smallitem"],"priceInfo":{"clown":{"minAvailable":0,"maxAvailable":3,"repRequired":{"clowns":30}},"nightclub":{"minAvailable":20},"default":{"basePrice":60,"sold":false}},"deconsTo":{},"recipes":[]}
