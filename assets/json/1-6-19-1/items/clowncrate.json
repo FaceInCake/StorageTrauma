@@ -1,0 +1,1 @@
+{"id":"clowncrate","name":"Clown Crate","category":"None","desc":"A crate large enough to fit a prankster inside.","tags":["crate","allowcleanup","clowns"],"priceInfo":{},"deconsTo":{},"recipes":[{"required":{"metalcrate":1,"redpaint":1,"rubber":1},"output":1}]}

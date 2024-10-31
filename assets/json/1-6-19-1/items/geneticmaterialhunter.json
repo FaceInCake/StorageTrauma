@@ -1,0 +1,1 @@
+{"id":"geneticmaterialhunter","name":"Genetic Material (Hunter)","category":"Material","desc":"Receiving physical damage makes the subject gain a 75-150% boost to melee weapon damage.","tags":["smallitem","geneticmaterial"],"priceInfo":{"city":{},"research":{"multiplier":1.2},"default":{"basePrice":750,"sold":false}},"deconsTo":{"geneticmaterialhunter":1},"recipes":[]}

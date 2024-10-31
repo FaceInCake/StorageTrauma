@@ -1,0 +1,1 @@
+{"id":"aragonite","name":"Aragonite","category":"Material","desc":"A mineral containing calcium.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":80,"sold":false}},"deconsTo":{"calcium":2},"recipes":[]}

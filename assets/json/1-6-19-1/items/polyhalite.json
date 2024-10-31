@@ -1,0 +1,1 @@
+{"id":"polyhalite","name":"Polyhalite","category":"Material","desc":"A mineral consisting of potassium and calcium.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":50,"sold":false}},"deconsTo":{"potassium":1,"calcium":1},"recipes":[]}

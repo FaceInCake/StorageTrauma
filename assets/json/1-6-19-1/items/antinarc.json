@@ -1,0 +1,1 @@
+{"id":"antinarc","name":"Naloxone","category":"Medical","desc":"An opioid antagonist for the treatment of opiate-based withdrawal and overdose.","tags":["smallitem","chem","medical","syringe"],"priceInfo":{"medical":{"multiplier":0.9},"default":{"basePrice":100,"minAvailable":2}},"deconsTo":{"stabilozine":1},"recipes":[{"required":{"opium":1,"stabilozine":1},"output":1}]}

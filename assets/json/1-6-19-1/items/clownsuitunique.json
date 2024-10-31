@@ -1,0 +1,1 @@
+{"id":"clownsuitunique","name":"Mother's Providence","category":"Equipment","desc":"Nothing can escape mother's warm embrace.","tags":["smallitem","clothing","clowngear","clowns"],"priceInfo":{"clown":{"minAvailable":0,"maxAvailable":1,"sold":true,"repRequired":{"clowns":90}},"default":{"basePrice":500,"sold":false,"canBeSpecial":false}},"deconsTo":{"bikehorn":3},"recipes":[]}

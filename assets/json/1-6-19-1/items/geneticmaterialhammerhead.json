@@ -1,0 +1,1 @@
+{"id":"geneticmaterialhammerhead","name":"Genetic Material (Hammerhead)","category":"Material","desc":"Allows the subject to to do 20-100% more damage with melee weapons.","tags":["smallitem","geneticmaterial"],"priceInfo":{"city":{},"research":{"multiplier":1.2},"default":{"basePrice":750,"sold":false}},"deconsTo":{"geneticmaterialhammerhead":1},"recipes":[]}

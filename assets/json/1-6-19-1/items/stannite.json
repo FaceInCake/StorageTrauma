@@ -1,0 +1,1 @@
+{"id":"stannite","name":"Stannite","category":"Material","desc":"A mineral composed of copper, iron and tin.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":50,"sold":false}},"deconsTo":{"copper":1,"iron":1,"tin":1},"recipes":[]}

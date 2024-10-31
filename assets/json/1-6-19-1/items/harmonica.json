@@ -1,0 +1,1 @@
+{"id":"harmonica","name":"Harmonica","category":"Misc","desc":"An old handmade harmonica.","tags":["smallitem","instrument"],"priceInfo":{"outpost":{"minAvailable":1},"city":{"minAvailable":1},"research":{"sold":false},"military":{"sold":false},"mine":{"sold":false},"default":{"basePrice":50}},"deconsTo":{},"recipes":[]}
