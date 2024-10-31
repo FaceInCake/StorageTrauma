@@ -1,1 +1,0 @@
-{"id":"galena","name":"Galena","category":"Material","desc":"A mineral mostly consisting of lead.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":70,"sold":false}},"deconsTo":{"lead":2},"recipes":[]}

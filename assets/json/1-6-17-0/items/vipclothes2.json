@@ -1,1 +1,0 @@
-{"id":"vipclothes2","name":"VIP Outfit","category":"Equipment","desc":"","tags":["smallitem","clothing"],"priceInfo":{"outpost":{},"city":{"multiplier":0.9},"research":{},"military":{},"mine":{},"default":{"basePrice":150,"sold":false}},"deconsTo":{"organicfiber":1},"recipes":[]}

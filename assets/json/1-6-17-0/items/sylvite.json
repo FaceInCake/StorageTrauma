@@ -1,1 +1,0 @@
-{"id":"sylvite","name":"Sylvite","category":"Material","desc":"A mineral containing potassium and sodium.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":70,"sold":false}},"deconsTo":{"sodium":1,"potassium":2},"recipes":[]}

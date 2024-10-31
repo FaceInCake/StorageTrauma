@@ -1,1 +1,0 @@
-{"id":"bornite","name":"Bornite","category":"Material","desc":"A mineral containing copper.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":60,"sold":false}},"deconsTo":{"copper":2},"recipes":[]}

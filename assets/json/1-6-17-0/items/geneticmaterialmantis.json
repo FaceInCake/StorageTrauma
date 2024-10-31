@@ -1,1 +1,0 @@
-{"id":"geneticmaterialmantis","name":"Genetic Material (Mantis)","category":"Material","desc":"Increases movement speed on land by 10-25%.","tags":["smallitem","geneticmaterial"],"priceInfo":{"city":{},"research":{"multiplier":1.2},"default":{"basePrice":750,"sold":false}},"deconsTo":{"geneticmaterialmantis":1},"recipes":[]}

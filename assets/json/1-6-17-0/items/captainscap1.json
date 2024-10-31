@@ -1,1 +1,0 @@
-{"id":"captainscap1","name":"Veteran's Cap","category":"Equipment","desc":"A well-worn cap that has seen many ports.","tags":["smallitem"],"priceInfo":{"outpost":{"minAvailable":1},"city":{"minAvailable":1,"multiplier":0.9},"research":{"minAvailable":1},"military":{"minAvailable":1},"mine":{"minAvailable":1},"default":{"basePrice":75}},"deconsTo":{},"recipes":[]}

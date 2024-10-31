@@ -1,1 +1,0 @@
-{"id":"lazulite","name":"Lazulite","category":"Material","desc":"A mineral containing phosphorus and iron.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":25,"sold":false}},"deconsTo":{"phosphorus":1,"iron":1},"recipes":[]}

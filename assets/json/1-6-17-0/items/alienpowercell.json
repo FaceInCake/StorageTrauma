@@ -1,1 +1,0 @@
-{"id":"alienpowercell","name":"Alien Power Cell","category":"Alien,Equipment","desc":"An alien power source.","tags":["alien","smallitem","alienpowercell"],"priceInfo":{"outpost":{},"city":{},"research":{"multiplier":1.3},"military":{"multiplier":1.2},"mine":{"multiplier":0.9},"default":{"basePrice":220,"sold":false}},"deconsTo":{"lead":1,"fulgurium":1},"recipes":[]}

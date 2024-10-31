@@ -1,1 +1,0 @@
-{"id":"idcard","name":"ID Card","category":"Equipment","desc":"Allows limited access to areas of the sub.","tags":["smallitem","identitycard"],"priceInfo":{"outpost":{"minAvailable":4},"city":{"minAvailable":6},"default":{"basePrice":10}},"deconsTo":{},"recipes":[]}

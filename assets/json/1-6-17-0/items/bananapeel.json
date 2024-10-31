@@ -1,1 +1,0 @@
-{"id":"bananapeel","name":"Banana Peel","category":"Misc","desc":"Rich in potassium. Can be a safety hazard if left lying on the floor.","tags":["smallitem","clowns"],"priceInfo":{"clown":{"minAvailable":1,"maxAvailable":2,"sold":true,"repRequired":{"clowns":30}},"default":{"basePrice":30,"sold":false,"canBeSpecial":false}},"deconsTo":{"potassium":1},"recipes":[]}

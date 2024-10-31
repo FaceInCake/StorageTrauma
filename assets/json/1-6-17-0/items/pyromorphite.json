@@ -1,1 +1,0 @@
-{"id":"pyromorphite","name":"Pyromorphite","category":"Material","desc":"A mineral composed of chlorine.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":30,"sold":false}},"deconsTo":{"chlorine":2},"recipes":[]}

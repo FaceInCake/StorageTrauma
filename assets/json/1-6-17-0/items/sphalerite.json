@@ -1,1 +1,0 @@
-{"id":"sphalerite","name":"Sphalerite","category":"Material","desc":"A mineral consisting largely of zinc in crystalline form.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":100,"sold":false}},"deconsTo":{"zinc":3},"recipes":[]}

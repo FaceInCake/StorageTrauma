@@ -1,1 +1,0 @@
-{"id":"food","name":"Pet Food","category":"Misc","desc":"The best food for your slimy friend.","tags":["smallitem","petfood1","petfood2","petfood3","monsterfood"],"priceInfo":{"outpost":{},"city":{},"research":{},"military":{},"mine":{},"default":{"basePrice":120,"minLevelDifficulty":10}},"deconsTo":{},"recipes":[]}

@@ -1,1 +1,0 @@
-{"id":"saltbulb","name":"Salt Bulb","category":"Material","desc":"Salty. Avoid moisture.","tags":["smallitem","plantitem","explodesinwater"],"priceInfo":{"outpost":{},"city":{"multiplier":1.2},"research":{"multiplier":1.1},"military":{"multiplier":0.8},"mine":{"multiplier":0.75},"default":{"basePrice":65,"sold":false}},"deconsTo":{"sodium":1,"saltvineseed":1},"recipes":[]}

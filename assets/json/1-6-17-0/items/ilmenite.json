@@ -1,1 +1,0 @@
-{"id":"ilmenite","name":"Ilmenite","category":"Material","desc":"A mineral containing titanium.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":100,"sold":false}},"deconsTo":{"titanium":1},"recipes":[]}
