@@ -95,6 +95,18 @@ class DefaultListing (Listing, total=True):
 DEFAULT_LISTING = DefaultListing(
     basePrice= 0,
     minAvailable= 0,
+    maxAvailable= 0,
+    sold= False,
+    canBeSpecial= True,
+    multiplier= 1.0,
+    minLevelDifficulty= 0,
+    repRequired= {},
+    buyingPriceModifier= 1.0,
+    requiresUnlock= False
+)
+LISTED_DEFAULT_LISTING = DefaultListing(
+    basePrice= 0,
+    minAvailable= 5,
     maxAvailable= None,
     sold= True,
     canBeSpecial= True,
@@ -133,20 +145,22 @@ def Element_to_PricingInfo (parent:Element|None) -> PricingInfo | None:
     if parent is None: return None
     if parent.tag != "Price" : raise ValueError(f"Expected a 'Price' element but was '{parent.tag}'")
     default = Element_to_Listing(parent)
+    rf = parent.get('requiredfaction')
+    req = Element('Reputation', {'faction': r, 'min': '20'}) if (r := parent.get('requiredfaction')) else None
     pinfo :defaultdict[str, Listing] = defaultdict(lambda: default)
     for p in parent.findall('Price'):
         if (id := p.get('storeidentifier','')):
-            # for k,v in parent.items(): # iter through attributes
-            #     p.set(k, p.get(k, v)) # extend `p` attributes with `parent` attributes
+            if req is not None: p.append(req)
             pinfo[id.removeprefix('merchant')] = Element_to_Listing(p)
     # TODO: a `<Clear/>` within a price tag... wth do we do?
     return pinfo
 
 def get_price_from_PricingInfo (p:PricingInfo, merchant:str="default") -> float:
     m = p[merchant]
-    basePrice = m.get("basePrice") or DEFAULT_LISTING["basePrice"]
-    mult = m.get('multiplier') or DEFAULT_LISTING['multiplier']
-    buyMult = m.get('buyingPriceModifier') or DEFAULT_LISTING['buyingPriceModifier']
+    d = maybe(p.default_factory)() or {}
+    basePrice = m.get("basePrice") or d.get('basePrice') or DEFAULT_LISTING["basePrice"]
+    mult = m.get('multiplier') or d.get('multiplier') or DEFAULT_LISTING['multiplier']
+    buyMult = m.get('buyingPriceModifier') or d.get('buyingPriceModifier') or DEFAULT_LISTING['buyingPriceModifier']
     return basePrice * mult * buyMult
 
 DEFAULT_TIME :Final[Literal["15.0"]] = "15.0" #TODO: Verify me
@@ -294,11 +308,11 @@ class Item (NamedTuple):
         `texts` is for i18n as 'text id' -> 'text', see fetch_language().
         Returns None if `e` is invalid, meaning a valid Item could not be created.
         If the item is a variation of another item, pass in `variantOf`."""
-        # e.tag NOT guaranteed to be Item for whatever reason
+        # e.tag NOT guaranteed to be Item for whatever reason, see Medical folder
         dir = e.get("dir", "") # dir is supplied by me, used for sprites/icons
         if dir == "": return None
         def fetch (target:str) -> Element | None:
-            i = l[-1] if (l := e.findall(target)) else None
+            i = l[-1] if (l := e.findall(target)) else None # catch for weird edge case of duplicate tags, take last
             if i is None: i = e.find(target.lower())
             if i is None:
                 if variantOf is None: return None

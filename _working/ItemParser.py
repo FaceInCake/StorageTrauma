@@ -8,7 +8,10 @@ from json import load as json_load
 from tkinter import filedialog, messagebox
 from xml.etree.ElementTree import parse, Element
 # from scipy.sparse import csr_matrix # Can represent a directed graph, used for con or decon trees
-from BaroInterface import maybe, ContentPackage, Deconstructable, Item, PricingInfo, Recipe, Sprite, DEFAULT_LISTING, get_price_from_PricingInfo
+from BaroInterface import (
+    maybe, ContentPackage, Deconstructable, Item, PricingInfo, Recipe, Sprite,
+    DEFAULT_LISTING, LISTED_DEFAULT_LISTING, get_price_from_PricingInfo
+)
 from ToJson import to_json
 
 
@@ -188,7 +191,8 @@ def export_default_price_info (targetPath:str, merchants:list[str]):
     with open(targetPath, 'w') as fout:
         merchStr = ",".join([to_json(m) for m in merchants])
         defStr = to_json(DEFAULT_LISTING)
-        fout.write(f'{{"merchants":[{merchStr}],"default":{defStr}}}')
+        LdefStr = to_json(LISTED_DEFAULT_LISTING)
+        fout.write(f'{{"merchants":[{merchStr}],"default":{defStr},"listedDefault":{LdefStr}}}')
 
 
 def main ():
@@ -205,10 +209,10 @@ def main ():
 
     # items = refetch_partial_items(f"assets/json/{package.version}/items")
 
-    # export_items_to_json(items, f"assets/json/{package.version}")
-    # export_default_price_info(f"assets/json/{package.version}/DefaultListing.json", merchants)
-    # export_items_to_searchDoc(items, f"assets/json/{package.version}/SearchDoc.json")
-    # export_items_to_viewlist(items, f"assets/json/{package.version}/ViewItemsList.json")
+    export_items_to_json(items, f"assets/json/{package.version}")
+    export_default_price_info(f"assets/json/{package.version}/DefaultListing.json", merchants)
+    export_items_to_searchDoc(items, f"assets/json/{package.version}/SearchDoc.json")
+    export_items_to_viewlist(items, f"assets/json/{package.version}/ViewItemsList.json")
 
     # from ItemImageDownloader import ImageDownloader
     # imgdl = ImageDownloader(rootDir)
