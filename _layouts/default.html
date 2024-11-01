@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang }}">
+<html lang="{{ page.lang }}" data-bs-theme="dark">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -8,33 +8,17 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name='author' content='{{ page.author }}'>
     <link rel="icon" type="image/x-icon" href="{{site.baseurl}}/favicon.ico">
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/bootstrap-5.2.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{site.baseurl}}/assets/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel='stylesheet' href='{{site.baseurl}}/assets/css/default.css'>
     <link rel="stylesheet" href="{{site.baseurl}}/assets/datatables/datatables.min.css">
     <script src="{{site.baseurl}}/assets/jquery-3.6.1.min.js"></script>
-    <script src="{{site.baseurl}}/assets/bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+    <script src="{{site.baseurl}}/assets/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/63c9b5600e.js" crossorigin="anonymous"></script>
     <script src="{{site.baseurl}}/assets/datatables/datatables.min.js"></script>
     {% if page.style %}
         <link rel='stylesheet' href='{{site.baseurl}}/assets/css/{{ page.style }}.css'>        
     {% endif %}
-    <script>
-        const URL_params = new Proxy(new URLSearchParams(window.location.search), {
-            get: (searchParams, prop) => searchParams.get(prop),
-        });
-        /**
-         * @param {String} path
-         * @param {String} extension
-         * @return {String}
-         */
-        function url_to (path, extension) {
-            let dir;
-            if (extension == 'png' || extension == 'jpg') dir = 'images';
-            else dir = extension;
-            return `{{ site.baseurl }}/assets/${dir}/${path}.${extension}`
-        }
-    </script>
-    <!-- <script src="{{site.baseurl}}/assets/js/default.js"></script> -->
+    <script src="{{site.baseurl}}/assets/js/default.js"></script>
     {% for s in page.scripts %}
         <script src='{{site.baseurl}}/assets/js/{{ s }}.js'></script>
     {% endfor %}

@@ -1,5 +1,3 @@
----
----
 
 // Capitalizes first letter, nothing else
 function quickTitleCase (str) {
@@ -8,51 +6,75 @@ function quickTitleCase (str) {
 
 $(async function main() {
     let item_id = URL_params.id;
-    $("#item-icon img").attr("src",`{{site.baseurl}}/assets/images/items/{{page.version}}/icons/${item_id}.png`);
-    $("#item-icon img").ready(
-        () => {
-            $("#item-icon span").hide();
-            $("#item-icon img").removeClass("invisible");
-        }
-    );
-    let item = await $.getJSON(`{{site.baseurl}}/assets/json/{{page.version}}/items/${item_id}.json`);
-    
+
+    $("#item-icon img").attr("src", url_to(`items/${gameVersion}/icons/${item_id}`, 'png'));
+    $("#item-icon img").ready(() => {
+        $("#item-icon span").hide();
+        $("#item-icon img").removeClass("d-none");
+    });
+
+    $("#item-sprite img").attr("src", url_to(`items/${gameVersion}/sprites/${item_id}`, 'png'));
+    $("#item-sprite img").ready(() => {
+        $("#item-sprite span").hide();
+        $("#item-sprite img").removeClass("d-none");
+    });
+
+    let item = await $.getJSON(url_to(`${gameVersion}/items/${item_id}`, 'json'));
+
     $("#item-name").html(item.name);
+    $("#item-categories").html('- ' + item.category.replace(',', ' - ') + ' -')
+    $("#item-desc").html(item.desc);
+    $("#item-tags").html(item.tags.join(", "));
     
-    if (item.prices) {
-        var bp = item.prices.default;
-        $("#p-base").html(bp);
-        $("#p-outpost").html(item.prices.outpost ?? bp);
-        $("#p-city").html(item.prices.city ?? bp);
-        $("#p-medical").html(item.prices.medical ?? bp);
-        $("#p-engineering").html(item.prices.engineering ?? bp);
-        $("#p-armory").html(item.prices.armory ?? bp);
-        $("#p-research").html(item.prices.research ?? bp);
-        $("#p-military").html(item.prices.military ?? bp);
-        $("#p-mine").html(item.prices.mine ?? bp);
+    let pi = new PriceInfo(item.priceInfo);
+    if (pi.basePrice) {
+        defaultListing.merchants.forEach(merchant => {
+            let l = pi[merchant];
+            let offered = l.sold || l.minAvailable != 0 || l.maxAvailable != 0;
+            let elms = [
+                offered
+                ?   Math.ceil(pi.getBuyPrice(merchant)).toFixed()
+                :   '-',
+                Math.ceil(pi.getSellPrice(merchant)).toFixed(),
+                offered
+                ?   `${l.minAvailable}` + (
+                        l.maxAvailable != l.minAvailable
+                        ?   `->${l.maxAvailable}` 
+                        :   ''
+                    )
+                :   '-',
+                Object.keys(l.repRequired).length
+                ?   Object.entries(l.repRequired)
+                    .map(([k,v]) => `${quickTitleCase(k)} = ${v}`)
+                    .join('\n')
+                :   '-',
+                l.minLevelDifficulty || '-',
+                l.canBeSpecial
+                ?   '<i class="fa-solid fa-check"></i>'
+                :   '<i class="fa-solid fa-xmark" style="color: #eb250f;"></i>',
+                l.requiresUnlock
+                ?   '<i class="fa-solid fa-check text-warning"></i>'
+                :   '-'
+            ];
+        $("#pricing-body").append(`<tr><th>${quickTitleCase(merchant)}</th><td>${elms.join("</td><td>")}</td></tr>`);
+        }); // end merchants.forEach
     } else {
-        $("#p-table").html("Worthless")
+        $("#pricing-table").hide();
     }
     
-    var ba = item.available.default;
-    $("#a-base").html(ba);
-    $("#a-outpost").html(item.available.outpost ?? ba);
-    $("#a-city").html(item.available.city ?? ba);
-    $("#a-medical").html(item.available.medical ?? ba);
-    $("#a-engineering").html(item.available.engineering ?? ba);
-    $("#a-armory").html(item.available.armory ?? ba);
-    $("#a-research").html(item.available.research ?? ba);
-    $("#a-military").html(item.available.military ?? ba);
-    $("#a-mine").html(item.available.mine ?? ba);
 
-    $("#decons-into").html(
-        Object.entries(item.deconsTo).map(elm => (
-            `${elm[1]}x ${elm[0]}`
-        )).join("<br>")
-    );
-    
-    $("#recipes").html("Berp");
 });
+
+
+// let finalP = get('basePrice') * get('multiplier') * get('buyingPriceModifier');
+// elms.push(sold && minAvail!=0 ? `${finalP.toFixed(2)}` : '-');
+// elms.push('' + (get('basePrice') * get('multiplier') * 0.3).toFixed(2));
+// elms.push(sold||(minAvail==0 && maxAvail==0) ? ('' + minAvail + (maxAvail && maxAvail!=minAvail ? '->' + maxAvail : '')) : '-');
+// elms.push(reps.length ? reps.map(([k,v],i,a) => '' + quickTitleCase(k) + ' = ' + v).join('\n') : '-');
+// elms.push(minDiff==0 ? '-' : '' + minDiff);
+// elms.push(get('canBeSpecial') ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-solid fa-xmark" style="color: #eb250f;"></i>')
+// elms.push(get('requiresUnlock') ? '<i class="fa-solid fa-check text-warning"></i>' : '-')
+
 
 
     // const params = new Proxy(new URLSearchParams(window.location.search), {get:(s,p)=>s.get(p)});

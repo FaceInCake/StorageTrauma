@@ -1,26 +1,24 @@
----
----
 
 function viewItem (id) {
-    window.location = `{{site.baseurl}}/Item.html?id=${id}`;
+    window.location = `${baseURL}/Item.html?id=${id}`;
 }
 
 
-let yes = () => '<i class="fa-solid fa-check" style="color: #1aea59;">Yes</i>';
-let no = () => '<i class="fa-solid fa-xmark" style="color: #eb250f;">No</i>';
+let yes = () => '<i class="fa-solid fa-check" style="color: #1aea59;"></i>';
+let no = () => '<i class="fa-solid fa-xmark" style="color: #eb250f;"></i>';
 let NA = () => '<span style="color: grey">N/A</span>'
 
 $(async function main () {
     $('#AllItems').DataTable({
         ajax: {
-            url: "{{site.baseurl}}/assets/json/{{ page.version }}/ViewItemsList.json",
+            url: url_to(`${gameVersion}/ViewItemsList`, 'json'),
             dataSrc: ''
         },
         columns: [
             {   data: 0, // id
                 title: 'ID',
                 render: function (data, type, row) {
-                    return `<a href=\"{{site.baseurl}}/Item.html?id=${data}\">${data}</a>`
+                    return `<a href=\"${baseURL}/Item.html?id=${data}\">${data}</a>`
                 }
             },
             {   data: 1, // name

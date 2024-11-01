@@ -1,5 +1,3 @@
----
----
 
 // Create search index
 var searchIndex = elasticlunr(function(){
@@ -13,6 +11,7 @@ var searchIndex = elasticlunr(function(){
     this.addField("price");
     this.saveDocument(true);
 });
+elasticlunr.clearStopWords();
 
 var lastBg = "warning";
 function updateProgressBar(percentile, bg, text) {
@@ -25,24 +24,25 @@ function updateProgressBar(percentile, bg, text) {
 }
 
 function viewItem (id) {
-    window.location = `{{site.baseurl}}/Item.html?id=${id}`;
+    window.location = `${baseURL}/Item.html?id=${id}`;
 }
 
 function card (item) {
-    let imageUrl = `{{site.baseurl}}/assets/images/items/{{page.version}}/icons/${item.id}.png`;
-    let price = !!item.price? item.price+" mk" : "∅";
+    let imageUrl = url_to(`items/${gameVersion}/icons/${item.id}`, 'png');
+    // let imageUrl = `{{ site.baseurl }}/assets/images/items/{{ page.version }}/icons/${item.id}.png`;
+    let price = item.price!='0' ? Math.ceil(item.price) +" mk" : "∅";
     let con = !!item.recipes? 'success' : 'danger';
     let dec = !!item.deconsTo? 'success' : 'danger';
     return `
-    <a class="card" href="{{site.baseurl}}/Item.html?id=${item.id}">
+    <a class="card" href="${baseURL}/Item.html?id=${item.id}">
         <text>${item.name}</text>
         <div>
             <div class="item-icon">
                 <img alt="MyItem" src="${imageUrl}">
             </div>
             <div class="icons">
-                <i class="fas fa-hammer text-${con}" aria-hidden="true">C</i>
-                <i class="fas fa-cogs text-${dec}" aria-hidden="true">D</i>
+                <i class="fas fa-hammer text-${con}" aria-hidden="true"></i>
+                <i class="fas fa-cogs text-${dec}" aria-hidden="true"></i>
             </div>
             <div>${price}</div>
         </div>
@@ -57,7 +57,8 @@ function onError (args) {
 $(async function main () {
     // Populate search index
     updateProgressBar(20, 'info', 'Fetching');
-    let docUrl = "{{site.baseurl}}/assets/json/{{ page.version }}/SearchDoc.json";
+    let docUrl = url_to(`${gameVersion}/SearchDoc`, 'json');
+    // let docUrl = "{{site.baseurl}}/assets/json/{{ page.version }}/SearchDoc.json";
     let searchDoc = await $.getJSON(docUrl);
     searchDoc.forEach(elm => searchIndex.addDoc(elm)); // console.log(elm)
     // Execute search
@@ -95,4 +96,20 @@ $(async function main () {
     // Finish displaying
     updateProgressBar(100, 'success', 'Displaying');
     $(".loader").slideUp(1000);
+
+
+    // let itemIds = await $.getJSON(url_to(`${gameVersion}/ItemList`, 'json'));
+    // let defaultListing = await $.getJSON(url_to(`${gameVersion}/DefaultListing`, 'json'))
+    // itemIds.forEach(async id => {
+    //     let item = await $.getJSON(url_to(`${gameVersion}/items/${id}`, 'json'));
+    //     let itemDefault = item.priceInfo.default;
+    //     defaultListing.merchants.forEach(merchant => {
+    //         let listing = item.priceInfo[merchant];
+    //         let get = (name) => listing?.[name] ?? itemDefault?.[name] ?? defaultListing.default[name];
+    //         let sold = get('sold');
+    //         let minDiff = get('minLevelDifficulty');
+    //         if (item.priceInfo?.default?.sold == true)
+    //             console.log(`${id} : ${item.name} - ${merchant} = ${get('minAvailable')}->${get('maxAvailable')}`);
+    //     });
+    // });
 });
