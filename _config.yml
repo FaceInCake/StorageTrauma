@@ -1,10 +1,10 @@
-baseurl: "/BaroEconomy"
+baseurl: "/StorageTrauma"
 exclude: [README.md]
 defaults:
   - scope:
       path: "" # All files
     values:
-      version: "1-0-7-0" # Most recent Barotrauma version
+      version: "1-6-19-1" # Most recent Barotrauma version
   - scope:
       path: "**.html"
     values:

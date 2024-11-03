@@ -14,9 +14,20 @@ a {text-decoration: none;}
     background-color: slateblue;
 }
 
-/* I disagree with Bootstrap */
-table.table caption.title {
-    caption-side: top;
-    font-size: large;
+object.icon {
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
+.feather {
+    fill: none;
+    stroke: var(--bs-body-color);
+    stroke-width: 2px;
+    width: calc(1rem + 1px);
+    height: calc(1rem + 1px);
+    margin-top: -3px;
+}
+
+.w-fit {
+    width: fit-content;
+}

@@ -1,0 +1,5 @@
+
+-   Allow navbar search to account for the 'id' field,
+    Im assuming the 'id' reference cannot be searched.
+    Might have to have a secondary index.
+

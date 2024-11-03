@@ -1,0 +1,1 @@
+{"id":"chrysoprase","name":"Chrysoprase","category":"Material","desc":"A mineral containing silicon.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":40,"sold":false}},"deconsTo":{"output":{"silicon":2},"time":5.0},"recipes":[]}

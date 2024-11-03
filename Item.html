@@ -1,98 +1,54 @@
 ---
 title: View Item
-scripts: [Item]
+style: ViewItem
+scripts: [PriceInfo, Item]
 ---
 
-<div class="row">
-    <div class="col">
-        <h2 id="item-name">...</h2>
+<div class="container-lg d-flex flex-column">
+    <div class="d-flex flex-row align-items-center">
+        <div id="item-icon" class="d-flex align-items-center m-2" style="height: 64px; width: 64px;">
+            <img title="The inventory/store icon of the item" class="d-none" src="" alt="Item Icon"/>
+            <span class="spinner-grow" role="status" style="height: 64px; width: 64px;">
+                <span class="visually-hidden">Loading...</span>
+            </span>
+        </div>
+        <div class="d-flex flex-column align-content-around flex-grow-1 p-1">
+            <h1 id="item-name">Loading...</h1>
+            <span id="item-categories"> . . . </span>
+        </div>
     </div>
-    <div class="col">
-        <span id="item-icon" class="ms-auto">
-            <img class="invisible" src="" alt="Image Icon" height="64"/>
-            <span class="spinner-grow" role="status">
+    <div class="d-flex flex-row p-2">
+        <div class="d-flex flex-column flex-grow-1">
+            <p id="item-desc"> . . . </p>
+            <span id="item-tags" class="text-secondary"> . . . </span>
+        </div>
+        <span id="item-sprite" class="p-1">
+            <img title="The sprite of the item" class="d-none border border-secondary p-1" src="" alt="Item Sprite" style="min-width: 64px; min-height: 64px;"/>
+            <span class="spinner-grow p-1" role="status" style="height: 64px; width: 64px;">
                 <span class="visually-hidden">Loading...</span>
             </span>
         </span>
     </div>
+    <div id="pricing-table" class="table-responsive">
+        <table class="table table-bordered table-striped caption-top">
+            <caption><h2>Pricing</h2></caption>
+            <thead>
+                <tr>
+                    <th>Merchant</th>
+                    <th>Buy Price</th>
+                    <th>Sell Price</th>
+                    <th>Available</th>
+                    <th>Reputation Required</th>
+                    <th>Minimum Difficulty</th>
+                    <th>Can go on Sale</th>
+                    <th>Requires Unlock</th>
+                </tr>
+            </thead>
+            <tbody id="pricing-body"></tbody>
+        </table>
+    </div>
+    <div id="recipe-section">
+        <h2>Recipes</h2>
+        <div id="recipe-body"> . . .</div>
+    </div>
 </div>
-
-<br>
-<div class="table-responsive">
-    <table class="table table-sm">
-        <caption class="title">Prices</caption>
-        <thead>
-            <tr>
-                <th>Base</th>
-                <th>Outpost</th>
-                <th>City</th>
-                <th>Medical</th>
-                <th>Engineering</th>
-                <th>Armory</th>
-                <th>Research</th>
-                <th>Military</th>
-                <th>Mining</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td id="p-base">?</td>
-                <td id="p-outpost">?</td>
-                <td id="p-city">?</td>
-                <td id="p-medical">?</td>
-                <td id="p-engineering">?</td>
-                <td id="p-armory">?</td>
-                <td id="p-research">?</td>
-                <td id="p-military">?</td>
-                <td id="p-mine">?</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<br>
-<div class="table-responsive">
-    <table class="table table-sm">
-        <caption class="title">Available</caption>
-        <thead>
-            <tr>
-                <th>Base</th>
-                <th>Outpost</th>
-                <th>City</th>
-                <th>Medical</th>
-                <th>Engineering</th>
-                <th>Armory</th>
-                <th>Research</th>
-                <th>Military</th>
-                <th>Mining</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td id="a-base">?</td>
-                <td id="a-outpost">?</td>
-                <td id="a-city">?</td>
-                <td id="a-medical">?</td>
-                <td id="a-engineering">?</td>
-                <td id="a-armory">?</td>
-                <td id="a-research">?</td>
-                <td id="a-military">?</td>
-                <td id="a-mine">?</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<br>
-<table class="table table-bordered">
-    <caption class="title">Deconstructs Into</caption>
-    <tbody>
-        <tr id="decons-into"></tr>
-    </tbody>
-</table>
-
-<br>
-<table class="table">
-    <caption class="title">Recipes</caption>
-    <tbody id="recipes"></tbody>
-</table>

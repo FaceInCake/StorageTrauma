@@ -1,0 +1,1 @@
+{"id":"petnametag","name":"Pet Name Tag","category":"Equipment","desc":"Allows the naming of pets.","tags":["smallitem"],"priceInfo":{"outpost":{},"city":{},"research":{},"military":{},"mine":{},"default":{"basePrice":10,"minLevelDifficulty":10}},"deconsTo":{},"recipes":[]}

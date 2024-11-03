@@ -1,0 +1,1 @@
+{"id":"diamond","name":"Diamond","category":"Material","desc":"A crystal composed of solid carbon.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":10},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":50,"sold":false}},"deconsTo":{"output":{"carbon":3},"time":5.0},"recipes":[]}

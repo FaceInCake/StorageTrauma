@@ -1,0 +1,1 @@
+{"id":"thorianite","name":"Thorianite","category":"Material","desc":"A rare mineral containing thorium.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":300,"sold":false}},"deconsTo":{"output":{"thorium":2},"time":5.0},"recipes":[]}

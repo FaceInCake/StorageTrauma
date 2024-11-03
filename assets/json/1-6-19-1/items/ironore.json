@@ -1,0 +1,1 @@
+{"id":"ironore","name":"Iron Ore","category":"Material","desc":"A mineral containing large amounts of iron.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":25,"sold":false}},"deconsTo":{"output":{"iron":4},"time":5.0},"recipes":[]}

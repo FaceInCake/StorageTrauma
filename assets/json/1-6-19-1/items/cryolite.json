@@ -1,0 +1,1 @@
+{"id":"cryolite","name":"Cryolite","category":"Material","desc":"A mineral containing sodium.","tags":["smallitem","ore"],"priceInfo":{"outpost":{"multiplier":1.1},"city":{"multiplier":1.25},"research":{},"military":{},"mine":{"multiplier":0.75},"default":{"basePrice":80,"sold":false}},"deconsTo":{"output":{"sodium":2},"time":5.0},"recipes":[]}

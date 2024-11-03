@@ -1,14 +1,38 @@
 {
     "emmet.includeLanguages": {
-        "jekyll": "html",
         "liquid": "html",
-        "scss": "css"
+        "jekyll": "html",
+        "scss": "css",
+        "liquid-javascript": "js"
     },
     "files.associations": {
         "*.yaml": "yaml",
         "*.md": "markdown",
-        // "*.js": "liquid-javascript"
+        // "*.js": "liquid-javascript" // Disables autocomplete
     },
     "python.analysis.typeCheckingMode": "basic",
-    "liquid.format.enable": false,
+    "python.analysis.autoImportCompletions": true,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./_working",
+        "-p",
+        "*_test.py"
+    ],
+    "python.testing.pytestEnabled": true,
+    "python.testing.cwd": "_working",
+    "vsintellicode.typescript.completionsEnabled": true,
+    "html-css-class-completion.CSSLanguages": [
+        "css",
+        "sass",
+        "scss"
+    ],
+    "html-css-class-completion.enableEmmetSupport": true,
+    "html-css-class-completion.JavaScriptLanguages": [
+        "liquid-javascript",
+        "javascript",
+        "javascriptreact",
+        "typescriptreact"
+    ],
+    "liquid.engine": "jekyll",
 }

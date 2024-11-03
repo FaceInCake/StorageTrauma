@@ -1,0 +1,1 @@
+{"id":"brokendivingsuit","name":"Broken Diving Suit","category":"Diving,Equipment","desc":"A severely damaged diving suit that could be deconstructed for some raw materials.","tags":["deepdiving","human"],"priceInfo":{},"deconsTo":{"output":{"titanium":1,"rubber":1,"aluminium":1,"titaniumaluminiumalloy":1},"time":15.0},"recipes":[]}
