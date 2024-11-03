@@ -7,7 +7,7 @@ scripts: [PriceInfo, Item]
 <div class="container-lg d-flex flex-column">
     <div class="d-flex flex-row align-items-center">
         <div id="item-icon" class="d-flex align-items-center m-2" style="height: 64px; width: 64px;">
-            <img class="d-none" src="" alt="Item Icon"/>
+            <img title="The inventory/store icon of the item" class="d-none" src="" alt="Item Icon"/>
             <span class="spinner-grow" role="status" style="height: 64px; width: 64px;">
                 <span class="visually-hidden">Loading...</span>
             </span>
@@ -23,7 +23,7 @@ scripts: [PriceInfo, Item]
             <span id="item-tags" class="text-secondary"> . . . </span>
         </div>
         <span id="item-sprite" class="p-1">
-            <img class="d-none border border-secondary p-1" src="" alt="Item Sprite" style="min-width: 64px; min-height: 64px;"/>
+            <img title="The sprite of the item" class="d-none border border-secondary p-1" src="" alt="Item Sprite" style="min-width: 64px; min-height: 64px;"/>
             <span class="spinner-grow p-1" role="status" style="height: 64px; width: 64px;">
                 <span class="visually-hidden">Loading...</span>
             </span>
@@ -46,5 +46,9 @@ scripts: [PriceInfo, Item]
             </thead>
             <tbody id="pricing-body"></tbody>
         </table>
+    </div>
+    <div id="recipe-section">
+        <h2>Recipes</h2>
+        <div id="recipe-body"> . . .</div>
     </div>
 </div>

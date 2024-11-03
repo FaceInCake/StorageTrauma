@@ -22,7 +22,8 @@ $(async function main() {
     let item = await $.getJSON(url_to(`${gameVersion}/items/${item_id}`, 'json'));
 
     $("#item-name").html(item.name);
-    $("#item-categories").html('- ' + item.category.replace(',', ' - ') + ' -')
+    $("#item-name").attr('title', (t) => `In game ID: ${item_id}`);
+    $("#item-categories").html('- ' + item.category.replace(',', ' - ') + ' -');
     $("#item-desc").html(item.desc);
     $("#item-tags").html(item.tags.join(", "));
     
@@ -44,9 +45,9 @@ $(async function main() {
                     )
                 :   '-',
                 Object.keys(l.repRequired).length
-                ?   Object.entries(l.repRequired)
+                ?   '<span style="white-space:pre-wrap;">' + Object.entries(l.repRequired)
                     .map(([k,v]) => `${quickTitleCase(k)} = ${v}`)
-                    .join('\n')
+                    .join('\n') + '</span>'
                 :   '-',
                 l.minLevelDifficulty || '-',
                 l.canBeSpecial
@@ -60,6 +61,49 @@ $(async function main() {
         }); // end merchants.forEach
     } else {
         $("#pricing-table").hide();
+    }
+
+    if (item.recipes.length) {
+        let rows = [];
+
+        let recipeCard = (recipe) => {
+            let requiredItems = Object.entries(recipe.required)
+                .map(([k,v]) => `${v} x ${k}`)
+                .join('\n');
+            return `
+                <div class="card d-flex flex-row p-2 w-fit">
+                    ${
+                        Object.keys(recipe.required).length
+                        ?   `<div class="p-1" style="white-space:pre-wrap;">${requiredItems}</div>
+                            <div class="vr m-1"></div>`
+                        :   ''
+                    }
+                    <div class="flex-column p-1">
+                        <div>
+                            ${icon('upload')}
+                            <span>${recipe.output}x</span>
+                        </div>
+                        <div>
+                            ${icon('clock')}
+                            <span>${recipe.time}s</span>
+                        </div>
+                        <div>
+                            ${icon('tool')}
+                            <span>${quickTitleCase(recipe.machine)}</span>
+                        </div>
+                        ${
+                            recipe.requiredMoney
+                            ?   `<div>${icon('dollar-sign')}<span> ${recipe.requiredMoney}</span></div>`
+                            :   ''
+                        }
+                    </div>
+                </div>
+            `;
+        };
+        item.recipes.forEach((recipe) => rows.push(recipeCard(recipe)));
+        $("#recipe-body").html(`${rows.join('')}`);
+    } else {
+        $("#recipe-section").hide();
     }
     
 
