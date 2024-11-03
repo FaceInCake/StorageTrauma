@@ -1,8 +1,8 @@
 
 from functools import singledispatch
-from typing import Any
+from typing import Any, NamedTuple, cast
 from collections import defaultdict
-from BaroInterface import maybe, Deconstructable, Recipe, Item, Listing, PricingInfo, Sprite
+from BaroInterface import maybe, Item, Listing, PricingInfo, Sprite
 
 @singledispatch
 def to_json (obj:Any) -> str:
@@ -38,20 +38,16 @@ def __pricinginfo (obj:defaultdict) -> str:
     return to_json(dic)
 
 @to_json.register
-def __deconstructable (obj:Deconstructable) -> str:
-    return "{%s}" % (
-        ','.join(
-            f'"{k}":{v}'
-            for k,v in obj.output.items()
-        )
-    )
+def __list (obj:list) -> str:
+    return f'[{",".join(obj)}]'
 
 @to_json.register
-def __recipe (obj:Recipe) -> str:
-    return '{"required":{%s},"output":%d}' % (
-        ",".join(f'"{r}":{obj.required[r]}' for r in obj.required),
-        obj.output
-    )
+def __tuple (obj:tuple) -> str:
+    if hasattr(obj, '_fields'): # If obj is a `NamedTuple`
+        obj = cast(NamedTuple, obj)  # for pylance
+        return to_json(obj._asdict())
+    else:
+        return to_json(list(obj))
 
 @to_json.register
 def __item (obj:Item) -> str:
@@ -99,6 +95,7 @@ def test_main ():
     assert to_json(1.23) == '1.23'
     assert to_json(15_000_000) == '15000000'
     assert to_json('thingy') == '"thingy"'
+    assert to_json(None) == 'null'
     print(to_json(test3))
 
 if __name__ == "__main__": test_main()

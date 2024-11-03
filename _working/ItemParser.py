@@ -122,7 +122,7 @@ def refetch_partial_items (folderPath:str) -> dict[str,Item]:
                 o['id'], o['tags'], o['name'], o['desc'], o['category'],
                 PricingInfo(**p) if p else None,
                 Deconstructable(o['deconsTo'], 30) if o['deconsTo'] else None,
-                [Recipe(r['required'], r['output'], "Undefined", 30, {}) for r in o['recipes']],
+                [Recipe(**r) for r in o['recipes']],
                 None,
                 Sprite("No", (0,0,0,0), (0,0,0))
             )

@@ -197,12 +197,12 @@ class Recipe (NamedTuple):
     "Number of seconds it takes to craft with this recipe"
     skills : dict[str,int]
     "Required skills to craft with this recipe, as 'skill id' -> 'level'"
+    requiredMoney : int
 
     @classmethod
     def from_Element (cls, e:Element) -> Self|None:
         "Expects a 'Fabricate' Element `e`, returns None if `e` is a vending machine recipe."
         machine = e.get("suitablefabricators", "fabricator") #TODO: Verify default is always 'fabricator'
-        if machine == "vendingmachine": return None
         time = e.get("requiredtime", DEFAULT_TIME)
         return cls(
             required= {
@@ -223,7 +223,8 @@ class Recipe (NamedTuple):
                     i.get("level", "")
                     ) for i in e.findall("RequiredSkill")
                 ] if id != "" and l != ""
-            }
+            },
+            requiredMoney= int(e.get('requiredmoney', 0))
         )
 
 Colour = tuple[float,float,float]
@@ -368,7 +369,7 @@ class Item (NamedTuple):
             tags= [s.strip() for s in e_t.split(",")],
             priceInfo=Element_to_PricingInfo(e_p),
             deconsTo= Deconstructable.from_Element(fetch("Deconstruct")),
-            recipes= [r for r in (Recipe.from_Element(f) for f in e_f) if r is not None],
+            recipes= [r for r in [Recipe.from_Element(f) for f in e_f] if r is not None],
             icon= InventoryIcon.from_Element(e_icon, maybe(e_icon).get('__dir') or dir, _ic),
             sprite= Sprite.from_Element(e_sprite, e_sprite.get('__dir') or dir, _sc)
         )
