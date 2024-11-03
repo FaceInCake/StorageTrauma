@@ -1,1 +1,1 @@
-{"id":"tigerthresheregg","name":"Tiger Thresher Egg","category":"Misc","desc":"","tags":[""],"priceInfo":{},"deconsTo":{"adrenalinegland":1,"alienblood":1},"recipes":[]}
+{"id":"tigerthresheregg","name":"Tiger Thresher Egg","category":"Misc","desc":"","tags":[""],"priceInfo":{},"deconsTo":{"output":{"adrenalinegland":1,"alienblood":1},"time":10.0},"recipes":[]}

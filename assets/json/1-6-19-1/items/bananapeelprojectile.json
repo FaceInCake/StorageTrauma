@@ -1,1 +1,1 @@
-{"id":"bananapeelprojectile","name":"Banana Peel","category":"Misc","desc":"","tags":["smallitem","clowns"],"priceInfo":{"clown":{"sold":false},"default":{"basePrice":30,"sold":false,"canBeSpecial":false}},"deconsTo":{"potassium":1},"recipes":[]}
+{"id":"bananapeelprojectile","name":"Banana Peel","category":"Misc","desc":"","tags":["smallitem","clowns"],"priceInfo":{"clown":{"sold":false},"default":{"basePrice":30,"sold":false,"canBeSpecial":false}},"deconsTo":{"output":{"potassium":1},"time":10.0},"recipes":[]}

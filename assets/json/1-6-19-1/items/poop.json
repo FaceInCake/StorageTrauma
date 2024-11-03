@@ -1,1 +1,1 @@
-{"id":"poop","name":"Poop","category":"Misc","desc":"A pile of poop.","tags":["smallitem"],"priceInfo":{},"deconsTo":{"carbon":1},"recipes":[]}
+{"id":"poop","name":"Poop","category":"Misc","desc":"A pile of poop.","tags":["smallitem"],"priceInfo":{},"deconsTo":{"output":{"carbon":1},"time":10.0},"recipes":[]}

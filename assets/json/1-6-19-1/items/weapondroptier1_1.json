@@ -1,1 +1,1 @@
-{"id":"weapondroptier1_1","name":"Weapon Crate","category":"None","desc":"","tags":["crate","weapondrop","weapondroptier1"],"priceInfo":{},"deconsTo":{},"recipes":[]}
+{"id":"weapondroptier1_1","name":"Weapon Crate","category":"None","desc":"","tags":["crate","weapondrop","weapondroptier1"],"priceInfo":{},"deconsTo":{"output":{},"time":0.5},"recipes":[]}

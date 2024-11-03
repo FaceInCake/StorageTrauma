@@ -1,1 +1,1 @@
-{"id":"mediummudraptoregg","name":"Mudraptor Egg","category":"Misc","desc":"","tags":["mediumitem","ignorebyai","mudraptoregg"],"priceInfo":{},"deconsTo":{"alienblood":1,"adrenalinegland":1},"recipes":[]}
+{"id":"mediummudraptoregg","name":"Mudraptor Egg","category":"Misc","desc":"","tags":["mediumitem","ignorebyai","mudraptoregg"],"priceInfo":{},"deconsTo":{"output":{"alienblood":1,"adrenalinegland":1},"time":10.0},"recipes":[]}

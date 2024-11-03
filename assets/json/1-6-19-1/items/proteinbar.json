@@ -1,0 +1,1 @@
+{"id":"proteinbar","name":"Protein Bar","category":"Medical,Material","desc":"May contain traces of galena.","tags":["smallitem","medical"],"priceInfo":{},"deconsTo":{},"recipes":[{"required":{},"output":1,"machine":"vendingmachine","time":1.0,"skills":{},"requiredMoney":40}]}

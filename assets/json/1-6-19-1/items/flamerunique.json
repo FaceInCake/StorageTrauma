@@ -1,1 +1,1 @@
-{"id":"flamerunique","name":"Prototype Steam Cannon","category":"Equipment","desc":"Gets rid of pests like nothing else. Patent pending.","tags":["smallitem","weapon","gun","mountableweapon"],"priceInfo":{},"deconsTo":{"steel":1,"plastic":1},"recipes":[]}
+{"id":"flamerunique","name":"Prototype Steam Cannon","category":"Equipment","desc":"Gets rid of pests like nothing else. Patent pending.","tags":["smallitem","weapon","gun","mountableweapon"],"priceInfo":{},"deconsTo":{"output":{"steel":1,"plastic":1},"time":10.0},"recipes":[]}
