@@ -108,7 +108,7 @@ def fetch_language (rootDir:str, langName:Language) -> dict[str,list[str]]:
         for branch in parse(filePath).getroot():
             textDict[str(branch.tag)].append(str(branch.text))
     print("Parsed out %5d text resources" % len(textDict))
-    return textDict
+    return dict(textDict) # remove default functionality
         
 def fetch_items (xmlItems :dict[str,Element], texts :dict[str,list[str]]) -> dict[str,Item]:
     items0 :list[Item|None] = [
@@ -206,9 +206,9 @@ def export_default_price_info (targetPath:str, merchants:list[str]):
 
 def export_texts_to_json (texts:dict[str,list[str]], targetFilePath:str):
     makedirs(dirname(targetFilePath), exist_ok=True)
-    with open(targetFilePath, 'w') as fout:
+    with open(targetFilePath, 'w', encoding='utf-8') as fout:
         fout.write(f"{{{','.join(
-            f"\"{k}\":[{','.join(v)}]"
+            '"' + k + '":[' + ','.join(f'"{i}"' for i in v) + ']'
             for k,v in texts.items()
         )}}}")
 
