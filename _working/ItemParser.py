@@ -3,9 +3,11 @@
 from os import makedirs
 from os.path import join as path_join, isdir, relpath, dirname
 from sys import platform
+from collections import defaultdict
 from glob import glob
 from json import load as json_load
 from tkinter import filedialog, messagebox
+from typing import Literal
 from xml.etree.ElementTree import parse, Element
 # from scipy.sparse import csr_matrix # Can represent a directed graph, used for con or decon trees
 from BaroInterface import (
@@ -88,19 +90,27 @@ def fetch_xml_elements (rootDir:str, URLs :list[str]) -> dict[str, Element]:
     print("Parsed out %4d elements" % len(allElms))
     return allElms
 
-def fetch_language (rootDir:str, langName:str) -> dict[str,str]:
-    "Returns a dictionary of 'text id' -> 'text' for the given language name"
+type Language = Literal[
+    'English', 'French', 'German', 'BrazilianPortuguese', 'CastilianSpanish',
+    'Japanese', 'Korean', 'LatinamericanSpanish', 'Polish', 'Russian',
+    'SimplifiedChinese', 'TraditionalChinese', 'Turkish', 'Finnish'
+] | str
+
+def fetch_language (rootDir:str, langName:Language) -> dict[str,list[str]]:
+    """Returns a dictionary of 'text id' -> 'texts' for the given language name.
+    
+    dict output list is usually length one but not always
+    
+    Example language names: English, French, LatinamericanSpanish"""
     files = glob(rootDir+"/Content/Texts/"+langName+"/*.xml")
-    textDict :dict[str,str] = {}
+    textDict :defaultdict[str,list[str]] = defaultdict(lambda: [])
     for filePath in files:
-        textDict.update({
-            str(branch.tag) : str(branch.text)
-            for branch in parse(filePath).getroot()
-        })
+        for branch in parse(filePath).getroot():
+            textDict[str(branch.tag)].append(str(branch.text))
     print("Parsed out %5d text resources" % len(textDict))
     return textDict
         
-def fetch_items (xmlItems :dict[str,Element], texts :dict[str,str]) -> dict[str,Item]:
+def fetch_items (xmlItems :dict[str,Element], texts :dict[str,list[str]]) -> dict[str,Item]:
     items0 :list[Item|None] = [
         Item.from_Element(e, texts, xmlItems.get(e.get("variantof",''), None))
         for e in xmlItems.values()
@@ -194,6 +204,15 @@ def export_default_price_info (targetPath:str, merchants:list[str]):
         LdefStr = to_json(LISTED_DEFAULT_LISTING)
         fout.write(f'{{"merchants":[{merchStr}],"default":{defStr},"listedDefault":{LdefStr}}}')
 
+def export_texts_to_json (texts:dict[str,list[str]], targetFilePath:str):
+    makedirs(dirname(targetFilePath), exist_ok=True)
+    with open(targetFilePath, 'w') as fout:
+        fout.write(f"{{{','.join(
+            f"\"{k}\":[{','.join(v)}]"
+            for k,v in texts.items()
+        )}}}")
+
+
 
 def main ():
     rootDir = fetch_barotrauma_path()
@@ -203,7 +222,8 @@ def main ():
     print("Version :", package.version)
     merchants = fetch_merchants(rootDir, package.npc_sets)
     xmlItems = fetch_xml_elements(rootDir, package.items)
-    texts = fetch_language(rootDir, "English")
+    curLanguage = 'English'
+    texts = fetch_language(rootDir, curLanguage)
     items = fetch_items(xmlItems, texts)
     filter_items(items)
 
@@ -213,6 +233,7 @@ def main ():
     export_default_price_info(f"assets/json/{package.version}/DefaultListing.json", merchants)
     export_items_to_searchDoc(items, f"assets/json/{package.version}/SearchDoc.json")
     export_items_to_viewlist(items, f"assets/json/{package.version}/ViewItemsList.json")
+    export_texts_to_json(texts, f"assets/json/{package.version}/texts/{curLanguage}.json")
 
     # from ItemImageDownloader import ImageDownloader
     # imgdl = ImageDownloader(rootDir)
