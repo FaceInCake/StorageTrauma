@@ -208,7 +208,10 @@ def export_texts_to_json (texts:dict[str,list[str]], targetFilePath:str):
     makedirs(dirname(targetFilePath), exist_ok=True)
     with open(targetFilePath, 'w', encoding='utf-8') as fout:
         fout.write(f"{{{','.join(
-            '"' + k + '":[' + ','.join(f'"{i}"' for i in v) + ']'
+            f"\"{k}\":[{','.join(
+                f'"{i.replace('"', '\\"')}"'
+                for i in v
+            )}]"
             for k,v in texts.items()
         )}}}")
 
