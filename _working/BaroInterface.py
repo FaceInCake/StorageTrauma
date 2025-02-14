@@ -338,15 +338,15 @@ class Item (NamedTuple):
         e_icon = fetch("InventoryIcon")
         if e_sprite is None: return None
         id :str = e.get("identifier") or e.get("file","")+f"_{hash(e)}"
-        name :str = texts.get(f"entityname.{e.get('nameidentifier', id)}", id)
-        desc :str = texts.get(f"entitydescription.{e.get('descriptionidentifier', id)}", "") #or texts.get(f"entitydescription.{id}", "")
+        name :str = texts.get(f"entityname.{e.get('nameidentifier', id)}", [id])[0]
+        desc :str = texts.get(f"entitydescription.{e.get('descriptionidentifier', id)}", [""])[0] #or texts.get(f"entitydescription.{id}", "")
         def backup_get (target:str, default:str)->str:
             return e.get(target.lower()) or e.get(target) or maybe(variantOf).get(target.lower()) or maybe(variantOf).get(target) or default
         cat :str = backup_get("Category", "None")
         # with suppress(AttributeError): # Handle Genetic Material genericism
         name, desc = (lambda g: (
             (lambda t: name.replace("[type]", t)) (
-                (lambda i: texts.get(i,''))
+                (lambda i: texts.get(i,[''])[0])
                 (g.get("nameidentifier",''))),
             (lambda v0,v1: desc.replace("[value]", f"{v0}-{v1}"))
             (g.get("tooltipvaluemin",''), g.get("tooltipvaluemax",''))

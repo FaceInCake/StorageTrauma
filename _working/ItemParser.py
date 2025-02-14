@@ -98,7 +98,7 @@ def fetch_language (rootDir:str, langName:str) -> dict[str,str]:
             for branch in parse(filePath).getroot()
         })
     print("Parsed out %5d text resources" % len(textDict))
-    return textDict
+    return dict(textDict) # remove default functionality
         
 def fetch_items (xmlItems :dict[str,Element], texts :dict[str,str]) -> dict[str,Item]:
     items0 :list[Item|None] = [
