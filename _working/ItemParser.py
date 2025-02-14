@@ -194,6 +194,18 @@ def export_default_price_info (targetPath:str, merchants:list[str]):
         LdefStr = to_json(LISTED_DEFAULT_LISTING)
         fout.write(f'{{"merchants":[{merchStr}],"default":{defStr},"listedDefault":{LdefStr}}}')
 
+def export_texts_to_json (texts:dict[str,list[str]], targetFilePath:str):
+    makedirs(dirname(targetFilePath), exist_ok=True)
+    with open(targetFilePath, 'w', encoding='utf-8') as fout:
+        fout.write(f"{{{','.join(
+            f"\"{k}\":[{','.join(
+                f'"{i.replace('"', '\\"')}"'
+                for i in v
+            )}]"
+            for k,v in texts.items()
+        )}}}")
+
+
 
 def main ():
     rootDir = fetch_barotrauma_path()
