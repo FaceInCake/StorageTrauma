@@ -304,7 +304,7 @@ class Item (NamedTuple):
     "Info for how to get the in game sprite texture for this item"
 
     @classmethod
-    def from_Element (cls, e:Element, texts:dict[str,str], variantOf:Element|None = None) -> Self|None:
+    def from_Element (cls, e:Element, texts:dict[str,list[str]], variantOf:Element|None = None) -> Self|None:
         """Parses the given Element and constructs an Item object.
         `texts` is for i18n as 'text id' -> 'text', see fetch_language().
         Returns None if `e` is invalid, meaning a valid Item could not be created.
