@@ -204,9 +204,16 @@ def export_default_price_info (targetPath:str, merchants:list[str]):
         LdefStr = to_json(LISTED_DEFAULT_LISTING)
         fout.write(f'{{"merchants":[{merchStr}],"default":{defStr},"listedDefault":{LdefStr}}}')
 
-def export_texts_to_json (texts:dict[str,list[str]], targetFilePath:str):
-    makedirs(dirname(targetFilePath), exist_ok=True)
-    with open(targetFilePath, 'w', encoding='utf-8') as fout:
+def export_texts_to_json (texts:dict[str,list[str]], targetFolderPath:str, itemIDs:list[str]):
+    makedirs(dirname(targetFolderPath), exist_ok=True)
+    itemNames = {k : texts[f'entityname.{k}'][0] for k in itemIDs}
+    itemDescriptions = {k : texts[f'entitydescription.{k}'][0] for k in itemIDs}
+    categories = { k:v[0] for (k,v) in filter(
+        lambda i: i[0].startswith('mapentitycategory.'),
+        texts.items()
+    )}
+
+    with open(path_join(targetFolderPath, 'Items.json'), 'w', encoding='utf-8') as fout:
         fout.write(f"{{{','.join(
             f"\"{k}\":[{','.join(
                 f'"{i.replace('"', '\\"')}"'
@@ -236,7 +243,7 @@ def main ():
     export_default_price_info(f"assets/json/{package.version}/DefaultListing.json", merchants)
     export_items_to_searchDoc(items, f"assets/json/{package.version}/SearchDoc.json")
     export_items_to_viewlist(items, f"assets/json/{package.version}/ViewItemsList.json")
-    export_texts_to_json(texts, f"assets/json/{package.version}/texts/{curLanguage}.json")
+    export_texts_to_json(texts, f"assets/json/{package.version}/texts/{curLanguage}", list(items.keys()))
 
     # from ItemImageDownloader import ImageDownloader
     # imgdl = ImageDownloader(rootDir)
