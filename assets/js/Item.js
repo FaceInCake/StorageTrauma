@@ -8,13 +8,13 @@ $(async function main() {
     let item_id = URL_params.id;
 
     $("#item-icon img").attr("src", url_to(`items/${gameVersion}/icons/${item_id}`, 'png'));
-    $("#item-icon img").ready(() => {
+    $("#item-icon img").on('load', () => {
         $("#item-icon span").hide();
         $("#item-icon img").removeClass("d-none");
     });
 
     $("#item-sprite img").attr("src", url_to(`items/${gameVersion}/sprites/${item_id}`, 'png'));
-    $("#item-sprite img").ready(() => {
+    $("#item-sprite img").on('load', () => {
         $("#item-sprite span").hide();
         $("#item-sprite img").removeClass("d-none");
     });
@@ -66,9 +66,12 @@ $(async function main() {
     if (item.recipes.length) {
         let rows = [];
 
+        let itemIcon = (id) => html_image(`items/${gameVersion}/icons/${id}`, "Recipe ingredient icon", id);
+        await $.getJSON(url_to(`${gameVersion}/items/${item_id}`, 'json'));
+        let itemName = (id) => json //TODO: asdf
         let recipeCard = (recipe) => {
             let requiredItems = Object.entries(recipe.required)
-                .map(([k,v]) => `${v} x ${k}`)
+                .map(([k,v]) => `${v}x ${itemIcon(k)}} ${k}`)
                 .join('\n');
             return `
                 <div class="card d-flex flex-row p-2 w-fit">

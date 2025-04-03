@@ -7,16 +7,20 @@
 - Replace all icons with feather icons
 
 - Handle recipes having a fabrication limit (vending machines)
-fabricationlimitmin="5" fabricationlimitmax="10"
+```xml
+fabricationlimitmin="5" fabricationlimitmax="10"```
 
 
 - Handle outcondition not being 1.0
-```<Fabricate suitablefabricators="fabricator" displayname="OxygenTankEmpty" outcondition="0.0">
+```xml
+<Fabricate suitablefabricators="fabricator" displayname="OxygenTankEmpty" outcondition="0.0">
     <RequiredSkill identifier="mechanical" level="20"/>
     <RequiredItem identifier="aluminium" amount="2"/>
 </Fabricate>```
 
+- remove item name from `ViewItemsList.json` and `[item].json`, instead use `texts/English.json` or etc. (ex: 'entityname.antibleeding1' = 'Bandage')
 
+- seperate search doc per language
 
 The wiki also doesn't mention whether this is before/after the Reputation modifier and whether its additive/multiplicative to it. Handling that will probably be another issue though.
 
